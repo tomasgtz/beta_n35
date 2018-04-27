@@ -1,0 +1,29 @@
+language: php
+
+# We require precise here, as 5.3 doesn't exist on trusty.
+dist: precise
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+
+env:
+  matrix:
+    - DB=mysql
+  global:
+    - PHPUNIT=3.7.33
+
+services:
+  - memcached
+
+matrix:
+  fast_finish: true
+  include:
+      
+  exclude:
+
+
+notifications:
+  email: false
