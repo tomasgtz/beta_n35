@@ -15,11 +15,11 @@ class OrdersControllerTest extends ControllerTestCase {
 		'app.order',
 		'app.quote',
 		'app.branch',
-		'app.payments_type',
-		'app.orders_phase',
 		'app.created_user',
 		'app.modified_user',
-		'app.status'
+		'app.status',
+		'app.payments_type',
+		'app.orders_phase'
 	);
 
 /**

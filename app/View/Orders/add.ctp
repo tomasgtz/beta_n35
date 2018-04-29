@@ -1,95 +1,98 @@
-<!-- bootstrap datepicker -->
-<?php echo $this->Html->css('plugins/datepicker/datepicker3.css'); ?>
-<!-- Select2 -->
-<?php echo $this->Html->css('plugins/select2/select2.min.css'); ?>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>Alta de registro<small>Alta de registro</small></h1>    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Advanced Elements</li>
+    </ol>    
+</section>
 
-<!-- bootstrap datepicker -->
-<?php echo $this->Html->script('plugins/datepicker/bootstrap-datepicker.js'); ?>
-<!-- Select2 -->
-<?php echo $this->Html->script('plugins/select2/select2.full.min.js'); ?>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  
-});  
-</script>
-
-  <!-- Content Wrapper. Contains page content -->
-  <!-- <div class="content-wrapper"> -->
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-      <?php echo __('Alta De  Order'); ?></h1>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
+<section class="content">
       <div class="row">
-
-        <!-- right column -->
-        <div class="col-md-6">
-
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
+        <!-- center column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Alta de registro</h3>            </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <div class="orders form">
-              <?php echo $this->Form->create('Order'); ?>
-              <fieldset>
-                
-<?php echo $this->Html->div('form-group',$this->Form->input('customer_name',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','customer_name')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('customer_email',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','customer_email')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('customer_phone',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','customer_phone')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('comments',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','comments')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('payment_url',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','payment_url')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('received_by',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','received_by')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('estimated_delivery_date',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','estimated_delivery_date')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('quote_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','quote_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('branch_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','branch_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('payments_type_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','payments_type_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('orders_phase_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','orders_phase_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('created_user_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','created_user_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('modified_user_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','modified_user_id')))); ?>
-
-<?php echo $this->Html->div('form-group',$this->Form->input('status_id',array('class'=>'form-control','placeholder' => 'Escribe tu '.str_replace('_',' ','status_id')))); ?>
-
-              </fieldset>
-
+            <!-- form start -->
+            <?php echo $this->Form->create('Order',array('class' => 'form-horizontal')); ?>
+            
+                            <div class="form-group">
+                                <label for="customer_name" class="col-sm-2 control-label">customer_name</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('customer_name',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_email" class="col-sm-2 control-label">customer_email</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('customer_email',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_phone" class="col-sm-2 control-label">customer_phone</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('customer_phone',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="comments" class="col-sm-2 control-label">comments</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('comments',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment_url" class="col-sm-2 control-label">payment_url</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('payment_url',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="received_by" class="col-sm-2 control-label">received_by</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('received_by',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="estimated_delivery_date" class="col-sm-2 control-label">estimated_delivery_date</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('estimated_delivery_date',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote_id" class="col-sm-2 control-label">quote_id</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('quote_id',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="branch_id" class="col-sm-2 control-label">branch_id</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('branch_id',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="payments_type_id" class="col-sm-2 control-label">payments_type_id</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('payments_type_id',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="orders_phase_id" class="col-sm-2 control-label">orders_phase_id</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('orders_phase_id',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>                <!-- /.box-body -->
               <div class="box-footer">
-                <button type="button" class="btn btn-default" onclick="getElementById('OrderAddForm').reset()" >Cancelar</button>
-                <button type="submit" class="btn btn-info pull-right">Guardar</button>
+<?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar',array('action' => '/index'),array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
               </div>
-              <?php echo $this->Form->end(); ?>
-
-              </div>
-              <div class="actions">
-                <h3><?php echo __('Acciones'); ?></h3>
-                <ul>
-                  <li><?php echo $this->Html->link(__('Mostrar Orders'), array('action' => 'index')); ?></li>
-                              </ul>
-              </div>
-
-            </div>
-            <!-- /.box-body -->
-          </div>
+              <!-- /.box-footer -->
+            <?php echo $this->Form->end(); ?>          </div>
           <!-- /.box -->
         </div>
-        <!--/.col (right) -->
+        <!--/.col (center) -->
       </div>
       <!-- /.row -->
     </section>
-    <!-- /.content -->
-  <!-- </div> -->
-  <!-- /.content-wrapper -->

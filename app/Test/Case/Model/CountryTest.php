@@ -13,8 +13,8 @@ class CountryTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.country',
-		'app.created_by',
-		'app.modified_by',
+		'app.created_user',
+		'app.modified_user',
 		'app.status',
 		'app.branch',
 		'app.jewelry_store',

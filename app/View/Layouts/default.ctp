@@ -70,7 +70,7 @@
         </script>
 
     </head>
-    <body class="sidebar-mini skin-yellow-light">
+    <body class="sidebar-mini skin-blue-light">
         <div class="wrapper">
 
             <header class="main-header">
@@ -784,7 +784,7 @@
                     alertify.dialog('errorAlert', function factory() {
                         return{
                             build: function () {
-                                var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> SDI - Error';
+                                var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> CADCAM - Error';
                                 this.setHeader(header);
                             }
                         };
@@ -795,7 +795,7 @@
                     alertify.dialog('successAlert', function factory() {
                         return{
                             build: function () {
-                                var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> SDI - Mensaje';
+                                var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> CADCAM - Mensaje';
                                 this.setHeader(header);
                             }
                         };
