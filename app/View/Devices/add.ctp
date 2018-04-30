@@ -1,4 +1,3 @@
-
 <?php 
 echo $this->Html->script('/plugins/iCheck/icheck.min.js');
 echo $this->Html->css('/plugins/iCheck/all.css');
@@ -10,8 +9,8 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Alta de registro<small>Alta de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Devices",array("action"=>"/index")); ?></li>
-        <li class="active">add</li>    </ol>    
+        <li><?php echo $this->Html->link("Dispositivos",array("controller"=>"Devices","action"=>"/index")); ?></li>
+        <li class="active">Nuevo</li>    </ol>    
 </section>
 
 <section class="content">
@@ -21,20 +20,20 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Alta de registro</h3>            </div>
+              <h3 class="box-title">Nuevo dispositivo</h3>            </div>
             <!-- /.box-header -->
             <!-- form start -->
             <br>
             <?php echo $this->Form->create('Device',array('class' => 'form-horizontal')); ?>
             
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 control-label">name</label>
+                                <label for="name" class="col-sm-2 control-label">Nombre/clave</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('name',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="branch_id" class="col-sm-2 control-label">branch_id</label>
+                                <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('branch_id',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>

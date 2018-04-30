@@ -12,11 +12,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
    <h1>
-      <?php echo __('Lista de '.'Branches'); ?>        <small><?php echo __('Lista de '.'Branches'); ?></small>
+      <?php echo __('Lista de Sucursales'); ?>        <small><?php echo __('Lista de Sucursales'); ?></small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-      <li><?php echo $this->Html->link("Branches",array("action"=>"/index")); ?></li>
+      <li class="active">Sucursales</li>
    </ol>
 </section>
 <!-- Main content -->
@@ -35,13 +35,13 @@
                   <thead>
                      <tr>
                         <th>id</th>
-                        <th>name</th>
-                        <th>access</th>
-                        <th>domicilio</th>
-                        <th>created</th>
-                        <th>modified</th>
-                        <th>status_id</th>
-                        <th class="actions"><?php echo 'acciones'; ?></th>
+                        <th>Nombre</th>
+                        <th>Acceso</th>
+                        <th>Comicilio</th>
+                        <th>Creado</th>
+                        <th>Modificado</th>
+                        <th>Status</th>
+                        <th class="actions"><?php echo 'Acciones'; ?></th>
                      </tr>
                   </thead>
                   <tbody>
@@ -107,7 +107,7 @@
                             '',
                             array('action'=>'delete',$branch['Branch']['id']),
                             array(
-                              'confirm'=>__('Esta seguro de eliminar la dirección # %s?', $branch['Branch']['id']),
+                              'confirm'=>__('Esta seguro de eliminar la sucursal # %s?', $branch['Branch']['id']),
                               'class' => 'fa fa-trash-o text-red fa-lg'
                             )
                           ); 

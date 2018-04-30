@@ -13,11 +13,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de '.'Devices'); ?>        <small><?php echo __('Lista de '.'Devices'); ?></small>
+        <?php echo __('Lista de dispositivos'); ?>        <small><?php echo __('Lista de dispositivos'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Devices",array("action"=>"/index")); ?></li>
+	<li><?php echo $this->Html->link("Sucursales",array("controller"=>"Branches", "action"=>"/index")); ?></li>
+	<li class="active">Dispositivos</li>
+        
     </ol>
 </section>
 
@@ -36,14 +38,12 @@
                         <thead>
                             <tr>
                                                                 <th>id</th>
-                                                                <th>name</th>
-                                                                <th>branch_id</th>
-                                                                <th>created</th>
-                                                                <th>created_user_id</th>
-                                                                <th>modified</th>
-                                                                <th>modified_user_id</th>
-                                                                <th>status_id</th>
-                                                                <th class="actions"><?php echo 'acciones'; ?></th>
+                                                                <th>Nombre</th>
+                                                                <th>Sucursal</th>
+                                                                <th>Creado</th>
+                                                                <th>Modificado</th>
+                                                                <th>Status</th>
+                                                                <th class="actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,20 +55,14 @@
 			<?php echo $this->Html->link($device['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $device['Branch']['id'])); ?>
 		</td>
 		<td><?php echo h($device['Device']['created']); ?></td>
-		<td>
-			<?php echo $this->Html->link($device['CreatedUser']['id'], array('controller' => 'created_users', 'action' => 'view', $device['CreatedUser']['id'])); ?>
-		</td>
 		<td><?php echo h($device['Device']['modified']); ?></td>
 		<td>
-			<?php echo $this->Html->link($device['ModifiedUser']['id'], array('controller' => 'modified_users', 'action' => 'view', $device['ModifiedUser']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($device['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $device['Status']['id'])); ?>
+			<?php echo $device['Status']['text']; ?>
 		</td>
                             <td class="actions" style="text-align:center">
 <?php echo $this->Html->link('',array('action'=>'edit',$device['Device']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
 &nbsp;&nbsp;
-<?php echo $this->Form->postLink('',array('action'=>'delete',$device['Device']['id']),array('confirm'=>__('Esta seguro de eliminar la dirección # %s?', $device['Device']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
+<?php echo $this->Form->postLink('',array('action'=>'delete',$device['Device']['id']),array('confirm'=>__('Esta seguro de eliminar el dispositivo # %s?', $device['Device']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

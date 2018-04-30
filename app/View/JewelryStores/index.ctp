@@ -12,11 +12,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
    <h1>
-      <?php echo __('Lista de '.'Jewelry Stores'); ?>        <small><?php echo __('Lista de '.'Jewelry Stores'); ?></small>
+      <?php echo __('Lista de Joyerías'); ?>        <small><?php echo __('Lista de Joyerías'); ?></small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-      <li><?php echo $this->Html->link("Jewelry Stores",array("action"=>"/index")); ?></li>
+      <li class="active">Joyerías</li>
    </ol>
 </section>
 <!-- Main content -->
@@ -35,12 +35,12 @@
                   <thead>
                      <tr>
                         <th>id</th>
-                        <th>name</th>
-                        <th>domicilio</th>
-                        <th>created</th>
-                        <th>modified</th>
-                        <th>status_id</th>
-                        <th class="actions"><?php echo 'acciones'; ?></th>
+                        <th>Joyería</th>
+                        <th>Domicilio</th>
+                        <th>Creado</th>
+                        <th>Modificado</th>
+                        <th>Status</th>
+                        <th class="actions">Acciones</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -50,7 +50,7 @@
                         <td>
                            <?php
                            echo "
-                              <b>Joyería</b>: " .$jewelryStore['JewelryStore']['name']. "<br>
+                              <b>Nombre</b>: " .$jewelryStore['JewelryStore']['name']. "<br>
                               <b>Encargado</b>: " .$jewelryStore['JewelryStore']['manager']. "<br>
                               <b>Teléfono</b>: " .$jewelryStore['JewelryStore']['phone']. "<br>
                               <b>Email</b>: " .$jewelryStore['JewelryStore']['email']. "<br>
@@ -72,7 +72,7 @@
                         <td class="actions" style="text-align:center">
                            <?php echo $this->Html->link('',array('action'=>'edit',$jewelryStore['JewelryStore']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
                            &nbsp;&nbsp;
-                           <?php echo $this->Form->postLink('',array('action'=>'delete',$jewelryStore['JewelryStore']['id']),array('confirm'=>__('Esta seguro de eliminar la dirección # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
+                           <?php echo $this->Form->postLink('',array('action'=>'delete',$jewelryStore['JewelryStore']['id']),array('confirm'=>__('Esta seguro de eliminar la joyería # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
                         </td>
                      </tr>
                      <?php endforeach; ?>
