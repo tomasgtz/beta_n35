@@ -63,12 +63,7 @@
         <?php echo $this->Html->script("/dist/js/adminlte.min.js"); ?>
         <!-- AdminLTE for demo purposes -->
         <?php echo $this->Html->script("/dist/js/demo.js"); ?>
-        <script>
-            $(document).ready(function () {
-                $('.sidebar-menu').tree()
-            })
-        </script>
-
+        <style type="text/css">.error-message{color: red;font-weight: bold;} #flashMessage{display: none}</style>
     </head>
     <body class="sidebar-mini skin-blue-light">
         <div class="wrapper">
@@ -369,11 +364,15 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
-                            <?php echo $this->Html->link(__('<i class="fa fa-home"></i><span>Inicio</span>'), array('action' => '../customers/view'), array('escape' => false)); ?>
+                            <?php echo $this->Html->link(__('<i class="fa fa-home"></i><span>Inicio</span>'), array('action' => '../'), array('escape' => false)); ?>
                         </li>
                         <li>
-                            <?php echo $this->Html->link(__('<i class="fa fa-street-view"></i> <span>Mis direcciones</span>'), array('action' => '../addressbooks/'), array('escape' => false)); ?>
+                            <?php echo $this->Html->link(__('<i class="fa fa-shopping-bag" aria-hidden="true"></i><span>Joyerías</span>'), array('action' => '../JewelryStores/'), array('escape' => false)); ?>
                         </li>
+                        <li>
+                            <?php echo $this->Html->link(__('<i class="fa fa-address-book-o" aria-hidden="true"></i><span>Sucursales</span>'), array('action' => '../Branches/'), array('escape' => false)); ?>
+                        </li>
+                        <!--
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-history"></i>
@@ -388,6 +387,7 @@
                                 <li><?php echo $this->Html->link(__('<i class="fa fa-circle-o"></i>Historial cotizaciones'), array('action' => '../orders/cotizacioncrm'), array('escape' => false)); ?></li>
                             </ul>
                         </li>
+                        -->
                         <li>
                             <a href="/sdiportaldeusuario/Customers/../Customers/logout"><i class="fa fa-sign-out"></i> <span>Cerrar sesión</span></a>
                             <!-- 
@@ -773,13 +773,15 @@
     </body>
     <script>
         $(document).ready(function () {
+
+            $('.sidebar-menu').tree();
+
             if ($('#flashMessage').length) {
                 var message = $('#flashMessage').html();
                 message = message.replace(/&lt;/g, '<');
                 message = message.replace(/&gt;/g, '>');
                 var hasClassError = $('#flashMessage').hasClass("error");
                 var hasClassSuccess = $('#flashMessage').hasClass("success");
-                $('#flashMessage').remove();
                 if (hasClassError) {
                     alertify.dialog('errorAlert', function factory() {
                         return{

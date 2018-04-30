@@ -44,6 +44,7 @@ $ignoreFields = array('created', 'created_user_id', 'modified', 'modified_user_i
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            <br>
             <?php echo "<?php echo \$this->Form->create('{$modelClass}',array('class' => 'form-horizontal')); ?>\n"; ?>
             <?php
             foreach ($fields as $field) {

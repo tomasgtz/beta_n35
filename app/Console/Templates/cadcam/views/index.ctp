@@ -38,13 +38,9 @@
                         <thead>
                             <tr>
                                 <?php foreach ($fields as $field): ?>
-                                <th>
-                                    <?php echo $field; ?>
-                                </th>
+                                <th><?php echo $field; ?></th>
                                 <?php endforeach; ?>
-                                <th class="actions">
-                                    <?php echo "<?php echo 'acciones'; ?>"; ?>
-                                </th>
+                                <th class="actions"><?php echo "<?php echo 'acciones'; ?>"; ?></th>
                             </tr>
                         </thead>
                         <tbody>
