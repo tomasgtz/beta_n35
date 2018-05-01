@@ -13,11 +13,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de Pagos de sucursales'); ?>        <small><?php echo __('Lista de Pagos de sucursales'); ?></small>
+        <?php echo __('Lista de ' . 'Users'); ?>        <small><?php echo __('Lista de ' . 'Users'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Pagos de sucursales", array("action" => "index")); ?></li>
+        <li><?php echo $this->Html->link("Users", array("action" => "/index")); ?></li>
     </ol>
 </section>
 
@@ -36,33 +36,33 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Fecha del pago</th>
-                                <th>Monto</th>
-                                <th>Sucursal</th>
-                                <th>Creado</th>
-                                <th>Modificado</th>
-                                <th>Status</th>
-                                <th class="actions"><?php echo 'Acciones'; ?></th>
+                                <th>username</th>
+                                <th>role</th>
+                                <th>created</th>
+                                <th>modified</th>
+                                <th class="actions" style="text-align: center"><?php echo 'acciones'; ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($branchesPayments as $branchesPayment): ?>
+                            <?php foreach ($users as $user): ?>
                                 <tr>
-                                    <td><?php echo h($branchesPayment['BranchesPayment']['id']); ?></td>
-                                    <td><?php echo h($branchesPayment['BranchesPayment']['payment_date']); ?></td>
-                                    <td><?php echo h($branchesPayment['BranchesPayment']['ammount']); ?></td>
-                                    <td>
-                                        <?php echo $this->Html->link($branchesPayment['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $branchesPayment['Branch']['id'])); ?>
+                                    <td><?php echo h($user['User']['id']); ?></td>
+                                    <td><?php echo h($user['User']['username']); ?></td>
+                                    <td><?php echo h($user['User']['role']); ?></td>
+                                    <td><?php echo h($user['User']['created']); ?></td>
+                                    <td><?php echo h($user['User']['modified']); ?></td>
+                                    <td class="actions">
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $user['User']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php                                            
+                                            if($user['Branch'][0]['id'] == null){
+                                                $user['Branch'][0]['id'] = '';
+                                            }
+                                            if(!empty($user['Branch'][0]['id'])){
+                                                echo "&nbsp;&nbsp;";
+                                                echo $this->Html->link('', array('controller' => 'Branches', 'action' => 'edit', $user['Branch'][0]['id']), array('class' => 'fa fa-address-book-o text-green fa-lg'));
+                                            }
+                                        ?>
                                     </td>
-                                    <td><?php echo h($branchesPayment['BranchesPayment']['created']); ?></td>
-                                    <td><?php echo h($branchesPayment['BranchesPayment']['modified']); ?></td>
-                                    <td>
-                                        <?php echo $branchesPayment['Status']['text']; ?>
-                                    </td>
-                                    <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $branchesPayment['BranchesPayment']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
-                                        &nbsp;&nbsp;
-                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $branchesPayment['BranchesPayment']['id']), array('confirm' => __('Esta seguro de eliminar el pago # %s?', $branchesPayment['BranchesPayment']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -83,7 +83,7 @@
             dom: 'Blftip',
             buttons: [{
                     extend: 'excel',
-                    filename: 'Branches Payments',
+                    filename: 'Users',
                     exportOptions: {
                         format: {
                             body: function (data, row, col) {

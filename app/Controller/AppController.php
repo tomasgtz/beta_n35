@@ -46,7 +46,42 @@ class AppController extends Controller {
      * @param type $text
      */
     public function assignTitle($text) {
-        $this->titlePage = 'SDI | ' . $this->titlePage . ' | ' . $text;
+        $this->titlePage = 'CADCAM | ' . $this->titlePage . ' | ' . $text;
+    }
+
+    public $components = array(
+        'Flash',
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'Quotes',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            ),
+            'authorize' => array('Controller') // Added this line
+        )
+    );
+
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+        // Default deny
+        return false;
+    }
+
+    public function beforeFilter() {
+        // $this->Auth->allow('index');
     }
 
 }

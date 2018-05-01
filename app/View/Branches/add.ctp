@@ -12,7 +12,7 @@
    <h1>Alta de registro<small>Alta de registro</small></h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-      <li><?php echo $this->Html->link("Sucursales",array("controller"=>"Branches", "action"=>"index")); ?></li>
+      <li><?php echo $this->Html->link("Sucursales",array("action"=>"index")); ?></li>
       <li class="active">Nuevo</li>
    </ol>
 </section>
@@ -45,7 +45,7 @@
                </div>   
             </div>
             <div class="form-group">
-               <label for="phone" class="col-sm-2 control-label">TelÃ©fono</label>
+               <label for="phone" class="col-sm-2 control-label">Teléfono</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('phone',array('class' => 'form-control', 'label' => false)); ?>
                </div>
@@ -81,7 +81,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="postcode" class="col-sm-2 control-label">CÃ³digo Postal</label>
+               <label for="postcode" class="col-sm-2 control-label">Código Postal</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('postcode',array('class' => 'form-control', 'label' => false)); ?>
                </div>
@@ -99,19 +99,19 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="country_id" class="col-sm-2 control-label">PaÃ­s</label>
+               <label for="country_id" class="col-sm-2 control-label">País</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('country_id',array('class' => 'form-control', 'label' => false)); ?>
                </div>
             </div>
             <div class="form-group">
-               <label for="user_id" class="col-sm-2 control-label">Creado por</label>
+               <label for="user_id" class="col-sm-2 control-label">Usuario asignado</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('user_id',array('class' => 'form-control', 'label' => false)); ?>
                </div>
             </div>
             <div class="form-group">
-               <label for="jewelrystore_id" class="col-sm-2 control-label">JoyerÃ­a</label>
+               <label for="jewelrystore_id" class="col-sm-2 control-label">Joyería</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('jewelrystore_id',array('class' => 'form-control', 'label' => false)); ?>
                </div>

@@ -13,11 +13,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de países'); ?>        <small><?php echo __('Lista de países'); ?></small>
+        <?php echo __('Lista de '.'Countries'); ?>        <small><?php echo __('Lista de '.'Countries'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-         <li class="active">Países</li>
+        <li><?php echo $this->Html->link("Countries",array("action"=>"/index")); ?></li>
     </ol>
 </section>
 
@@ -38,19 +38,23 @@
                                                                 <th>
                                     id                                </th>
                                                                 <th>
-                                    Nombre                                </th>
+                                    name                                </th>
                                                                 <th>
-                                    Código iso 2                                </th>
+                                    iso_code_2                                </th>
                                                                 <th>
-                                    Código iso 3                                </th>
+                                    iso_code_3                                </th>
                                                                 <th>
-                                    Creado                                </th>
+                                    created                                </th>
                                                                 <th>
-                                    Modificado                                </th>
+                                    created_user_id                                </th>
                                                                 <th>
-                                    Status                                </th>
+                                    modified                                </th>
+                                                                <th>
+                                    modified_user_id                                </th>
+                                                                <th>
+                                    status_id                                </th>
                                                                 <th class="actions">
-                                    <?php echo 'Acciones'; ?>                                </th>
+                                    <?php echo 'acciones'; ?>                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,12 +65,20 @@
 		<td><?php echo h($country['Country']['iso_code_2']); ?></td>
 		<td><?php echo h($country['Country']['iso_code_3']); ?></td>
 		<td><?php echo h($country['Country']['created']); ?></td>
+		<td>
+			<?php echo $this->Html->link($country['CreatedUser']['id'], array('controller' => 'created_users', 'action' => 'view', $country['CreatedUser']['id'])); ?>
+		</td>
 		<td><?php echo h($country['Country']['modified']); ?></td>
-		<td><?php echo $country['Status']['text']; ?></td>
-		<td class="actions" style="text-align:center">
+		<td>
+			<?php echo $this->Html->link($country['ModifiedUser']['id'], array('controller' => 'modified_users', 'action' => 'view', $country['ModifiedUser']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($country['Status']['id'], array('controller' => 'statuses', 'action' => 'view', $country['Status']['id'])); ?>
+		</td>
+                            <td class="actions" style="text-align:center">
 <?php echo $this->Html->link('',array('action'=>'edit',$country['Country']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
 &nbsp;&nbsp;
-<?php echo $this->Form->postLink('',array('action'=>'delete',$country['Country']['id']),array('confirm'=>__('Esta seguro de eliminar el país # %s?', $country['Country']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?></td>
+<?php echo $this->Form->postLink('',array('action'=>'delete',$country['Country']['id']),array('confirm'=>__('Esta seguro de eliminar la dirección # %s?', $country['Country']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

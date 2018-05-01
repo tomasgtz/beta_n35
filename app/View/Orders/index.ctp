@@ -27,56 +27,58 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <?php 
+                        <?php
                         $button = '<i class="fa fa-plus-square"></i>&nbsp;Nuevo registro';
                         $action = array("action" => "/add");
                         $option1 = array("class" => "btn btn-primary", "escape" => false);
                         echo $this->Html->link($button, $action, $option1);
-                    ?>
-                                        </h3>
+                        ?>
+                    </h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table id="table1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-				<th>id</th>
-				<th>Cliente</th>
-				<th>Comentarios</th>
-				<th>F.estimada entrega</th>
-				<th>Sucursal</th>
-				<th>Status pedido</th>
-				<th>Creado</th>
-				<th>Modificado</th>
-				<th>Status</th>
-				<th class="actions">Acciones</th>
-			    </tr>
+                                <th>id</th>
+                                <th>Cliente</th>
+                                <th>Comentarios</th>
+                                <th>F.estimada entrega</th>
+                                <th>Sucursal</th>
+                                <th>Status pedido</th>
+                                <th>Creado</th>
+                                <th>Modificado</th>
+                                <th>Status</th>
+                                <th class="actions">Acciones</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($orders as $order): ?>
-	<tr>
-		<td><?php echo h($order['Order']['id']); ?></td>
-		<td><b>Nombre</b>: <?php echo h($order['Order']['customer_name']); ?><br>
-		<b>Correo</b>: <?php echo h($order['Order']['customer_email']); ?><br>
-		<b>Tel.</b>: <?php echo h($order['Order']['customer_phone']); ?></td>
-		<td><?php echo h($order['Order']['comments']); ?></td>
-		<td><?php echo h($order['Order']['estimated_delivery_date']); ?></td>
-		<td>
-			<?php echo $order['Branch']['name']; ?>
-		</td>
-		<td>
-			<?php echo $order['OrdersPhase']['name']; ?>
-		</td>
-		<td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['modified']); ?>&nbsp;</td>
-		<td>
-			<?php echo $order['Status']['text']; ?>
-		</td>
-		<td class="actions" style="text-align:center">
-		<?php echo $this->Html->link("<i class='fa fa-edit'></i>" , array('action' => 'edit', $order['Order']['id']),array('class' => 'btn btn-primary btn-xs', 'escape' => false)); ?>&nbsp;
-		<?php echo $this->Form->postLink("<i class='fa fa-trash-o'></i>", array('action' => 'delete', $order['Order']['id']),array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $order['Order']['id']), 'class' => 'btn btn-danger btn-xs', 'escape' => false)); ?></td>
-	</tr>
-<?php endforeach; ?>
+                                <tr>
+                                    <td><?php echo h($order['Order']['id']); ?></td>
+                                    <td>
+										<b>Nombre</b>: <?php echo h($order['Order']['customer_name']); ?><br>
+                                        <b>Correo</b>: <?php echo h($order['Order']['customer_email']); ?><br>
+                                        <b>Tel.</b>: <?php echo h($order['Order']['customer_phone']); ?>
+									</td>
+                                    <td><?php echo h($order['Order']['comments']); ?></td>
+                                    <td><?php echo h($order['Order']['estimated_delivery_date']); ?></td>
+                                    <td>
+                                        <?php echo $order['Branch']['name']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $order['OrdersPhase']['name']; ?>
+                                    </td>
+                                    <td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
+                                    <td><?php echo h($order['Order']['modified']); ?>&nbsp;</td>
+                                    <td>
+                                        <?php echo $order['Status']['text']; ?>
+                                    </td>
+                                    <td class="actions" style="text-align:center">
+                                        <?php echo $this->Html->link("<i class='fa fa-edit'></i>", array('action' => 'edit', $order['Order']['id']), array('class' => 'btn btn-primary btn-xs', 'escape' => false)); ?>&nbsp;
+                                        <?php echo $this->Form->postLink("<i class='fa fa-trash-o'></i>", array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $order['Order']['id']), 'class' => 'btn btn-danger btn-xs', 'escape' => false)); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -90,22 +92,22 @@
 </section>
 <!-- /.content -->
 <script>
-   $(document).ready(function() {
-     var table = $('#table1').DataTable({
-         dom: 'Blftip',
-         buttons: [{
-             extend: 'excel',
-             filename: 'Orders',
-             exportOptions: {
-                 format: {
-                     body: function(data, row, col) {
-                         var s = '<p>' + data + '</p>';
-                         return $(s).text();
-                     }
-                 }
-   
-             }
-         }]
-     });
-   });
+    $(document).ready(function () {
+        var table = $('#table1').DataTable({
+            dom: 'Blftip',
+            buttons: [{
+                    extend: 'excel',
+                    filename: 'Orders',
+                    exportOptions: {
+                        format: {
+                            body: function (data, row, col) {
+                                var s = '<p>' + data + '</p>';
+                                return $(s).text();
+                            }
+                        }
+
+                    }
+                }]
+        });
+    });
 </script>

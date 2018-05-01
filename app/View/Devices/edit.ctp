@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo $this->Html->script('/plugins/iCheck/icheck.min.js');
 echo $this->Html->css('/plugins/iCheck/all.css');
 echo $this->Html->css('/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
@@ -9,57 +9,57 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Edición de registro<small>Edición de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Devices",array("controller"=>"Devices", "action"=>"index")); ?></li>
-        <li class="active">Edición</li>    </ol>    
+        <li><?php echo $this->Html->link("Dispositivos", array("action" => "index")); ?></li>
+        <li class="active">edit</li>    </ol>    
 </section>
 
 <section class="content">
-      <div class="row">
+    <div class="row">
         <!-- center column -->
         <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title"> Editando Dispositivo #<?php echo $this->request->data['Device']['id']; ?></h3>            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <br>
-            <?php echo $this->Form->create('Device',array('class' => 'form-horizontal')); ?>
-            <?php echo $this->Form->input('id',array('class' => 'form-control', 'label' => false)); ?>
-                            <div class="form-group">
-                                <label for="name" class="col-sm-2 control-label">Nombre / clave</label>
-                                    <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('name',array('class' => 'form-control', 'label' => false)); ?>
-                                    </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
-                                    <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('branch_id',array('class' => 'form-control', 'label' => false)); ?>
-                                    </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="status_id" class="col-sm-2 control-label">Status</label>
-                                    <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('status_id',array('class' => 'form-control', 'label' => false)); ?>
-                                    </div>
-                            </div>                <!-- /.box-body -->
-              <div class="box-footer">
-<?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar',array('action' => '/index'),array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
-              </div>
-              <!-- /.box-footer -->
-            <?php echo $this->Form->end(); ?>          </div>
-          <!-- /.box -->
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"> Editando dispositivo #<?php echo $this->request->data['Device']['id']; ?></h3>            </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <br>
+                <?php echo $this->Form->create('Device', array('class' => 'form-horizontal')); ?>
+                <?php echo $this->Form->input('id', array('class' => 'form-control', 'label' => false)); ?>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Nombre / clave</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('name', array('class' => 'form-control', 'label' => false)); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('branch_id', array('class' => 'form-control', 'label' => false)); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status_id" class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false)); ?>
+                    </div>
+                </div>                <!-- /.box-body -->
+                <div class="box-footer">
+                    <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                </div>
+                <!-- /.box-footer -->
+                <?php echo $this->Form->end(); ?>          </div>
+            <!-- /.box -->
         </div>
         <!--/.col (center) -->
-      </div>
-      <!-- /.row -->
-    </section>
+    </div>
+    <!-- /.row -->
+</section>
 
 <script type="text/javascript">
     $(document).ready(function () {
         //Initialize Select2 Elements
-	$('#DeviceStatusId').select2();
-	$('#DeviceBranchId').select2();
+        $('#DeviceStatusId').select2();
+        $('#DeviceBranchId').select2();
     });
 </script>

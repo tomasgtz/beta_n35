@@ -8,14 +8,13 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>Alta de registro<small>Alta de registro</small></h1>    
-	<ol class="breadcrumb">
+    <h1>Alta de registro<small>Alta de registro</small></h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Pagos de sucursales", array("action" => "index")); ?></li>
-        <li class="active">Nuevo</li>
-	</ol>    
+        <li><?php echo $this->Html->link("Users", array("action" => "/index")); ?></li>
+        <li class="active">add</li>
+    </ol>
 </section>
-
 <section class="content">
     <div class="row">
         <!-- center column -->
@@ -23,54 +22,44 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nuevo pago de sucursal</h3>            </div>
+                    <h3 class="box-title">Alta de registro</h3>
+                </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <br>
-                <?php echo $this->Form->create('BranchesPayment', array('class' => 'form-horizontal')); ?>
-
+                <?php echo $this->Form->create('User', array('class' => 'form-horizontal')); ?>
                 <div class="form-group">
-                    <label for="payment_date" class="col-sm-2 control-label">Fecha del pago</label>
+                    <label for="username" class="col-sm-2 control-label">username</label>
                     <div class="col-sm-6 required">
-                        <div class="input-group date">
-                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                            <?php echo $this->Form->input('payment_date', array('type' => 'text', 'class' => 'form-control pull-right', 'label' => false)); ?>
-                        </div>
+                        <?php echo $this->Form->input('username', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ammount" class="col-sm-2 control-label">Monto</label>
+                    <label for="password" class="col-sm-2 control-label">password</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('ammount', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('password', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
+                    <label for="role" class="col-sm-2 control-label">role</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('branch_id', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('role', array('class' => 'form-control', 'label' => false, 'options' => array('admin' => 'Administrador', 'normal' => 'Usuario'))); ?>
                     </div>
-                </div>                <!-- /.box-body -->
+                </div>
+                <!-- /.box-body -->
                 <div class="box-footer">
                     <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
                 </div>
                 <!-- /.box-footer -->
-                <?php echo $this->Form->end(); ?>          </div>
+                <?php echo $this->Form->end(); ?>          
+            </div>
             <!-- /.box -->
         </div>
         <!--/.col (center) -->
     </div>
     <!-- /.row -->
 </section>
-
 <script type="text/javascript">
     $(document).ready(function () {
-        //Initialize Select2 Elements
-        $('#BranchesPaymentBranchId').select2();
-
-        //Date picker
-        $('#BranchesPaymentPaymentDate').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true
-        });
     });
 </script>

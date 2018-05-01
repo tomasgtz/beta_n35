@@ -9,16 +9,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de Joyerías'); ?>        <small><?php echo __('Lista de Joyerías'); ?></small>
+        <?php echo __('Lista de ' . 'Quotes'); ?>        <small><?php echo __('Lista de ' . 'Quotes'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Joyerías", array("action" => "index")); ?></li>
+        <li><?php echo $this->Html->link("Quotes", array("action" => "/index")); ?></li>
     </ol>
 </section>
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -26,7 +28,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <?php echo $this->Html->link("<i class='fa fa-plus'></i>&nbsp;Nuevo", array("action" => "/add"), array("class" => "btn btn-primary", "escape" => false)); ?>
+                        <?php // echo $this->Html->link("<i class='fa fa-plus'></i>&nbsp;Nuevo", array("action" => "/add"), array("class" => "btn btn-primary", "escape" => false)); ?>
                     </h3>
                 </div>
                 <!-- /.box-header -->
@@ -35,45 +37,40 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Joyería</th>
-                                <th>Domicilio</th>
-                                <th>Creado</th>
-                                <th>Modificado</th>
-                                <th>Status</th>
-                                <th class="actions">Acciones</th>
+                                <th>customer_name</th>
+                                <th>customer_email</th>
+                                <th>customer_phone</th>
+                                <th>comments</th>
+                                <th>branch_id</th>
+                                <th>created</th>
+                                <th>modified</th>
+                                <th>status_id</th>
+                                <!-- <th class="actions"><?php echo 'acciones'; ?></th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($jewelryStores as $jewelryStore): ?>
+                            <?php foreach ($quotes as $quote): ?>
                                 <tr>
-                                    <td><?php echo h($jewelryStore['JewelryStore']['id']); ?></td>
+                                    <td><?php echo h($quote['Quote']['id']); ?></td>
+                                    <td><?php echo h($quote['Quote']['customer_name']); ?></td>
+                                    <td><?php echo h($quote['Quote']['customer_email']); ?></td>
+                                    <td><?php echo h($quote['Quote']['customer_phone']); ?></td>
+                                    <td><?php echo h($quote['Quote']['comments']); ?></td>
                                     <td>
-                                        <?php
-                                        echo "
-										<b>Nombre</b>: " . $jewelryStore['JewelryStore']['name'] . "<br>
-										<b>Encargado</b>: " . $jewelryStore['JewelryStore']['manager'] . "<br>
-										<b>Teléfono</b>: " . $jewelryStore['JewelryStore']['phone'] . "<br>
-										<b>Email</b>: " . $jewelryStore['JewelryStore']['email'] . "<br>
-										<b>RFC</b>: " . $jewelryStore['JewelryStore']['rfc'];
-                                        ?>
+                                        <?php echo $this->Html->link($quote['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $quote['Branch']['id'])); ?>
                                     </td>
+                                    <td><?php echo h($quote['Quote']['created']); ?></td>
+                                    <td><?php echo h($quote['Quote']['modified']); ?></td>
                                     <td>
-                                        <?php
-                                        echo
-                                        $jewelryStore['JewelryStore']['street'] . "<br>"
-                                        . $jewelryStore['JewelryStore']['suburb'] . ", CP. " . $jewelryStore['JewelryStore']['postcode'] . "<br>"
-                                        . $jewelryStore['JewelryStore']['city'] . ", " . $jewelryStore['State']['iso_code_3'] . "<br>"
-                                        . $jewelryStore['Country']['iso_code_3'];
-                                        ?>      
+                                        <?php echo $this->Html->link($quote['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $quote['Status']['id'])); ?>
                                     </td>
-                                    <td><?php echo h($jewelryStore['JewelryStore']['created']); ?></td>
-                                    <td><?php echo h($jewelryStore['JewelryStore']['modified']); ?></td>
-                                    <td><?php echo ($jewelryStore['Status']['text']); ?></td>
+                                    <!--
                                     <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $jewelryStore['JewelryStore']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                    <?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                         &nbsp;&nbsp;
-                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $jewelryStore['JewelryStore']['id']), array('confirm' => __('Esta seguro de eliminar la joyería # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
+                                    <?php echo $this->Form->postLink('', array('action' => 'delete', $quote['Quote']['id']), array('confirm' => __('Esta seguro de eliminar la direcciÃ³n # %s?', $quote['Quote']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>
                                     </td>
+                                    -->
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -94,7 +91,7 @@
             dom: 'Blftip',
             buttons: [{
                     extend: 'excel',
-                    filename: 'Jewelry Stores',
+                    filename: 'Quotes',
                     exportOptions: {
                         format: {
                             body: function (data, row, col) {

@@ -17,9 +17,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-	<li><?php echo $this->Html->link("Sucursales",array("controller"=>"Branches", "action"=>"/index")); ?></li>
-	<li class="active">Dispositivos</li>
-        
+        <li><?php echo $this->Html->link("Dispositivos", array("action" => "index")); ?></li>
     </ol>
 </section>
 
@@ -30,40 +28,38 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-<?php echo $this->Html->link("<i class='fa fa-plus'></i>&nbsp;Nuevo",array("action"=>"/add"),array("class"=>"btn btn-primary","escape"=>false)); ?>                    </h3>
+                        <?php echo $this->Html->link("<i class='fa fa-plus'></i>&nbsp;Nuevo", array("action" => "/add"), array("class" => "btn btn-primary", "escape" => false)); ?>                    </h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table id="table1" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                                                <th>id</th>
-                                                                <th>Nombre</th>
-                                                                <th>Sucursal</th>
-                                                                <th>Creado</th>
-                                                                <th>Modificado</th>
-                                                                <th>Status</th>
-                                                                <th class="actions">Acciones</th>
+                                <th>id</th>
+                                <th>Nombre</th>
+                                <th>Sucursal</th>
+                                <th>Creado</th>
+                                <th>Modificado</th>
+                                <th>Status</th>
+                                <th class="actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($devices as $device): ?>
-<tr>
-		<td><?php echo h($device['Device']['id']); ?></td>
-		<td><?php echo h($device['Device']['name']); ?></td>
-		<td>
-			<?php echo $this->Html->link($device['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $device['Branch']['id'])); ?>
-		</td>
-		<td><?php echo h($device['Device']['created']); ?></td>
-		<td><?php echo h($device['Device']['modified']); ?></td>
-		<td>
-			<?php echo $device['Status']['text']; ?>
-		</td>
-                            <td class="actions" style="text-align:center">
-<?php echo $this->Html->link('',array('action'=>'edit',$device['Device']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
-&nbsp;&nbsp;
-<?php echo $this->Form->postLink('',array('action'=>'delete',$device['Device']['id']),array('confirm'=>__('Esta seguro de eliminar el dispositivo # %s?', $device['Device']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo h($device['Device']['id']); ?></td>
+                                    <td><?php echo h($device['Device']['name']); ?></td>
+                                    <td>
+                                        <?php echo $this->Html->link($device['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $device['Branch']['id'])); ?>
+                                    </td>
+                                    <td><?php echo h($device['Device']['created']); ?></td>
+                                    <td><?php echo h($device['Device']['modified']); ?></td>
+                                    <td><?php echo $device['Status']['text']; ?></td>
+                                    <td class="actions" style="text-align:center">
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $device['Device']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        &nbsp;&nbsp;
+                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $device['Device']['id']), array('confirm' => __('Esta seguro de eliminar el dispositivo # %s?', $device['Device']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -78,22 +74,22 @@
 </section>
 <!-- /.content -->
 <script>
-$(document).ready(function() {
-  var table = $('#table1').DataTable({
-      dom: 'Blftip',
-      buttons: [{
-          extend: 'excel',
-          filename: 'Devices',
-          exportOptions: {
-              format: {
-                  body: function(data, row, col) {
-                      var s = '<p>' + data + '</p>';
-                      return $(s).text();
-                  }
-              }
+    $(document).ready(function () {
+        var table = $('#table1').DataTable({
+            dom: 'Blftip',
+            buttons: [{
+                    extend: 'excel',
+                    filename: 'Devices',
+                    exportOptions: {
+                        format: {
+                            body: function (data, row, col) {
+                                var s = '<p>' + data + '</p>';
+                                return $(s).text();
+                            }
+                        }
 
-          }
-      }]
-  });
-});
+                    }
+                }]
+        });
+    });
 </script>
