@@ -25,7 +25,12 @@ class QuotesController extends AppController {
      */
     public function index() {
         $this->Quote->recursive = 0;
-        $this->set('quotes', $this->Quote->find("all"));
+        $user = $this->Auth->user();
+        if (isset($user['role']) && $user['role'] == 'admin' ) {
+          $this->set('quotes', $this->Quote->find("all"));
+        } else {
+          $this->set('quotes', $this->Quote->find("all",array("conditions" => array("user_id" => $user['id']))));
+        }
     }
 
     /**

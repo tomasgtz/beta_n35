@@ -13,7 +13,7 @@ class OrdersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array();
 
 /**
  * index method
@@ -21,8 +21,13 @@ class OrdersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Order->recursive = 0;
-		$this->set('orders', $this->Paginator->paginate());
+        $this->Order->recursive = 0;
+        $user = $this->Auth->user();
+        if (isset($user['role']) && $user['role'] == 'admin' ) {
+          $this->set('orders', $this->Order->find("all"));
+        } else {
+          $this->set('orders', $this->Order->find("all",array("conditions" => array("user_id" => $user['id']))));
+        }		
 	}
 
 /**
@@ -117,4 +122,14 @@ class OrdersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role'])) {
+            return true;
+        }
+        // Default deny
+        return parent::isAuthorized($user);
+    }
+
 }
