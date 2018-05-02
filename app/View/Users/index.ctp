@@ -37,9 +37,12 @@
                             <tr>
                                 <th>id</th>
                                 <th>username</th>
+                                <th>sucursal</th>
+                                <th>estatus sucursal</th>
                                 <th>role</th>
                                 <th>created</th>
                                 <th>modified</th>
+                                <th>status</th>
                                 <th class="actions" style="text-align: center"><?php echo 'acciones'; ?></th>
                             </tr>
                         </thead>
@@ -48,12 +51,16 @@
                                 <tr>
                                     <td><?php echo h($user['User']['id']); ?></td>
                                     <td><?php echo h($user['User']['username']); ?></td>
+                                    <td><?php echo h($user['Branch'][0]['name']); ?></td>
+                                    <td><?php echo h($user['Branch'][0]['Status']['text']); ?></td>
                                     <td><?php echo h($user['User']['role']); ?></td>
                                     <td><?php echo h($user['User']['created']); ?></td>
                                     <td><?php echo h($user['User']['modified']); ?></td>
+                                    <td><?php echo h($user['Status']['text']); ?></td>
                                     <td class="actions">
                                         <?php echo $this->Html->link('', array('action' => 'edit', $user['User']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
-                                        <?php                                            
+                                        <?php
+                                        /**                                            
                                             if($user['Branch'][0]['id'] == null){
                                                 $user['Branch'][0]['id'] = '';
                                             }
@@ -61,6 +68,7 @@
                                                 echo "&nbsp;&nbsp;";
                                                 echo $this->Html->link('', array('controller' => 'Branches', 'action' => 'edit', $user['Branch'][0]['id']), array('class' => 'fa fa-address-book-o text-green fa-lg'));
                                             }
+                                        */
                                         ?>
                                     </td>
                                 </tr>

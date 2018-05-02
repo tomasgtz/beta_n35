@@ -15,7 +15,7 @@ class UsersController extends AppController {
      *
      * @var array
      */
-    public $components = array();
+    public $components = array('Flash');
 
     /**
      * index method
@@ -23,7 +23,16 @@ class UsersController extends AppController {
      * @return void
      */
     public function index() {
-        $this->set('users', $this->User->find('all'));
+        $this->loadModel('Status');
+        $this->Status->recursive = -1;
+        $users = $this->User->find('all');
+        foreach ($users as $key => $user) {
+            $branch = $user['Branch'];
+            if(count($branch)>0){
+                $users[$key]['Branch'][0]['Status'] = $this->Status->findById($branch[0]['status_id'])['Status'];
+            }
+        }
+        $this->set('users', $users);
     }
 
     /**
@@ -82,6 +91,8 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
+        $statuses = $this->User->Status->find('list');
+        $this->set(compact('statuses'));        
     }
 
     /**
@@ -117,10 +128,23 @@ class UsersController extends AppController {
         $this->layout = 'blank';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                debug($this->Auth->redirectUrl());
-                return $this->redirect($this->Auth->redirectUrl());
+                // debug($this->Auth->redirectUrl());
+                $user = $this->Auth->User();
+                if($user['role'] == 'admin'){
+                    return $this->redirect($this->Auth->redirectUrl());
+                } else {
+                    $this->loadModel('Branch');
+                    $branchStatusId = $this->Branch->findByUserId($user['id'])['Branch']['status_id'];
+                    if($branchStatusId == 1){
+                        return $this->redirect($this->Auth->redirectUrl());
+                    } else {
+                        $mensaje = 'Sucursal inactiva, intente más tarde';
+                    }
+                }
+            } else {
+                $mensaje = 'Usuario o contraseña inválida, intentar otra vez';    
             }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
+            $this->Flash->error($mensaje);
         }
     }
 
@@ -128,7 +152,9 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 
-    public function isAuthorized($user) {
+    public function isAuthorized($user) {   
+        // debug($this->request);
+        // die;
         return parent::isAuthorized($user);
     }
 

@@ -9,11 +9,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-<!-- Content Header (Page header) -->
+<?php
+echo $this->Html->css('/bower_components/select2/dist/css/select2.min.css');
+echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js');
+?>
+<!-- Content header -->
 <section class="content-header">
-    <h1>
-        <?php echo __('Lista de Pedidos'); ?>        <small><?php echo __('Lista de Pedidos'); ?></small>
-    </h1>
+    <h1><?php echo __('Lista de Pedidos'); ?><small><?php echo __('Lista de Pedidos'); ?></small></h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Pedidos</li>
@@ -80,6 +82,20 @@
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Sucursal</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>.</th>
+                            </tr>
+                        </tfoot>                        
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -96,18 +112,41 @@
         var table = $('#table1').DataTable({
             dom: 'Blftip',
             buttons: [{
-                    extend: 'excel',
-                    filename: 'Orders',
-                    exportOptions: {
-                        format: {
-                            body: function (data, row, col) {
-                                var s = '<p>' + data + '</p>';
-                                return $(s).text();
-                            }
+                extend: 'excel',
+                filename: 'Orders',
+                exportOptions: {
+                    format: {
+                        body: function (data, row, col) {
+                            var s = '<p>' + data + '</p>';
+                            return $(s).text();
                         }
-
                     }
-                }]
+                }
+            }],
+            initComplete: function () {
+                this.api().columns().every( function (index) {
+                    if(index == 5){   
+                        var column = this;
+                        var select = $('<select id="filterByOrderStatus" style="100%"><option value="">Seleccionar</option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+         
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+         
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    }
+                } );
+            }
         });
+
+        $('#filterByOrderStatus').select2();
     });
 </script>
