@@ -131,12 +131,16 @@ class UsersController extends AppController {
                 // debug($this->Auth->redirectUrl());
                 $user = $this->Auth->User();
                 if($user['role'] == 'admin'){
-                    return $this->redirect($this->Auth->redirectUrl());
+                    return $this->redirect(
+                        array('controller' => 'Quotes', 'action' => 'index')
+                    );
                 } else {
                     $this->loadModel('Branch');
                     $branchStatusId = $this->Branch->findByUserId($user['id'])['Branch']['status_id'];
                     if($branchStatusId == 1){
-                        return $this->redirect($this->Auth->redirectUrl());
+                        return $this->redirect(
+                            array('controller' => 'Quotes', 'action' => 'index')
+                        );
                     } else {
                         $mensaje = 'Sucursal inactiva, intente más tarde';
                     }

@@ -35,7 +35,7 @@
  * In development mode, you need to click the flash message to continue.
  */
 Configure::write('debug', 2);
-// Configure::write('debug', 0);
+Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -120,13 +120,13 @@ Configure::write('App.encoding', 'UTF-8');
  * useful when generating links from the CLI (e.g. sending emails).
  * If the application runs in a subfolder, you should also set App.base.
  */
-//Configure::write('App.fullBaseUrl', 'http://example.com');
+Configure::write('App.fullBaseUrl', 'http://localhost:81');
 
 /**
  * The base directory the app resides in. Should be used if the
  * application runs in a subfolder and App.fullBaseUrl is set.
  */
-//Configure::write('App.base', '/my_app');
+Configure::write('App.base', '/proyectotomas');
 
 /**
  * Web path to the public images directory under webroot.
