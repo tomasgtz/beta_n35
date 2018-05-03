@@ -51,6 +51,7 @@
         <?php echo $this->Html->script("/bower_components/jquery/dist/jquery.min.js"); ?>
         <!-- Bootstrap 3.3.7 -->
         <?php echo $this->Html->script("/bower_components/bootstrap/dist/js/bootstrap.min.js"); ?>
+        <style type="text/css">.error-message{color: red;font-weight: bold;} #flashMessage{display: none}</style>
         <script>
             $(document).ready(function () {
                 if ($('#flashMessage').length) {
@@ -59,12 +60,11 @@
                     message = message.replace(/&gt;/g, '>');
                     var hasClassError = $('#flashMessage').hasClass("error");
                     var hasClassSuccess = $('#flashMessage').hasClass("success");
-                    $('#flashMessage').remove();
                     if (hasClassError) {
                         alertify.dialog('errorAlert', function factory() {
                             return{
                                 build: function () {
-                                    var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> SDI - Error';
+                                    var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> CADCAM - Error';
                                     this.setHeader(header);
                                 }
                             };
@@ -75,7 +75,7 @@
                         alertify.dialog('successAlert', function factory() {
                             return{
                                 build: function () {
-                                    var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> SDI - Mensaje';
+                                    var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> CADCAM - Mensaje';
                                     this.setHeader(header);
                                 }
                             };

@@ -1,15 +1,14 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Quote Model
+ * QuotesDetail Model
  *
- * @property Branch $Branch
+ * @property Quote $Quote
  * @property CreatedUser $CreatedUser
  * @property ModifiedUser $ModifiedUser
  * @property Status $Status
- * @property Order $Order
  */
-class Quote extends AppModel {
+class QuotesDetail extends AppModel {
 
 /**
  * Validation rules
@@ -17,7 +16,7 @@ class Quote extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'customer_name' => array(
+		'part_number' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -27,7 +26,7 @@ class Quote extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'customer_email' => array(
+		'description' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -37,9 +36,9 @@ class Quote extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'comments' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+		'quantity' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -47,7 +46,17 @@ class Quote extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'branch_id' => array(
+		'price' => array(
+			'decimal' => array(
+				'rule' => array('decimal'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'quote_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -97,9 +106,9 @@ class Quote extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Branch' => array(
-			'className' => 'Branch',
-			'foreignKey' => 'branch_id',
+		'Quote' => array(
+			'className' => 'Quote',
+			'foreignKey' => 'quote_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -126,39 +135,4 @@ class Quote extends AppModel {
 			'order' => ''
 		)
 	);
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Order' => array(
-			'className' => 'Order',
-			'foreignKey' => 'quote_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Quotes_Detail' => array(
-			'className' => 'QuotesDetails',
-			'foreignKey' => 'quote_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
 }

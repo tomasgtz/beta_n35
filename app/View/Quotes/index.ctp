@@ -45,7 +45,7 @@
                                 <th>created</th>
                                 <th>modified</th>
                                 <th>status_id</th>
-                                <!-- <th class="actions"><?php echo 'acciones'; ?></th> -->
+                                <th class="actions"><?php echo 'Acciones'; ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,13 +64,14 @@
                                     <td>
                                         <?php echo $this->Html->link($quote['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $quote['Status']['id'])); ?>
                                     </td>
-                                    <!--
+                                    
                                     <td class="actions" style="text-align:center">
-                                    <?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
-                                        &nbsp;&nbsp;
+                                    <!--<?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        &nbsp;&nbsp;-->
+				    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                     <?php echo $this->Form->postLink('', array('action' => 'delete', $quote['Quote']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $quote['Quote']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>
                                     </td>
-                                    -->
+                                    
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

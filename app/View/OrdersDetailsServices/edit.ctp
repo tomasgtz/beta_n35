@@ -10,7 +10,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Edición de registro<small>Edición de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Users",array("action"=>"/index")); ?></li>
+        <li><?php echo $this->Html->link("Orders Details Services",array("action"=>"/index")); ?></li>
         <li class="active">edit</li>    </ol>    
 </section>
 
@@ -21,28 +21,22 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Editando registro #<?php echo $this->request->data['User']['id']; ?></h3>            </div>
+              <h3 class="box-title"> Editando registro #<?php echo $this->request->data['OrdersDetailsService']['id']; ?></h3>            </div>
             <!-- /.box-header -->
             <!-- form start -->
             <br>
-            <?php echo $this->Form->create('User',array('class' => 'form-horizontal')); ?>
+            <?php echo $this->Form->create('OrdersDetailsService',array('class' => 'form-horizontal')); ?>
             <?php echo $this->Form->input('id',array('class' => 'form-control', 'label' => false)); ?>
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">username</label>
+                                <label for="service_id" class="col-sm-2 control-label">service_id</label>
                                     <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('username',array('class' => 'form-control', 'label' => false)); ?>
+                                        <?php echo $this->Form->input('service_id',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">password</label>
+                                <label for="orders_detail_id" class="col-sm-2 control-label">orders_detail_id</label>
                                     <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('password',array('class' => 'form-control', 'label' => false)); ?>
-                                    </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="role" class="col-sm-2 control-label">role</label>
-                                    <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('role',array('class' => 'form-control', 'label' => false)); ?>
+                                        <?php echo $this->Form->input('orders_detail_id',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
@@ -66,6 +60,6 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <script type="text/javascript">
     $(document).ready(function () {
         //Initialize Select2 Elements
-$('#UserStatusId').select2();
+$('#Orders Details ServiceStatusId').select2();
     });
 </script>

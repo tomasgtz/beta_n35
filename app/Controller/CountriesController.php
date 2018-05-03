@@ -13,7 +13,7 @@ class CountriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array();
 
 /**
  * index method
@@ -22,7 +22,7 @@ class CountriesController extends AppController {
  */
 	public function index() {
 		$this->Country->recursive = 0;
-		$this->set('countries', $this->Paginator->paginate());
+		$this->set('countries', $this->Country->find("all"));
 	}
 
 /**
@@ -48,13 +48,11 @@ class CountriesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Country->create();
-			if(true) {
-				if ($this->Country->save($this->request->data)) {
-					$this->Flash->success(__('The country has been saved.'));
-					return $this->redirect(array('action' => 'index'));
-				} else {
-					$this->Flash->error(__('The country could not be saved. Please, try again.'));
-				}
+			if ($this->Country->save($this->request->data)) {
+				$this->Flash->success(__('The country has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The country could not be saved. Please, try again.'));
 			}
 		}
 		$createdUsers = $this->Country->CreatedUser->find('list');

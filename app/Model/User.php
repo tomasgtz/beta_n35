@@ -1,66 +1,101 @@
 <?php
-
 App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
-
 /**
  * User Model
  *
+ * @property Status $Status
  * @property Branch $Branch
  */
 class User extends AppModel {
 
-    public $displayField = 'username';
+public $displayField = 'username';
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public $validate = array(
-        'username' => array(
-            'required' => array(
-                'rule' => 'notBlank',
-                'message' => '¡El nombre de usuario es requerido!'
-            )
-        ),
-        'password' => array(
-            'required' => array(
-                'rule' => 'notBlank',
-                'message' => '¡La contraseña es requerida!'
-            )
-        ),
-        'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('admin', 'normal')),
-                'message' => '¡Introduce un role válido!',
-                'allowEmpty' => false
-            )
-        )
-    );
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'username' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'password' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'role' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'status_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
 
-    // The Associations below have been created with all possible keys, those that are not needed can be removed
+	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
-    /**
-     * hasMany associations
-     *
-     * @var array
-     */
-    public $hasMany = array(
-        'Branch' => array(
-            'className' => 'Branch',
-            'foreignKey' => 'user_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
-    );
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Status' => array(
+			'className' => 'Status',
+			'foreignKey' => 'status_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Branch' => array(
+			'className' => 'Branch',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
@@ -71,5 +106,5 @@ class User extends AppModel {
         }
         return true;
     }
-
+    
 }

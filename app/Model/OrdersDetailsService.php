@@ -1,15 +1,15 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Quote Model
+ * OrdersDetailsService Model
  *
- * @property Branch $Branch
+ * @property Service $Service
+ * @property OrdersDetail $OrdersDetail
  * @property CreatedUser $CreatedUser
  * @property ModifiedUser $ModifiedUser
  * @property Status $Status
- * @property Order $Order
  */
-class Quote extends AppModel {
+class OrdersDetailsService extends AppModel {
 
 /**
  * Validation rules
@@ -17,9 +17,9 @@ class Quote extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'customer_name' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+		'service_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -27,27 +27,7 @@ class Quote extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'customer_email' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'comments' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'branch_id' => array(
+		'orders_detail_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -97,9 +77,16 @@ class Quote extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Branch' => array(
-			'className' => 'Branch',
-			'foreignKey' => 'branch_id',
+		'Service' => array(
+			'className' => 'Service',
+			'foreignKey' => 'service_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'OrdersDetail' => array(
+			'className' => 'OrdersDetail',
+			'foreignKey' => 'orders_detail_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -126,39 +113,4 @@ class Quote extends AppModel {
 			'order' => ''
 		)
 	);
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Order' => array(
-			'className' => 'Order',
-			'foreignKey' => 'quote_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Quotes_Detail' => array(
-			'className' => 'QuotesDetails',
-			'foreignKey' => 'quote_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
 }

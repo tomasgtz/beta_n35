@@ -1,4 +1,4 @@
-<?php echo $this->Session->flash('auth'); ?>
+<?php // echo $this->Session->flash('auth'); ?>
 <div class="login-box">
   <div class="login-logo">
     <!-- <a href="../../index2.html"> -->

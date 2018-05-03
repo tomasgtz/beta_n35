@@ -55,7 +55,8 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'Quotes',
-                'action' => 'index'
+                'action' => 'index',
+                'base' => false,
             ),
             'logoutRedirect' => array(
                 'controller' => 'pages',
@@ -76,6 +77,7 @@ class AppController extends Controller {
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
         }
+        throw new ForbiddenException(__('No tienes los privilegios necesarios para acceder a este sitio'));
         // Default deny
         return false;
     }

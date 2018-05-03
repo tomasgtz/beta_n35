@@ -1,6 +1,7 @@
 <!-- Content Header (Page header) -->
+
 <section class="content-header">
-    <h1>Alta de registro<small>Alta de registro</small></h1>    
+    <h1>Edición de registro<small>Edición de registro</small></h1>    
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>
@@ -17,7 +18,7 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nuevo Pedido desde la cotizacion # <?php echo $this->request->data['Quote']['id']; ?></h3>            </div>
+                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>            </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <?php echo $this->Form->create('Order', array('class' => 'form-horizontal', 'type' => 'file')); ?>
@@ -62,6 +63,13 @@
                 <div class="form-group">
                     <label for="payment_url" class="col-sm-2 control-label">Comprobante de Pago</label>
                     <div class="col-sm-6 required">
+
+                        <?php
+                        if(isset($this->request->data['Order']['payment_url']) && !empty($this->request->data['Order']['payment_url']) ) {
+                            echo $this->Html->link('Comprobante de pago', array('controller'=>'Archivos','action'=>'pagos', $this->request->data['Order']['payment_url'])); 
+
+                        }
+                        ?>
                         <?php echo $this->Form->input('payment_url', array('type' => 'file', 'class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
@@ -102,14 +110,42 @@
                     <label for="service_id" class="col-sm-2 control-label">Servicio(s)</label>
                     <div class="col-sm-6 required">
 
-                        <?php echo $this->Form->input('service_id', array('type' => 'select', 'multiple' => 'checkbox', 'class' => 'multiple-chb', 'label' => false, 'selected' => $selected)); ?>
+                        <?php echo $this->Form->input('service_id', array('type' => 'select', 'multiple' => 'checkbox', 
+			'class' => 'multiple-chb', 'label' => false, 'selected' => $selected)); ?>
                     </div>
                 </div>
-                <!-- /.box-body -->
+
+        <div class="form-group">
+            <label for="estimated_delivery_date" class="col-sm-2 control-label">Fecha estimada de entrega</label>
+            <div class="col-sm-6">
+                <?php echo $this->Form->input('estimated_delivery_date', array('type' => 'text', 'disabled'=>'disabled', 'class' => 'form-control', 'label' => false)); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="orders_phase_id" class="col-sm-2 control-label">Status</label>
+            <div class="col-sm-6 required">
+
+                <?php echo $this->Form->input('orders_phase_id', array('readonly'=>'readonly', 'class' => 'form-control', 'label' => false)); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="received_by" class="col-sm-2 control-label">Recibido por</label>
+            <div class="col-sm-6">
+                <?php echo $this->Form->input('received_by', array('type' => 'text', 'readonly'=>'readonly', 'class' => 'form-control', 'label' => false)); ?>
+            </div>
+        </div>
+
+        <!-- /.box-body -->
                 <div class="box-footer">
                     <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?> 
-		    <button id="sendOrder" type="submit" class="btn btn-warning pull-right"><i class="fa fa-plus-square"></i>&nbsp;Colocar pedido</button>
-		    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+		
+		    <?php if($this->request->data['OrdersPhase']['name'] == 'Borrador') { ?>
+			    <button id="sendOrder" type="submit" class="btn btn-warning pull-right"><i class="fa fa-plus-square"></i>&nbsp;Colocar pedido</button>
+			    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+		    <?php } ?>
+		    
                 </div>
                 <!-- /.box-footer -->
 		<?php echo $this->Form->input('set_order', array('type'=>'hidden')); ?>
