@@ -90,47 +90,53 @@ class QuotesController extends AppController {
         if ($this->request->is('post') && !empty($this->request->data['Quote']['customer_name']) && !empty($this->request->data['Quote']['customer_email']) && !empty($this->request->data['Quote']['device_name'])) {
 
             $device = $this->Device->findByName($this->request->data['Quote']['device_name']);
-            $this->request->data['Quote']['branch_id'] = $device['Device']['branch_id'];
 
-            $this->Quote->create();
-            if ($this->Quote->save($this->request->data)) {
-                $this->loadModel('QuotesDetail');
-                $this->QuotesDetail->recursive = -1;
+            if(isset($device) && !empty($device) && $device['Device']['status_id'] == 1) { 
+              $this->request->data['Quote']['branch_id'] = $device['Device']['branch_id'];
 
-                if ($this->request->data['QuotesDetail']['part_number'] == null) {
-                    $this->request->data['QuotesDetail']['part_number'] = '';
-                }
+              $this->Quote->create();
+              if ($this->Quote->save($this->request->data)) {
+                  $this->loadModel('QuotesDetail');
+                  $this->QuotesDetail->recursive = -1;
 
-                if ($this->request->data['QuotesDetail']['description'] == null) {
-                    $this->request->data['QuotesDetail']['description'] = 'Sin descripción';
-                }
+                  if ($this->request->data['QuotesDetail']['part_number'] == null) {
+                      $this->request->data['QuotesDetail']['part_number'] = '';
+                  }
 
-                if ($this->request->data['QuotesDetail']['quantity'] == null) {
-                    $this->request->data['QuotesDetail']['quantity'] = 0;
-                }
+                  if ($this->request->data['QuotesDetail']['description'] == null) {
+                      $this->request->data['QuotesDetail']['description'] = 'Sin descripción';
+                  }
 
-                if ($this->request->data['QuotesDetail']['price'] == null) {
-                    $this->request->data['QuotesDetail']['price'] = '0';
-                }
+                  if ($this->request->data['QuotesDetail']['quantity'] == null) {
+                      $this->request->data['QuotesDetail']['quantity'] = 0;
+                  }
 
-                $this->request->data['QuotesDetail']['quote_id'] = $this->Quote->getLastInsertId();
+                  if ($this->request->data['QuotesDetail']['price'] == null) {
+                      $this->request->data['QuotesDetail']['price'] = '0';
+                  }
 
-                if (!empty($this->request->data['QuotesDetail']['part_number']) && $this->request->data['QuotesDetail']['quantity'] > 0 && $this->request->data['QuotesDetail']['price'] > 0) {
-                    $this->QuotesDetail->create();
-                    if ($this->QuotesDetail->save($this->request->data)) {
-                        $this->Message->id = 1;
-                        $dataSource->commit($this->Quote);
-                    } else {
-                        $this->Message->id = 2;
-                        $dataSource->rollback($this->Quote);
-                    }
-                } else {
-                    $this->Message->id = 2;
-                    $dataSource->rollback($this->Quote);
-                }
+                  $this->request->data['QuotesDetail']['quote_id'] = $this->Quote->getLastInsertId();
+
+                  if (!empty($this->request->data['QuotesDetail']['part_number']) && $this->request->data['QuotesDetail']['quantity'] > 0 && $this->request->data['QuotesDetail']['price'] > 0) {
+                      $this->QuotesDetail->create();
+                      if ($this->QuotesDetail->save($this->request->data)) {
+                          $this->Message->id = 1;
+                          $dataSource->commit($this->Quote);
+                      } else {
+                          $this->Message->id = 2;
+                          $dataSource->rollback($this->Quote);
+                      }
+                  } else {
+                      $this->Message->id = 2;
+                      $dataSource->rollback($this->Quote);
+                  }
+              } else {
+                  $this->Message->id = 2;
+              }
             } else {
-                $this->Message->id = 2;
+              $this->Message->id = 2;
             }
+
         } else {
             $this->Message->id = 2;
         }
@@ -206,5 +212,11 @@ class QuotesController extends AppController {
         // Default deny
         return parent::isAuthorized($user);
     }
+
+    public function beforeFilter() {
+
+       $this->Auth->allow('add');
+    }
+
 
 }
