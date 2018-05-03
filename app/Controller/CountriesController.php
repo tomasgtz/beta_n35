@@ -13,7 +13,7 @@ class CountriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array();
 
 /**
  * index method
@@ -22,7 +22,7 @@ class CountriesController extends AppController {
  */
 	public function index() {
 		$this->Country->recursive = 0;
-		$this->set('countries', $this->Paginator->paginate());
+		$this->set('countries', $this->Country->find("all"));
 	}
 
 /**
