@@ -12,11 +12,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de Joyerías'); ?>        <small><?php echo __('Lista de Joyerías'); ?></small>
+        <?php echo __('Lista de JoyerÃ­as'); ?>        <small><?php echo __('Lista de JoyerÃ­as'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Joyerías", array("action" => "index")); ?></li>
+        <li><?php echo $this->Html->link("JoyerÃ­as", array("action" => "index")); ?></li>
     </ol>
 </section>
 <!-- Main content -->
@@ -35,7 +35,7 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Joyería</th>
+                                <th>JoyerÃ­a</th>
                                 <th>Domicilio</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
@@ -52,7 +52,7 @@
                                         echo "
 										<b>Nombre</b>: " . $jewelryStore['JewelryStore']['name'] . "<br>
 										<b>Encargado</b>: " . $jewelryStore['JewelryStore']['manager'] . "<br>
-										<b>Teléfono</b>: " . $jewelryStore['JewelryStore']['phone'] . "<br>
+										<b>TelÃ©fono</b>: " . $jewelryStore['JewelryStore']['phone'] . "<br>
 										<b>Email</b>: " . $jewelryStore['JewelryStore']['email'] . "<br>
 										<b>RFC</b>: " . $jewelryStore['JewelryStore']['rfc'];
                                         ?>
@@ -72,7 +72,7 @@
                                     <td class="actions" style="text-align:center">
                                         <?php echo $this->Html->link('', array('action' => 'edit', $jewelryStore['JewelryStore']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                         &nbsp;&nbsp;
-                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $jewelryStore['JewelryStore']['id']), array('confirm' => __('Esta seguro de eliminar la joyería # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
+                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $jewelryStore['JewelryStore']['id']), array('confirm' => __('Esta seguro de eliminar la joyerÃ­a # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

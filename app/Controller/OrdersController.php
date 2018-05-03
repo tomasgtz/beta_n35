@@ -238,7 +238,7 @@ class OrdersController extends AppController {
 	}
 
 
-	public function isAuthorized($user) {
+    public function isAuthorized($user) {
         // Admin can access every action
         if (isset($user['role'])) {
             return true;
@@ -323,4 +323,5 @@ class OrdersController extends AppController {
 
 		return true;
 	}
+
 }

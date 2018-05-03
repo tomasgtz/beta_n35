@@ -12,7 +12,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>
-            <?php echo $this->Html->link("Joyerías", array("action" => "index")); ?>
+            <?php echo $this->Html->link("JoyerÃ­as", array("action" => "index")); ?>
         </li>
         <li class="active">Nuevo</li>
     </ol>
@@ -24,7 +24,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nueva Joyería</h3>
+                    <h3 class="box-title">Nueva JoyerÃ­a</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -43,7 +43,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phone" class="col-sm-2 control-label">Teléfono</label>
+                    <label for="phone" class="col-sm-2 control-label">TelÃ©fono</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('phone', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
@@ -73,7 +73,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="postcode" class="col-sm-2 control-label">Código Postal</label>
+                    <label for="postcode" class="col-sm-2 control-label">CÃ³digo Postal</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('postcode', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
@@ -91,7 +91,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="country_id" class="col-sm-2 control-label">País</label>
+                    <label for="country_id" class="col-sm-2 control-label">PaÃ­s</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('country_id', array('class' => 'form-control', 'label' => false)); ?>
                     </div>

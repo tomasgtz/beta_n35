@@ -45,7 +45,7 @@
                </div>   
             </div>
             <div class="form-group">
-               <label for="phone" class="col-sm-2 control-label">Teléfono</label>
+               <label for="phone" class="col-sm-2 control-label">TelÃ©fono</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('phone',array('class' => 'form-control', 'label' => false)); ?>
                </div>
@@ -81,7 +81,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="postcode" class="col-sm-2 control-label">Código Postal</label>
+               <label for="postcode" class="col-sm-2 control-label">CÃ³digo Postal</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('postcode',array('class' => 'form-control', 'label' => false)); ?>
                </div>
@@ -99,7 +99,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="country_id" class="col-sm-2 control-label">País</label>
+               <label for="country_id" class="col-sm-2 control-label">PaÃ­s</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('country_id',array('class' => 'form-control', 'label' => false)); ?>
                </div>
@@ -111,7 +111,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="jewelrystore_id" class="col-sm-2 control-label">Joyería</label>
+               <label for="jewelrystore_id" class="col-sm-2 control-label">JoyerÃ­a</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('jewelrystore_id',array('class' => 'form-control', 'label' => false)); ?>
                </div>
