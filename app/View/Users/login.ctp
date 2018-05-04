@@ -11,7 +11,7 @@
     <?php echo $this->Form->create('User'); ?>
     <!-- <form action="../../index2.html" method="post"> -->
       <div class="form-group has-feedback">
-        <?php echo $this->Form->email('username',array("value" => "rodriguez.jaime2014@gmail.com","class" => "form-control", "label" => false, "placeholder" => "Correo electrónico", "autocomplete" => "off")); ?>
+        <?php echo $this->Form->email('username',array("class" => "form-control", "label" => false, "placeholder" => "Correo electrónico", "autocomplete" => "off")); ?>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

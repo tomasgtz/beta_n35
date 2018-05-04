@@ -88,12 +88,12 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-        // Gmail Configuration
-	public $infosdindustrialcommx = array(
+    // Gmail Configuration
+	public $emailcadcam = array(
 		'host' => 'ssl://smtp.gmail.com',
 		'port' => 465,
-		'username' => 'info@sdindustrial.com.mx',
-		'password' => 'sdiinfo1789',
+		'username' => 'rodriguez.jaime2014@gmail.com',
+		'password' => 'programador_ajedrez_161189',
 		'transport' => 'Smtp',
 		'log' => true,
 	);
