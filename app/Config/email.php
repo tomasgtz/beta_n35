@@ -88,12 +88,11 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-    // Gmail Configuration
 	public $emailcadcam = array(
-		'host' => 'ssl://smtp.gmail.com',
+		'host' => 'ssl://box578.bluehost.com',
 		'port' => 465,
-		'username' => 'rodriguez.jaime2014@gmail.com',
-		'password' => 'programador_ajedrez_161189',
+		'username' => 'no-reply@cadcam-mty.mx',
+		'password' => '=2*pwsxApv.',
 		'transport' => 'Smtp',
 		'log' => true,
 	);

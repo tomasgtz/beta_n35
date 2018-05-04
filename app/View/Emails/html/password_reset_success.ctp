@@ -4,6 +4,7 @@
     <p>Si no solicitaste el cambio de contraseña, contáctanos inmediatamente.</p>
     <p>
         Gracias<br>
-        El equipo CADCAM
+        El equipo CADCAM<br>
+        *Nota: Favor de no contestar este correo
     </p>
 </div>

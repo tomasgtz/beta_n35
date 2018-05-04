@@ -5,6 +5,7 @@
     <p><a href="<?php echo 'http://' . env('SERVER_NAME') . ':81/proyectotomas/Users/reset_password_token/' . $User['User']['reset_password_token']; ?>">Restaurar contraseña</a></p>
     <p>
         Gracias<br>
-        El equipo CADCAM
+        El equipo CADCAM<br>
+        *Nota: Favor de no contestar este correo
     </p>
 </div>

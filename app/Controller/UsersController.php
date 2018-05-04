@@ -223,12 +223,9 @@ class UsersController extends AppController {
             $this->User->recursive = 0;
             $User = $this->User->read();
 
-            // Tomar configuracion de email infosdindustrialcommx
             $mailer = new CakeEmail('emailcadcam');
-            $mailer->from(array('mail@mail.com.mx' => 'Equipo de cuentas CADCAM'));
+            $mailer->from(array('no-reply@cadcam-mty.mx' => 'Equipo de cuentas CADCAM'));
             $mailer->to($User['User']['username']);
-            // $mailer->cc(array("rodriguez.jaime2014@gmail.com"));
-            // $mailer->bcc(array("rodriguez.jaime2014@gmail.com", "rodriguez.jaime2014@gmail.com"));
             $mailer->subject('La contraseña del portal CADCAM ha sido cambiada');
             $mailer->emailFormat('html');
             $mailer->template('password_reset_success', 'default');
