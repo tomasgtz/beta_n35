@@ -36,7 +36,7 @@ class BranchesController extends AppController {
      */
     public function view($id = null) {
         if (!$this->Branch->exists($id)) {
-            throw new NotFoundException(__('Invalid branch'));
+            throw new NotFoundException(__('Sucursal no encontrada'));
         }
         $options = array('conditions' => array('Branch.' . $this->Branch->primaryKey => $id));
         $this->set('branch', $this->Branch->find('first', $options));
@@ -51,10 +51,10 @@ class BranchesController extends AppController {
         if ($this->request->is('post')) {
             $this->Branch->create();
             if ($this->Branch->save($this->request->data)) {
-                $this->Flash->success(__('The branch has been saved.'));
+                $this->Flash->success(__('La información se guardó correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The branch could not be saved. Please, try again.'));
+                $this->Flash->error(__('No se pudo guardar la información. Intente nuevamente.'));
             }
         }
         $states = $this->Branch->State->find('list');
@@ -86,14 +86,14 @@ class BranchesController extends AppController {
      */
     public function edit($id = null) {
         if (!$this->Branch->exists($id)) {
-            throw new NotFoundException(__('Invalid branch'));
+            throw new NotFoundException(__('Sucursal no encontrada'));
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Branch->save($this->request->data)) {
-                $this->Flash->success(__('The branch has been saved.'));
+                $this->Flash->success(__('La información se guardó correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The branch could not be saved. Please, try again.'));
+                $this->Flash->error(__('No se pudo guardar la información. Intente nuevamente.'));
             }
         } else {
             $options = array('conditions' => array('Branch.' . $this->Branch->primaryKey => $id));
@@ -128,15 +128,15 @@ class BranchesController extends AppController {
     public function delete($id = null) {
         $this->Branch->id = $id;
         if (!$this->Branch->exists()) {
-            throw new NotFoundException(__('Invalid branch'));
+            throw new NotFoundException(__('Sucursal no encontrada'));
         }
         $this->request->allowMethod('post', 'delete');
         // Actualizar el status 
         $data['Branch']['status_id'] = 3;
         if ($this->Branch->save($data)) {
-            $this->Flash->success(__('The branch has been deleted.'));
+            $this->Flash->success(__('El status de la sucursal ha sido actualizado a borrado'));
         } else {
-            $this->Flash->error(__('The branch could not be deleted. Please, try again.'));
+            $this->Flash->error(__('No se pudo guardar la información. Intente nuevamente'));
         }
         return $this->redirect(array('action' => 'index'));
     }

@@ -292,14 +292,14 @@
                     <li class="dropdown user user-menu">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?php echo $this->Html->image('/dist/img/user2-160x160.jpg', array('class' => 'user-image', 'alt' => 'User Image')); ?>
-                       <span class="hidden-xs">Alexander Pierce</span>
+                       <span class="hidden-xs"><?php echo AuthComponent::user('username'); ?></span>
                        </a>
                        <ul class="dropdown-menu">
                     <!-- User image 
                     <li class="user-header">
                     <?php echo $this->Html->image('/dist/img/user2-160x160.jpg', array('class' => 'img-circle', 'alt' => 'User Image')); ?>
                        <p>
-                          Alexander Pierce - Web Developer
+                          <?php echo AuthComponent::user('username'); ?>
                           <small>Member since Nov. 2012</small>
                        </p>
                     </li>
@@ -346,11 +346,11 @@
                             <?php echo $this->Html->image('/dist/img/user2-160x160.jpg', array('class' => 'img-circle', 'alt' => 'User Image')); ?>
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p><?php echo AuthComponent::user('username'); ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-                    <!-- search form -->
+                    <!-- search form 
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -359,7 +359,7 @@
                                 </button>
                             </span>
                         </div>
-                    </form>
+                    </form> -->
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">

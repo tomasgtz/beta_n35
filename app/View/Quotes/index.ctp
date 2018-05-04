@@ -13,11 +13,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de ' . 'Quotes'); ?>        <small><?php echo __('Lista de ' . 'Quotes'); ?></small>
+        <?php echo __('Lista de Cotizaciones'); ?>        <small><?php echo __('Lista de Cotizaciones'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Quotes", array("action" => "/index")); ?></li>
+        <li><?php echo $this->Html->link("Cotizaciones", array("action" => "/index")); ?></li>
     </ol>
 </section>
 
@@ -37,15 +37,15 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>customer_name</th>
-                                <th>customer_email</th>
-                                <th>customer_phone</th>
-                                <th>comments</th>
-                                <th>branch_id</th>
-                                <th>created</th>
-                                <th>modified</th>
-                                <th>status_id</th>
-                                <th class="actions"><?php echo 'Acciones'; ?></th>
+                                <th>Cliente</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Comentarios</th>
+                                <th>Sucursal</th>
+                                <th>Creado</th>
+                                <th>Modificado</th>
+                                <th>Status</th>
+                                <th class="actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

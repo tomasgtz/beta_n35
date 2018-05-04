@@ -61,7 +61,7 @@
                                         ;
                                         ?>
                                     </td>
-                                    <td><?php echo h($branch['Branch']['access']); ?></td>
+                                    <td><?php echo h($branch['Branch']['access']=='0'?"No":"Si"); ?></td>
                                     <td>
                                         <?php
                                         echo
@@ -85,14 +85,14 @@
                                         <?php
                                         echo
                                         $this->Html->link(
-                                                '', array('controller' => 'BranchesPayments', 'action' => 'index/branch_id:' . $branch['Branch']['id']), array('class' => 'fa fa-history text-green fa-lg')
+                                                '', array('controller' => 'BranchesPayments', 'action' => 'index/branch_id:' . $branch['Branch']['id']), array('title'=>'Pagos', 'class' => 'fa fa-history text-green fa-lg')
                                         );
                                         ?>
                                         &nbsp;&nbsp;
                                         <?php
                                         echo
                                         $this->Html->link(
-                                                '', array('controller' => 'Devices', 'action' => 'index/branch_id:' . $branch['Branch']['id']), array('class' => 'fa fa-laptop text-yellow fa-lg')
+                                                '', array('controller' => 'Devices', 'action' => 'index/branch_id:' . $branch['Branch']['id']), array('title'=>'Dispositivos', 'class' => 'fa fa-laptop text-yellow fa-lg')
                                         );
                                         ?>
                                         &nbsp;&nbsp;                          
