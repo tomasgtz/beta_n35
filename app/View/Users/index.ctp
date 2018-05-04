@@ -13,11 +13,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de ' . 'Users'); ?>        <small><?php echo __('Lista de ' . 'Users'); ?></small>
+        <?php echo __('Lista de Usuarios'); ?>        <small><?php echo __('Lista de Usuarios'); ?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Users", array("action" => "/index")); ?></li>
+        <li><?php echo $this->Html->link("Usuarios", array("action" => "/index")); ?></li>
     </ol>
 </section>
 
@@ -36,14 +36,14 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>username</th>
-                                <th>sucursal</th>
-                                <th>estatus sucursal</th>
-                                <th>role</th>
-                                <th>created</th>
-                                <th>modified</th>
-                                <th>status</th>
-                                <th class="actions" style="text-align: center"><?php echo 'acciones'; ?></th>
+                                <th>Usuario</th>
+                                <th>Sucursal</th>
+                                <th>Status sucursal</th>
+                                <th>Rol</th>
+                                <th>Creado</th>
+                                <th>Modificado</th>
+                                <th>Status</th>
+                                <th class="actions" style="text-align: center"><?php echo 'Acciones'; ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,8 +51,8 @@
                                 <tr>
                                     <td><?php echo h($user['User']['id']); ?></td>
                                     <td><?php echo h($user['User']['username']); ?></td>
-                                    <td><?php echo h($user['Branch'][0]['name']); ?></td>
-                                    <td><?php echo h($user['Branch'][0]['Status']['text']); ?></td>
+                                    <td><?php if(isset($user['Branch'][0]['name']))echo h($user['Branch'][0]['name']); ?></td>
+                                    <td><?php if(isset($user['Branch'][0]['Status']['text']))echo h($user['Branch'][0]['Status']['text']); ?></td>
                                     <td><?php echo h($user['User']['role']); ?></td>
                                     <td><?php echo h($user['User']['created']); ?></td>
                                     <td><?php echo h($user['User']['modified']); ?></td>

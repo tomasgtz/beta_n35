@@ -10,8 +10,8 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Edición de registro<small>Edición de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Users",array("action"=>"/index")); ?></li>
-        <li class="active">edit</li>    </ol>    
+        <li><?php echo $this->Html->link("Usuarios",array("action"=>"/index")); ?></li>
+        <li class="active">Editar</li>    </ol>    
 </section>
 
 <section class="content">
@@ -28,25 +28,25 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <?php echo $this->Form->create('User',array('class' => 'form-horizontal')); ?>
             <?php echo $this->Form->input('id',array('class' => 'form-control', 'label' => false)); ?>
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">username</label>
+                                <label for="username" class="col-sm-2 control-label">Usuario</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('username',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">password</label>
+                                <label for="password" class="col-sm-2 control-label">Contraseña</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('password',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="role" class="col-sm-2 control-label">role</label>
+                                <label for="role" class="col-sm-2 control-label">Rol</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('role',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="status_id" class="col-sm-2 control-label">status_id</label>
+                                <label for="status_id" class="col-sm-2 control-label">Status</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('status_id',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
