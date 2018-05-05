@@ -40,7 +40,7 @@ class OrdersController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Order->exists($id)) {
-			throw new NotFoundException(__('Invalid order'));
+			throw new NotFoundException(__('Pedido no encontrado.'));
 		}
 		$options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
 		$this->set('order', $this->Order->find('first', $options));
@@ -52,6 +52,8 @@ class OrdersController extends AppController {
  * @return void
  */
 	public function add() {
+
+ 	$user_role = $this->Auth->user()['role'];
 
 		if ($this->request->is('put')) {
 			
@@ -106,7 +108,7 @@ class OrdersController extends AppController {
 					$data['Order']['payment_url'] = $filepath;
 					$this->Order->save($data);
 					
-					$this->Flash->success(__('The order has been saved.'));
+					$this->Flash->success(__('La informacion ha sido guardada correctamente.'));
 					return $this->redirect(array('action' => 'index'));
 
 				} else {
@@ -150,7 +152,7 @@ class OrdersController extends AppController {
 		$modifiedUsers = $this->Order->ModifiedUser->find('list');
 		$statuses = $this->Order->Status->find('list');
 //		debug( $services );
-		$this->set(compact( 'quotes', 'branches', 'paymentsTypes', 'ordersPhases', 'createdUsers', 'modifiedUsers', 'statuses', 'services', 'selected'));
+		$this->set(compact( 'user_role', 'quotes', 'branches', 'paymentsTypes', 'ordersPhases', 'createdUsers', 'modifiedUsers', 'statuses', 'services', 'selected'));
 	}
 
 /**
@@ -163,7 +165,7 @@ class OrdersController extends AppController {
 	public function edit($id = null) {
 		
 		if (!$this->Order->exists($id)) {
-			throw new NotFoundException(__('Invalid order'));
+			throw new NotFoundException(__('Pedido no encontrado'));
 		}
 		
 		// set appropiate view according role
@@ -179,7 +181,7 @@ class OrdersController extends AppController {
 			if($role == 'admin') {
 				// admin can see all orders
 			} else if($or['Branch']['user_id'] <> $this->Auth->user()['id']) {
-				throw new NotFoundException(__('Access denied'));
+				throw new NotFoundException(__('Ingreso no autorizado'));
 			}
 		}
 
@@ -189,10 +191,10 @@ class OrdersController extends AppController {
 			if ($this->Order->save($this->request->data)) {
 
 
-				$this->Flash->success(__('The order has been saved.'));
+				$this->Flash->success(__('La información ha sido guardada correctamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The order could not be saved. Please, try again.'));
+				$this->Flash->error(__('El pedido no pudo ser guardado. Intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
@@ -226,13 +228,13 @@ class OrdersController extends AppController {
 	public function delete($id = null) {
 		$this->Order->id = $id;
 		if (!$this->Order->exists()) {
-			throw new NotFoundException(__('Invalid order'));
+			throw new NotFoundException(__('Pedido no encontrado.'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Order->delete()) {
-			$this->Flash->success(__('The order has been deleted.'));
+			$this->Flash->success(__('El status del pedido se ha cambiado a borrado.'));
 		} else {
-			$this->Flash->error(__('The order could not be deleted. Please, try again.'));
+			$this->Flash->error(__('No se pudo actualizar el status del pedido. Intente nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

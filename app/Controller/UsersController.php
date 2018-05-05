@@ -46,7 +46,7 @@ class UsersController extends AppController {
     public function view($id = null) {
         /**
           if (!$this->User->exists($id)) {
-          throw new NotFoundException(__('Invalid user'));
+          throw new NotFoundException(__('Usuario no encontrado'));
           }
           $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
           $this->set('user', $this->User->find('first', $options));
@@ -59,15 +59,23 @@ class UsersController extends AppController {
      * @return void
      */
     public function add() {
+
+        $this->LoadModel('Roles');
+        $roles = $this->Roles->find('list', array('fields'=> array('name', 'name')));
+      
+
         if ($this->request->is('post')) {
             $this->User->create();
+            
             if ($this->User->save($this->request->data)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('La información ha sido guardada correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('La información del usuario no pudo guardarse. Intente nuevamente.'));
             }
         }
+
+        $this->set(compact('roles'));
     }
 
     /**
@@ -80,11 +88,11 @@ class UsersController extends AppController {
     public function edit($id = null) {
         $this->User->recursive = -1;
         if (!$this->User->exists($id)) {
-            throw new NotFoundException(__('Invalid user'));
+            throw new NotFoundException(__('Usuario no encontrado'));
         }
         if ($this->request->is(array('post', 'put'))) {
             $user = $this->User->findById($id);
-            // Las contrase�as no cambiaron
+            // Las contraseñas no cambiaron
             if ($user['User']['password'] !== $this->request->data['User']['password']) {
                 $validatePassword = $this->ForgotPassword->validateStrengthPassword($this->request->data['User']['password'], $this->request->data['User']['password']);
                 if ($validatePassword !== true) {
@@ -93,10 +101,10 @@ class UsersController extends AppController {
                 }
             }
             if ($this->User->save($this->request->data)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('La información ha sido guardada correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('La información del usuario no pudo guardarse. Intente nuevamente.'));
             }
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -117,7 +125,7 @@ class UsersController extends AppController {
         /**
           $this->User->id = $id;
           if (!$this->User->exists()) {
-          throw new NotFoundException(__('Invalid user'));
+          throw new NotFoundException(__('Usuario no encontrado'));
           }
           $this->request->allowMethod('post', 'delete');
           if ($this->User->delete()) {
@@ -149,11 +157,11 @@ class UsersController extends AppController {
                     if ($branchStatusId == 1) {
                         return $this->redirect(array('controller' => 'Quotes', 'action' => 'index'));
                     } else {
-                        $mensaje = 'Sucursal inactiva, intente m�s tarde';
+                        $mensaje = 'Sucursal inactiva, intente más tarde';
                     }
                 }
             } else {
-                $mensaje = 'Usuario o contrase�a inv�lida, intentar otra vez';
+                $mensaje = 'Usuario o contraseña inválida, intentar otra vez';
             }
             $this->Flash->error($mensaje);
         }
@@ -181,7 +189,7 @@ class UsersController extends AppController {
             $user['User']['reset_password_token'] = $this->ForgotPassword->generatePasswordToken();
             $user['User']['token_created_at'] = date('Y-m-d H:i:s');
             if ($this->User->save($user) && $this->_sendForgotPasswordEmail($user['User']['id'])) {
-                $this->Flash->success('Las instrucciones para restablecer tu contrase�a fueron enviadas a tu correo electr�nico. Tienes 24 horas para completar tu solicitud');
+                $this->Flash->success('Las instrucciones para restablecer tu contraseña fueron enviadas a tu correo electrónico. Tienes 24 horas para completar tu solicitud');
                 $this->redirect(array('action' => 'login'));
             }
         }
@@ -202,7 +210,7 @@ class UsersController extends AppController {
             $mailer = new CakeEmail('emailcadcam');
             $mailer->from(array('mail@mail.com.mx' => 'Equipo de cuentas CADCAM'));
             $mailer->to($User['User']['username']);
-            $mailer->subject('Restablecimiento de contrase�a de la cuenta de CADCAM');
+            $mailer->subject('Restablecimiento de contraseña de la cuenta de CADCAM');
             $mailer->emailFormat('html');
             $mailer->template('reset_password_request', 'default');
             $mailer->viewVars(compact('User'));
@@ -226,7 +234,7 @@ class UsersController extends AppController {
             $mailer = new CakeEmail('emailcadcam');
             $mailer->from(array('no-reply@cadcam-mty.mx' => 'Equipo de cuentas CADCAM'));
             $mailer->to($User['User']['username']);
-            $mailer->subject('La contrase�a del portal CADCAM ha sido cambiada');
+            $mailer->subject('La contraseña del portal CADCAM ha sido cambiada');
             $mailer->emailFormat('html');
             $mailer->template('password_reset_success', 'default');
             $mailer->viewVars(compact('User'));
@@ -249,12 +257,12 @@ class UsersController extends AppController {
             if ($this->ForgotPassword->validToken($data['User']['token_created_at'])) {
                 $this->Session->write('resetPasswordToken', $resetPasswordToken);
             } else {
-                $this->Flash->error('La solicitud para restablecer tu contrase�a es inv�lida o ha expirado');
+                $this->Flash->error('La solicitud para restablecer tu contraseña es inválida o ha expirado');
                 $this->redirect(array('action' => 'login'));
             }
         } else {
             if ($this->data['User']['reset_password_token'] !== $this->Session->read('resetPasswordToken')) {
-                $this->Flash->error('La solicitud para restablecer tu contrase�a es inv�lida o ha expirado');
+                $this->Flash->error('La solicitud para restablecer tu contraseña es inválida o ha expirado');
                 $this->redirect(array('action' => 'login'));
             }
             $validatePassword = $this->ForgotPassword->validateStrengthPassword($this->data['User']['new_password'], $this->data['User']['confirm_password']);
@@ -262,7 +270,7 @@ class UsersController extends AppController {
                 $user = $this->User->findByResetPasswordToken($this->data['User']['reset_password_token']);
                 $user['User']['password'] = $this->data['User']['new_password'];
                 if ($this->User->save($user) && $this->_sendPasswordChangedEmail($user['User']['id'])) {
-                    $this->Flash->success('La contrase�a ha si cambiado exitosamente');
+                    $this->Flash->success('La contraseña ha si cambiado exitosamente');
                     $this->redirect(array('action' => 'login'));
                 }
             }
