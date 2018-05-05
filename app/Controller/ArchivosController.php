@@ -25,7 +25,7 @@ class ArchivosController extends AppController
   		{
 
 		$fileName = $this->request->params['pass'][0].'.'.$this->request->params['ext'];
-		$app = str_replace('Controller\\', '', __DIR__ . DIRECTORY_SEPARATOR);
+		$app = str_replace('Controller' . DIRECTORY_SEPARATOR, '', __DIR__ . DIRECTORY_SEPARATOR);
 		$paymentsPath = $app . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
 
 

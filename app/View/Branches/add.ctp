@@ -53,7 +53,7 @@
             <div class="form-group">
                <label for="access" class="col-sm-2 control-label">Acceso</label>
                <div class="col-sm-6 required">
-                  <?php echo $this->Form->input('access',array('class' => 'form-control', 'label' => false)); ?>
+                  <?php echo $this->Form->input('access',array( 'label' => false)); ?>
                </div>
             </div>
             <div class="form-group">

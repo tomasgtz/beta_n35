@@ -8,7 +8,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>Edición de registro<small>admin</small></h1>    
+    <h1>Edición de registro<small>CADCAM</small></h1>    
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>
@@ -25,20 +25,36 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>            </div>
+                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>
+                </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <?php echo $this->Form->create('Order', array('class' => 'form-horizontal', 'type' => 'file')); ?>
 		        <?php echo $this->Form->input('id',array('class' => 'form-control', 'label' => false)); ?>
-		<div class="form-group">
-                    <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
-                    <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('branch_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
-                    </div>
-                </div>
-                
-		<div class="form-group">
-                    <label for="quote_id" class="col-sm-2 control-label">Id de cotización</label>
+		
+                <div class="form-group">
+                            <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
+                            <div class="col-sm-6 required">
+                                <?php 
+                                
+                                echo    $this->request->data['Branch']['name'] . ' Tel '.  $this->request->data['Branch']['phone']
+                                .'<br>'.
+                                $this->request->data['Branch']['rfc']
+                                .'<br>'.
+                                $this->request->data['Branch']['manager']
+                                .'<br>'.
+                                $this->request->data['Branch']['street']. ' ' . $this->request->data['Branch']['suburb']
+                                .'<br>'.
+                                $this->request->data['Branch']['postcode']. ' ' . $this->request->data['Branch']['city']
+
+                                ;
+
+                                echo $this->Form->input('branch_id', array( 'type' => 'hidden', 'readonly' => 'readonly', 'label' => false)); ?>
+                            </div>
+                        </div>
+                        
+        		<div class="form-group">
+                        <label for="quote_id" class="col-sm-2 control-label">Id de cotización</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('quote_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
                     </div>
@@ -103,15 +119,25 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 		<div class="form-group">
                     <label for="payment_url" class="col-sm-2 control-label">Comprobante de Pago</label>
                     <div class="col-sm-6 required">
-			<?php echo $this->Html->link('Comprobante de pago', array('controller'=>'Archivos','action'=>'pagos', $this->request->data['Order']['payment_url'])); ?>
-                        <?php //echo $this->Form->input('payment_url', array('type' => 'file', 'class' => 'form-control', 'label' => false)); ?>
+			         
+                     <?php
+                        if(isset($this->request->data['Order']['payment_url']) && !empty($this->request->data['Order']['payment_url']) ) {
+                            echo $this->Html->link('Comprobante de pago', array('controller'=>'Archivos','action'=>'pagos', $this->request->data['Order']['payment_url'])); 
+                            echo $this->Form->input('hasFile', array('type'=>'hidden', 'value'=>'1'));
+                        } else {
+
+                            echo $this->Form->input('hasFile', array('type'=>'hidden', 'value'=>''));
+                        }
+                        ?>
+
+
                     </div>
                 </div>
 		<div class="form-group">
                     <label for="service_id" class="col-sm-2 control-label">Servicio(s)</label>
                     <div class="col-sm-6 required">
 
-                        <?php echo $this->Form->input('service_id', array('type' => 'select', 'disabled'=>'disabled', 'multiple' => 'checkbox', 'class' => 'multiple-chb', 'label' => false, 'selected' => $selected)); ?>
+                        <?php echo $this->Form->input('Order.services', array('type' => 'select', 'readonly'=>'readonly', 'multiple' => 'checkbox', 'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected)); ?>
                     </div>
                 </div>
 

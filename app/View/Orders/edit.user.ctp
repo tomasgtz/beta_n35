@@ -1,5 +1,12 @@
-<!-- Content Header (Page header) -->
 
+
+
+
+
+
+
+
+<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>Edición de registro<small>Edición de registro</small></h1>    
     <ol class="breadcrumb">
@@ -18,19 +25,14 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>            </div>
+                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>
+                </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <?php echo $this->Form->create('Order', array('class' => 'form-horizontal', 'type' => 'file')); ?>
-		
-		<div class="form-group">
-                    <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
-                    <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('branch_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
-                    </div>
-                </div>
+                <?php echo $this->Form->input('id',array('class' => 'form-control', 'label' => false)); ?>
                 
-		<div class="form-group">
+		        <div class="form-group">
                     <label for="quote_id" class="col-sm-2 control-label">Id de cotización</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('quote_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
@@ -67,7 +69,10 @@
                         <?php
                         if(isset($this->request->data['Order']['payment_url']) && !empty($this->request->data['Order']['payment_url']) ) {
                             echo $this->Html->link('Comprobante de pago', array('controller'=>'Archivos','action'=>'pagos', $this->request->data['Order']['payment_url'])); 
+                            echo $this->Form->input('hasFile', array('type'=>'hidden', 'value'=>'1'));
+                        } else {
 
+                            echo $this->Form->input('hasFile', array('type'=>'hidden', 'value'=>''));
                         }
                         ?>
                         <?php echo $this->Form->input('payment_url', array('type' => 'file', 'class' => 'form-control', 'label' => false)); ?>
@@ -78,7 +83,7 @@
                     <div class="col-sm-6 required">
                         <?php 
 			echo $this->Form->input('Orders_Detail.0.part_number', array('class' => 'form-control', 'label' => false)); ?>
-                        <?php echo $this->Form->input('quantity', array('type' => 'hidden', 'value' => 1)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.id', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -110,8 +115,8 @@
                     <label for="service_id" class="col-sm-2 control-label">Servicio(s)</label>
                     <div class="col-sm-6 required">
 
-                        <?php echo $this->Form->input('service_id', array('type' => 'select', 'multiple' => 'checkbox', 
-			'class' => 'multiple-chb', 'label' => false, 'selected' => $selected)); ?>
+                        <?php echo $this->Form->input('Order.services', array('type' => 'select', 'multiple' => 'checkbox', 
+			'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected)); ?>
                     </div>
                 </div>
 
@@ -123,10 +128,18 @@
         </div>
 
         <div class="form-group">
-            <label for="orders_phase_id" class="col-sm-2 control-label">Status</label>
+            <label for="orders_phase_id" class="col-sm-2 control-label">Avance del pedido</label>
             <div class="col-sm-6 required">
 
-                <?php echo $this->Form->input('orders_phase_id', array('readonly'=>'readonly', 'class' => 'form-control', 'label' => false)); ?>
+                <?php echo $this->Form->input('orders_phase_id', array('disabled'=>'disabled',  'class' => 'form-control', 'label' => false)); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status_id" class="col-sm-2 control-label">Status del registro</label>
+            <div class="col-sm-6 required">
+
+                <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false)); ?>
             </div>
         </div>
 
@@ -158,17 +171,12 @@
 </section>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sendOrder').click(function() {
-	   $('#OrderSetOrder').val('1');
-	});
- 
-    });
- 
+     
 
 $(document)
-.on('click', 'form button[type=submit]', function(e) {
-    
+.on('click', '#sendOrder', function(e) {
+
+   $('#OrderSetOrder').val('1');
    isValid = true;
 
     if($('#OrderCustomerName').val().length <= 0) {
@@ -228,7 +236,7 @@ $(document)
 	  isValid = false;
     }
 
-    if($('#OrderPaymentUrl').val().length <= 0) {
+    if($('#OrderPaymentUrl').val().length <= 0 && $('#OrderHasFile').val().length == 0) {
 	alertify
 	  .alert("Por favor agregue el comprobante de pago", function(){
 	    
@@ -236,6 +244,15 @@ $(document)
 	isValid = false;
     }
 	
+    if($('#OrderStatusId').val() != '1') {
+    alertify
+      .alert("Por favor cambie el status del registro a Activo", function(){
+        
+      });
+    isValid = false;
+    }
+    
+
     if(!isValid) {
       e.preventDefault();
     }

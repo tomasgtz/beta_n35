@@ -204,7 +204,7 @@ class Branch extends AppModel {
 			'order' => ''
 		),
 		'Jewelrystore' => array(
-			'className' => 'Jewelrystore',
+			'className' => 'Jewelry_store',
 			'foreignKey' => 'jewelrystore_id',
 			'conditions' => '',
 			'fields' => '',

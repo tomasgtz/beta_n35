@@ -22,13 +22,18 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
-        <?php echo $this->Html->css('/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?> 
+        <?php  echo $this->Html->css('/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?> 
         <!-- Font Awesome -->
-        <?php echo $this->Html->css('/bower_components/font-awesome/css/font-awesome.min.css'); ?>
+        <?php   echo $this->Html->css('/bower_components/font-awesome/css/font-awesome.min.css'); ?>
         <!-- Ionicons -->
         <?php echo $this->Html->css('/bower_components/Ionicons/css/ionicons.min.css'); ?>
         <!-- Theme style -->
         <?php echo $this->Html->css('/dist/css/AdminLTE.min.css'); ?>
+
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
         <!-- CSS -->
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
@@ -50,9 +55,9 @@
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 
         <!-- jQuery 3 -->
-        <?php echo $this->Html->script("/bower_components/jquery/dist/jquery.min.js"); ?>
+        <?php // echo $this->Html->script("/bower_components/jquery/dist/jquery.min.js"); ?>
         <!-- Bootstrap 3.3.7 -->
-        <?php echo $this->Html->script("/bower_components/bootstrap/dist/js/bootstrap.min.js"); ?>
+        <?php // echo $this->Html->script("/bower_components/bootstrap/dist/js/bootstrap.min.js"); ?>
         <style type="text/css">.error-message{color: red;font-weight: bold;} #flashMessage{display: none}</style>
         <script>
             $(document).ready(function () {
@@ -88,7 +93,8 @@
             });
         </script>
         <!-- Google Font -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+       
+       
     </head>
     <body class="hold-transition login-page">
         <?php echo $this->Flash->render(); ?>
