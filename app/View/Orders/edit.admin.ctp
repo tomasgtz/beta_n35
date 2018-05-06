@@ -37,16 +37,15 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                             <div class="col-sm-6 required">
                                 <?php 
                                 
-                                echo    $this->request->data['Branch']['name'] . ' Tel '.  $this->request->data['Branch']['phone']
+                                echo    $this->request->data['Branch']['name'] . ' RFC '.  $this->request->data['Branch']['rfc']
                                 .'<br>'.
-                                $this->request->data['Branch']['rfc']
+                                'Tel: '. $this->request->data['Branch']['phone']
                                 .'<br>'.
-                                $this->request->data['Branch']['manager']
+                                'Encargado: ' . $this->request->data['Branch']['manager']
                                 .'<br>'.
-                                $this->request->data['Branch']['street']. ' ' . $this->request->data['Branch']['suburb']
-                                .'<br>'.
-                                $this->request->data['Branch']['postcode']. ' ' . $this->request->data['Branch']['city']
-
+                                'Dirección: <i>' . $this->request->data['Branch']['street']. ' ' . $this->request->data['Branch']['suburb']
+                                .' '.
+                                $this->request->data['Branch']['postcode']. ' ' . $this->request->data['Branch']['city'].'</i>'
                                 ;
 
                                 echo $this->Form->input('branch_id', array( 'type' => 'hidden', 'readonly' => 'readonly', 'label' => false)); ?>
@@ -87,8 +86,8 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     <label for="Orders_Detail0PartNumber" class="col-sm-2 control-label">Modelo</label>
                     <div class="col-sm-6 required">
                         <?php 
-			echo $this->Form->input('Orders_Detail.0.part_number', array('class' => 'form-control', 'disabled'=>'disabled', 'label' => false)); ?>
-                        <?php echo $this->Form->input('quantity', array('type' => 'hidden', 'value' => 1)); ?>
+			             echo $this->Form->input('Orders_Detail.0.part_number', array('class' => 'form-control', 'disabled'=>'disabled', 'label' => false)); ?>
+                        
                     </div>
                 </div>
                 <div class="form-group">
@@ -137,7 +136,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     <label for="service_id" class="col-sm-2 control-label">Servicio(s)</label>
                     <div class="col-sm-6 required">
 
-                        <?php echo $this->Form->input('Order.services', array('type' => 'select', 'readonly'=>'readonly', 'multiple' => 'checkbox', 'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected)); ?>
+                        <?php echo $this->Form->input('Order.services', array('type' => 'select', 'disabled'=>'disabled', 'multiple' => 'checkbox', 'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected)); ?>
                     </div>
                 </div>
 
@@ -159,10 +158,18 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
         </div>
 
         <div class="form-group">
-            <label for="orders_phase_id" class="col-sm-2 control-label">Status</label>
+            <label for="orders_phase_id" class="col-sm-2 control-label">Avance del pedido</label>
             <div class="col-sm-6 required">
 
                 <?php echo $this->Form->input('orders_phase_id', array('class' => 'form-control', 'label' => false)); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status_id" class="col-sm-2 control-label">Status del registro</label>
+            <div class="col-sm-6 required">
+
+                <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false)); ?>
             </div>
         </div>
                 <!-- /.box-body -->

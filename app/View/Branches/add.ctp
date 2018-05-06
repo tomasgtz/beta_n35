@@ -63,6 +63,18 @@
                </div>
             </div>
             <div class="form-group">
+               <label for="manager" class="col-sm-2 control-label">Plaza comercial</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shopping_mall',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="manager" class="col-sm-2 control-label">No. de local</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('store_number',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
                <label for="rfc" class="col-sm-2 control-label">RFC</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('rfc',array('class' => 'form-control', 'label' => false)); ?>

@@ -115,6 +115,7 @@ class OrdersController extends AppController {
  */
 	public function edit($id = null) {
 		//debug($this->request->data);die;
+
 		if (!$this->Order->exists($id)) {
 			throw new NotFoundException(__('Pedido no encontrado'));
 		}
@@ -139,22 +140,24 @@ class OrdersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			$data = $this->request->data;
-			$services_to_save = $this->request->data['Order']['services'];
 
-			// this should never happen, just in case check all fields if user is submitting the order
-			if(isset($this->request->data['Order']['set_order']) && $this->request->data['Order']['set_order'] == '1') {
-				
-				$validData = $this->validateFields();
+			// this should never happen, because of front end validation.
+			// But just in case check all fields if user is submitting the order
+			if($role == 'normal') {
+				if(isset($this->request->data['Order']['set_order']) && $this->request->data['Order']['set_order'] == '1') {
+					
+					$validData = $this->validateFields();
 
-				if($validData === false) {
-					$this->Flash->error(__('Favor de llenar los siguientes campos antes de colocar pedido:<br>Cliente, Email, Tipo de pago, Comprobante, Modelo, Precio y Cantidad '));
+					if($validData === false) {
+						$this->Flash->error(__('Favor de llenar los siguientes campos antes de colocar pedido:<br>Cliente, Email, Tipo de pago, Comprobante, Modelo, Precio y Cantidad '));
+					
+					}
+
+					$data['Order']['orders_phase_id'] = 5;
 				
+				} else {
+					$data['Order']['orders_phase_id'] = 13;
 				}
-
-				$data['Order']['orders_phase_id'] = 5;
-			
-			} else {
-				$data['Order']['orders_phase_id'] = 13;
 			}
 
 			// remove file field, it will be saved later
@@ -163,18 +166,38 @@ class OrdersController extends AppController {
 			// remove the services, they will be saved later
 			unset($data['Order']['services']);
 
-			$this->LoadModel('OrdersDetailsService');
-			$this->OrdersDetailsService->deleteAll(array('orders_detail_id'=> $data['Orders_Detail'][0]['id']));
+			if( isset($this->request->data['Order']['services']) ) {
+				$services_to_save = $this->request->data['Order']['services'];
+			}
 
-			foreach($services_to_save as $sid => $value) {
-					$services[] = array('OrdersDetailsService' =>
-							array('orders_detail_id' => $data['Orders_Detail'][0]['id'], 
-								  'service_id' => $value)
-					);
+			if( isset($services_to_save) && is_array($services_to_save) && count($services_to_save) > 0 ) {
+				
+				$this->LoadModel('OrdersDetailsService');
+				$this->OrdersDetailsService->deleteAll(array('orders_detail_id'=> $data['Orders_Detail'][0]['id']));
+
+				foreach($services_to_save as $sid => $value) {
+						$services[] = array('OrdersDetailsService' =>
+								array('orders_detail_id' => $data['Orders_Detail'][0]['id'], 
+									  'service_id' => $value)
+						);
 				}
 
-			if ( $this->Order->saveAll($data) && $this->OrdersDetailsService->saveAll($services) ) {
+				if( !$this->OrdersDetailsService->saveAll($services) ) {
 
+					$this->Flash->error(__('Error: la orden no pudo ser guardada'));
+				}
+
+			}
+
+			
+
+			if ( $this->Order->saveAll($data) ) {
+
+				/*$dbo = $this->Order->getDatasource();
+				  $logs = $dbo->getLog();
+				  $lastLog = $logs['log'];
+				  var_dump($lastLog);
+				die;*/
 				// save payment file
 				if(isset( $this->request->data['Order']['payment_url']['name']) && 
 		 		!empty($this->request->data['Order']['payment_url']['name'])) {
