@@ -187,9 +187,7 @@ class OrdersController extends AppController {
 					$this->Flash->error(__('Error: la orden no pudo ser guardada'));
 				}
 
-			}
-
-			
+			}			
 
 			if ( $this->Order->saveAll($data) ) {
 
@@ -230,8 +228,6 @@ class OrdersController extends AppController {
 		} else {
 			$options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
 			$this->request->data = $this->Order->find('first', $options);
-			
-			echo $this->Order->recursive;
 		
 			$this->LoadModel('OrdersDetailsService');
 			$this->OrdersDetailsService->recursive = -1;
