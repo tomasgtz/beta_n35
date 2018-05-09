@@ -52,7 +52,14 @@ class BranchesBannersController extends AppController {
             $this->File->allowedExtensions = array('jpg', 'jpeg', 'gif', 'png');
             $this->File->identifier = 'BranchBanner' . date('YmdHis');
             $this->File->route = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
-            $this->File->save($this->request->data['BranchesBanner']['url_banner']);
+
+            if( $this->File->save($this->request->data['BranchesBanner']['url_banner']) ){
+            	unset($this->request->data['BranchesBanner']['url_banner']);
+            	$this->request->data['BranchesBanner']['url_banner'] = $this->File->fileName;
+            } else {
+            	unset($this->request->data['BranchesBanner']['url_banner']);
+            	$this->request->data['BranchesBanner']['url_banner'] = 'error_al_subir_imagen.jpg';
+            }
 
 			$this->BranchesBanner->create();
 			if ($this->BranchesBanner->save($this->request->data)) {

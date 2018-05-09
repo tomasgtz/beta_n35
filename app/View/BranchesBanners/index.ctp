@@ -13,11 +13,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo __('Lista de '.'Branches Banners'); ?>        <small><?php echo __('Lista de '.'Branches Banners'); ?></small>
+        Lista de banners<small>Lista de banners</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Branches Banners",array("action"=>"/index")); ?></li>
+        <li><?php echo $this->Html->link("Banners",array("action"=>"index")); ?></li>
     </ol>
 </section>
 
@@ -35,45 +35,31 @@
                     <table id="table1" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                                                <th>id</th>
-                                                                <th>name</th>
-                                                                <th>url_banner</th>
-                                                                <th>text1</th>
-                                                                <th>text2</th>
-                                                                <th>text3</th>
-                                                                <th>branch_id</th>
-                                                                <th>created</th>
-                                                                <th>created_user_id</th>
-                                                                <th>modified</th>
-                                                                <th>modified_user_id</th>
-                                                                <th>status_id</th>
-                                                                <th class="actions"><?php echo 'acciones'; ?></th>
+                              <th>Id</th>
+                              <th>Descripción</th>
+                              <th>Banner</th>
+                              <th>Creado</th>
+                              <th>Modificado</th>
+                              <th>Estatus</th>
+                              <th class="actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($branchesBanners as $branchesBanner): ?>
 <tr>
 		<td><?php echo h($branchesBanner['BranchesBanner']['id']); ?></td>
-		<td><?php echo h($branchesBanner['BranchesBanner']['name']); ?></td>
+		<td>
+      <b>Descripción : </b><?php echo h($branchesBanner['BranchesBanner']['name']); ?> <br>
+      <b>Texto alternativo 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
+      <b>Texto alternativo 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
+      <b>Texto alternativo 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
+      <b>Sucursal: </b><?php echo h($branchesBanner['Branch']['name']); ?> <br>
+    </td>
 		<td><?php echo h($branchesBanner['BranchesBanner']['url_banner']); ?></td>
-		<td><?php echo h($branchesBanner['BranchesBanner']['text1']); ?></td>
-		<td><?php echo h($branchesBanner['BranchesBanner']['text2']); ?></td>
-		<td><?php echo h($branchesBanner['BranchesBanner']['text3']); ?></td>
-		<td>
-			<?php echo $this->Html->link($branchesBanner['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $branchesBanner['Branch']['id'])); ?>
-		</td>
 		<td><?php echo h($branchesBanner['BranchesBanner']['created']); ?></td>
-		<td>
-			<?php echo $this->Html->link($branchesBanner['CreatedUser']['id'], array('controller' => 'created_users', 'action' => 'view', $branchesBanner['CreatedUser']['id'])); ?>
-		</td>
 		<td><?php echo h($branchesBanner['BranchesBanner']['modified']); ?></td>
-		<td>
-			<?php echo $this->Html->link($branchesBanner['ModifiedUser']['id'], array('controller' => 'modified_users', 'action' => 'view', $branchesBanner['ModifiedUser']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($branchesBanner['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $branchesBanner['Status']['id'])); ?>
-		</td>
-                            <td class="actions" style="text-align:center">
+		<td><?php echo h($branchesBanner['Status']['text']); ?></td>
+    <td class="actions" style="text-align:center">
 <?php echo $this->Html->link('',array('action'=>'edit',$branchesBanner['BranchesBanner']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
 &nbsp;&nbsp;
 <?php echo $this->Form->postLink('',array('action'=>'delete',$branchesBanner['BranchesBanner']['id']),array('confirm'=>__('Esta seguro de eliminar la dirección # %s?', $branchesBanner['BranchesBanner']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
