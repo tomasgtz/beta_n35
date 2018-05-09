@@ -4,19 +4,8 @@ App::uses('Component', 'Controller');
 
 class ForgotPasswordComponent extends Component {
 
-    /**
-     *
-     * @var type 
-     */
     private $numberSeconds = 86400;
-
-    /**
-     *
-     * @var type 
-     */
     public $errorMessages = '';
-    
-    public $minLength = 8;
 
     public function validToken($tokenCreatedAt) {
         $expired = strtotime($tokenCreatedAt) + $this->numberSeconds;
