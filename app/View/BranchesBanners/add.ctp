@@ -50,7 +50,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                 <div class="form-group">
                     <label for="text2" class="col-sm-2 control-label">Texto 2</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('tex2', array('required' => false, 'class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('text2', array('required' => false, 'class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">

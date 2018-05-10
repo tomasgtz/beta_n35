@@ -27,6 +27,7 @@ class QuotesController extends AppController {
         $this->Quote->recursive = 0;
         $user = $this->Auth->user();
         $this->loadModel('Jewelrystore');
+        $this->Jewelrystore->recursive = -1;
 
         if (isset($user['role']) && $user['role'] == 'admin' ) {
 
@@ -34,7 +35,7 @@ class QuotesController extends AppController {
 
           foreach($quotes as $id => &$quote) {
             
-            $quote['Jewelrystore'] = $this->Jewelrystore->findById($quote['Branch']['jewelrystore_id']);
+            $quote['Jewelrystore'] = $this->Jewelrystore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$quote['Branch']['jewelrystore_id'])));
 
           }
 

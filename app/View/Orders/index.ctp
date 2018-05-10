@@ -30,10 +30,10 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                 <div class="box-header">
                     <h3 class="box-title">
                         <?php
-                        $button = '<i class="fa fa-plus-square"></i>&nbsp;Nuevo registro';
+                        /*$button = '<i class="fa fa-plus-square"></i>&nbsp;Nuevo registro';
                         $action = array("action" => "/add");
                         $option1 = array("class" => "btn btn-primary", "escape" => false);
-                        echo $this->Html->link($button, $action, $option1);
+                        echo $this->Html->link($button, $action, $option1);*/
                         ?>
                     </h3>
                 </div>
