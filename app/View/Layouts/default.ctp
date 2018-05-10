@@ -73,15 +73,12 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <?php 
-
-                echo $this->Html->link($this->Html->tag('span', 'CADCAM', array('class'=>'logo-lg') ) . $this->Html->tag('span', 'CC', array('class'=>'logo-mini')), 
-                  array('controller'=>'Quotes','action'=>'index'), array('escape'=>false, 'class'=>'logo')); 
-
-          
-                  ?>
-               
-                
+                <a href="index2.html" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>C</b>C</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>CAD</b>CAM</span>
+                </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
                     <!-- Sidebar toggle button-->
@@ -304,7 +301,7 @@
                     <li class="user-header">
                     <?php echo $this->Html->image('/dist/img/user2-160x160.jpg', array('class' => 'img-circle', 'alt' => 'User Image')); ?>
                        <p>
-                          <?php echo AuthComponent::user('username'); ?>
+                    <?php echo AuthComponent::user('username'); ?>
                           <small>Member since Nov. 2012</small>
                        </p>
                     </li>
@@ -391,6 +388,16 @@
                                 'redirect' => array('controller' => 'Branches', 'action' => 'index'),
                                 'normalUser' => 0
                             ),
+                            array(
+                                'title' => '<i class="fa fa-file-image-o" aria-hidden="true"></i><span>Sucursales Banners</span>',
+                                'redirect' => array('controller' => 'BranchesBanners', 'action' => 'index'),
+                                'normalUser' => 1
+                            ),
+                            array(
+                                'title' => '<i class="fa fa-adjust" aria-hidden="true"></i><span>Sucursales Colores</span>',
+                                'redirect' => array('controller' => 'BranchesColors', 'action' => 'index'),
+                                'normalUser' => 1
+                            ),                            
                             array(
                                 'title' => '<i class="fa fa fa-book" aria-hidden="true"></i><span>Cotizaciones</span>',
                                 'redirect' => array('controller' => 'Quotes', 'action' => 'index'),

@@ -42,19 +42,19 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="text1" class="col-sm-2 control-label">Texto alt 1</label>
+                    <label for="text1" class="col-sm-2 control-label">Texto 1</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('text1', array('required' => false, 'class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="text2" class="col-sm-2 control-label">Texto alt 2</label>
+                    <label for="text2" class="col-sm-2 control-label">Texto 2</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('tex2', array('required' => false, 'class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="text3" class="col-sm-2 control-label">Texto alt 3</label>
+                    <label for="text3" class="col-sm-2 control-label">Texto 3</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('text3', array('required' => false, 'class' => 'form-control', 'label' => false)); ?>
                     </div>

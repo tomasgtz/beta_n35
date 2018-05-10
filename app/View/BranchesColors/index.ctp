@@ -12,12 +12,10 @@
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>
-        Lista de banners<small>Lista de banners</small>
-    </h1>
+    <h1>Lista de colores<small>Lista de colores</small></h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Banners", array("action" => "index")); ?></li>
+        <li><?php echo $this->Html->link("Colores", array("action" => "index")); ?></li>
     </ol>
 </section>
 
@@ -36,8 +34,11 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Descripción</th>
-                                <th>Banner</th>
+                                <th>Logo</th>
+                                <th>Color 1</th>
+                                <th>Color 2</th>
+                                <th>Color 3</th>
+                                <th>Sucursal</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
                                 <th>Estatus</th>
@@ -45,26 +46,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($branchesBanners as $branchesBanner): ?>
+                            <?php foreach ($branchesColors as $branchesColor): ?>
                                 <tr>
-                                    <td><?php echo h($branchesBanner['BranchesBanner']['id']); ?></td>
+                                    <td><?php echo h($branchesColor['BranchesColor']['id']); ?></td>
+                                    <td><img class="img-responsive" src="<?php echo h($fileRoute . $branchesColor['BranchesColor']['url_logo']); ?>"></td>
                                     <td>
-                                        <b>Descripción : </b><?php echo h($branchesBanner['BranchesBanner']['name']); ?> <br>
-                                        <b>Texto 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
-                                        <b>Texto 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
-                                        <b>Texto 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
-                                        <b>Sucursal: </b><?php echo h($branchesBanner['Branch']['name']); ?> <br>
+                                        <b><?php echo h($branchesColor['BranchesColor']['text1']); ?></b><br>
+                                        <b><?php echo h($branchesColor['BranchesColor']['color1']); ?></b><br>
                                     </td>
                                     <td>
-                                        <img class="img-responsive" src="<?php echo h($fileRoute . $branchesBanner['BranchesBanner']['url_banner']); ?>">
+                                        <b><?php echo h($branchesColor['BranchesColor']['text2']); ?></b><br>
+                                        <b><?php echo h($branchesColor['BranchesColor']['color2']); ?></b><br>
                                     </td>
-                                    <td><?php echo h($branchesBanner['BranchesBanner']['created']); ?></td>
-                                    <td><?php echo h($branchesBanner['BranchesBanner']['modified']); ?></td>
-                                    <td><?php echo h($branchesBanner['Status']['text']); ?></td>
+                                    <td>
+                                        <b><?php echo h($branchesColor['BranchesColor']['text3']); ?></b><br>
+                                        <b><?php echo h($branchesColor['BranchesColor']['color3']); ?></b><br>
+                                    </td>
+                                    <td><?php echo h($branchesColor['Branch']['name']); ?></td>
+                                    <td><?php echo h($branchesColor['BranchesColor']['created']); ?></td>
+                                    <td><?php echo h($branchesColor['BranchesColor']['modified']); ?></td>
+                                    <td><?php echo h($branchesColor['Status']['text']); ?></td>
                                     <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $branchesBanner['BranchesBanner']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $branchesColor['BranchesColor']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                         &nbsp;&nbsp;
-                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $branchesBanner['BranchesBanner']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $branchesBanner['BranchesBanner']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
+                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $branchesColor['BranchesColor']['id']), array('confirm' => __('Esta seguro de eliminar el registro # %s?', $branchesColor['BranchesColor']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -85,7 +90,7 @@
             dom: 'Blftip',
             buttons: [{
                     extend: 'excel',
-                    filename: 'Branches Banners',
+                    filename: 'Branches Colors',
                     exportOptions: {
                         format: {
                             body: function (data, row, col) {
@@ -93,6 +98,7 @@
                                 return $(s).text();
                             }
                         }
+
                     }
                 }]
         });
