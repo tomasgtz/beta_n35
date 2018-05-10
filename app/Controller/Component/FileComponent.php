@@ -9,6 +9,7 @@ class FileComponent extends Component {
     public $maxSize = 5242880;
     public $routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
     public $name = '';
+    public $imageNotFound = 'no_image.png';
 
     public function getIdentifier() {
         if ($this->identifier == '') {

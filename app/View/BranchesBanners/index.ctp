@@ -50,9 +50,9 @@
                                     <td><?php echo h($branchesBanner['BranchesBanner']['id']); ?></td>
                                     <td>
                                         <b>Descripción : </b><?php echo h($branchesBanner['BranchesBanner']['name']); ?> <br>
-                                        <b>Texto alternativo 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
-                                        <b>Texto alternativo 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
-                                        <b>Texto alternativo 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
+                                        <b>Texto 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
+                                        <b>Texto 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
+                                        <b>Texto 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
                                         <b>Sucursal: </b><?php echo h($branchesBanner['Branch']['name']); ?> <br>
                                     </td>
                                     <td>

@@ -18,7 +18,7 @@ class BranchesBannersController extends AppController {
     public $components = array(
         'File' => array(
             'routeToSave' => APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR,
-            'allowedExtensions' => array('jpg', 'jpeg', 'gif', 'png')            
+            'allowedExtensions' => array('jpg', 'jpeg', 'gif', 'png'),
         )
     );
 
@@ -29,7 +29,15 @@ class BranchesBannersController extends AppController {
      */
     public function index() {
         $this->BranchesBanner->recursive = 0;
-        $this->set('branchesBanners', $this->BranchesBanner->find('all'));
+        $user = $this->Auth->user();
+        if (isset($user['role']) && $user['role'] == 'admin') {
+            $this->set('branchesBanners', $this->BranchesBanner->find('all'));
+        } else {
+            $this->loadModel('Branch');
+            $this->Branch->recursive = -1;
+            $branch = $this->Branch->find('first', array('fields' => array('id'), 'conditions' => array('user_id' => $user['id'])));            
+            $this->set('branchesBanners', $this->BranchesBanner->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
+        }
         $this->set('fileRoute', $this->File->routeToSave);
     }
 
@@ -54,21 +62,18 @@ class BranchesBannersController extends AppController {
      * @return void
      */
     public function add() {
-        if ($this->request->is('post')) {
 
+        if ($this->request->is('post')) {
             // Sección para guardar archivos
             $this->File->identifier = 'BranchBanner' . date('YmdHis');
-
             $data = $this->request->data['BranchesBanner']['url_banner'];
-            
-            $this->request->data['BranchesBanner']['url_banner'] = ($this->File->save($data) == true) ? $this->File->name : 'no_image.png';
-            
+            $this->request->data['BranchesBanner']['url_banner'] = $this->File->save($data) ? $this->File->name : $this->File->imageNotFound;
             $this->BranchesBanner->create();
             if ($this->BranchesBanner->save($this->request->data)) {
-                $this->Flash->success(__('The branches banner has been saved.'));
+                $this->Flash->success(__('El banner ha sido guardado correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The branches banner could not be saved. Please, try again.'));
+                $this->Flash->error(__('El banner no pudo ser guardado'));
             }
         }
         $branches = $this->BranchesBanner->Branch->find('list');
@@ -87,14 +92,21 @@ class BranchesBannersController extends AppController {
      */
     public function edit($id = null) {
         if (!$this->BranchesBanner->exists($id)) {
-            throw new NotFoundException(__('Invalid branches banner'));
+            throw new NotFoundException(__('Banner inválido'));
         }
         if ($this->request->is(array('post', 'put'))) {
+            if ($this->request->data['BranchesBanner']['url_banner']['name'] == '') {
+                unset($this->request->data['BranchesBanner']['url_banner']);
+            } else {
+                $this->File->identifier = 'BranchBanner' . date('YmdHis');
+                $data = $this->request->data['BranchesBanner']['url_banner'];
+                $this->request->data['BranchesBanner']['url_banner'] = $this->File->save($data) ? $this->File->name : $this->File->imageNotFound;
+            }
             if ($this->BranchesBanner->save($this->request->data)) {
-                $this->Flash->success(__('The branches banner has been saved.'));
+                $this->Flash->success(__('El banner ha sido guardado correctamente.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Flash->error(__('The branches banner could not be saved. Please, try again.'));
+                $this->Flash->error(__('El banner no pudo ser guardado, intente otra vez'));
             }
         } else {
             $options = array('conditions' => array('BranchesBanner.' . $this->BranchesBanner->primaryKey => $id));
@@ -120,17 +132,38 @@ class BranchesBannersController extends AppController {
             throw new NotFoundException(__('Invalid branches banner'));
         }
         $this->request->allowMethod('post', 'delete');
-        if ($this->BranchesBanner->delete()) {
-            $this->Flash->success(__('The branches banner has been deleted.'));
+        // Actualizar el status 
+        $data['BranchesBanner']['status_id'] = 3;
+        if ($this->Branch->save($data)) {
+            $this->Flash->success(__('El banner ha sido eliminado.'));
         } else {
-            $this->Flash->error(__('The branches banner could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El banner no pudo ser eliminado, intente más tarde.'));
         }
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function beforeFilter() {
+    public function download() {
+        if ($this->request->is('get')) {
+            $filename = $this->request->params['pass'][0] . '.' . $this->request->params['ext'];
+            $fullPath = $this->File->routeToSave . $filename;
+            if (file_exists($fullPath)) {
+                $this->response->file($fullPath, array('download' => true, 'name' => $filename));
+            } else {
+                throw new NotFoundException();
+            }
+        } else {
+            throw new NotFoundException();
+        }
+        return $this->response;
+    }
 
-        $this->Auth->allow('index', 'add', 'edit', 'delete');
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role'])) {
+            return true;
+        }
+        // Default deny
+        return parent::isAuthorized($user);
     }
 
 }
