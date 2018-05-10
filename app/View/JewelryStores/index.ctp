@@ -70,9 +70,9 @@
                                     <td><?php echo h($jewelryStore['JewelryStore']['modified']); ?></td>
                                     <td><?php echo ($jewelryStore['Status']['text']); ?></td>
                                     <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $jewelryStore['JewelryStore']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $jewelryStore['JewelryStore']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Editar')); ?>
                                         &nbsp;&nbsp;
-                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $jewelryStore['JewelryStore']['id']), array('confirm' => __('Esta seguro de eliminar la joyería # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            
+                                        <?php echo $this->Form->postLink('', array('action' => 'delete', $jewelryStore['JewelryStore']['id']), array('confirm' => __('Esta seguro de eliminar la joyería # %s?', $jewelryStore['JewelryStore']['id']), 'class' => 'fa fa-trash-o text-red fa-lg', 'title' => 'Eliminar')); ?>                            
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

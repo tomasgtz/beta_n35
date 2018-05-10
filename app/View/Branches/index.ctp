@@ -78,7 +78,7 @@
                                         <?php
                                         echo
                                         $this->Html->link(
-                                                '', array('action' => 'edit', $branch['Branch']['id']), array('class' => 'fa fa-edit fa-lg')
+                                                '', array('action' => 'edit', $branch['Branch']['id']), array('title' => 'Editar', 'class' => 'fa fa-edit fa-lg')
                                         );
                                         ?>
                                         &nbsp;&nbsp;
@@ -101,7 +101,7 @@
                                         $this->Form->postLink(
                                                 '', array('action' => 'delete', $branch['Branch']['id']), array(
                                             'confirm' => __('Esta seguro de eliminar la sucursal # %s?', $branch['Branch']['id']),
-                                            'class' => 'fa fa-trash-o text-red fa-lg'
+                                            'class' => 'fa fa-trash-o text-red fa-lg', 'title' => 'Eliminar'
                                                 )
                                         );
                                         ?>

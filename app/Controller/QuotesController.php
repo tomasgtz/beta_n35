@@ -26,10 +26,37 @@ class QuotesController extends AppController {
     public function index() {
         $this->Quote->recursive = 0;
         $user = $this->Auth->user();
+        $this->loadModel('Jewelrystore');
+
         if (isset($user['role']) && $user['role'] == 'admin' ) {
-          $this->set('quotes', $this->Quote->find("all"));
+
+          $quotes = $this->Quote->find("all");          
+
+          foreach($quotes as $id => &$quote) {
+            
+            $quote['Jewelrystore'] = $this->Jewelrystore->findById($quote['Branch']['jewelrystore_id']);
+
+          }
+
+          $this->set('quotes', $quotes);
         } else {
-          $this->set('quotes', $this->Quote->find("all",array("conditions" => array("user_id" => $user['id']))));
+
+          $quotes = $this->Quote->find("all",array("conditions" => array("user_id" => $user['id'])));
+          
+          //flag to get the Jewerly info only once 
+          $getData = false;
+          foreach($quotes as $id => &$quote) {
+            
+            if(!$getData) {
+              $Jewelrystore = $this->Jewelrystore->findById($quote['Branch']['jewelrystore_id']);
+              $getData = true;
+            }
+
+            $quote['Jewelrystore'] = $Jewelrystore;
+
+          }
+          
+          $this->set('quotes', $quotes);
         }
     }
 

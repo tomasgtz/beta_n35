@@ -58,7 +58,7 @@
                                     <td><?php echo h($user['User']['modified']); ?></td>
                                     <td><?php echo h($user['Status']['text']); ?></td>
                                     <td class="actions">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $user['User']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $user['User']['id']), array('title' => 'Editar', 'class' => 'fa fa-edit fa-lg')); ?>
                                         <?php
                                         /**                                            
                                             if($user['Branch'][0]['id'] == null){
@@ -66,7 +66,7 @@
                                             }
                                             if(!empty($user['Branch'][0]['id'])){
                                                 echo "&nbsp;&nbsp;";
-                                                echo $this->Html->link('', array('controller' => 'Branches', 'action' => 'edit', $user['Branch'][0]['id']), array('class' => 'fa fa-address-book-o text-green fa-lg'));
+                                                echo $this->Html->link('', array('controller' => 'Branches', 'action' => 'edit', $user['Branch'][0]['id']), array('title' => 'Eliminar', 'class' => 'fa fa-address-book-o text-green fa-lg'));
                                             }
                                         */
                                         ?>

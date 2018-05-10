@@ -37,6 +37,7 @@
                         <thead>
                             <tr>
                                 <th>id</th>
+                                <th>Joyería</th>
                                 <th>Cliente</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
@@ -51,7 +52,10 @@
                         <tbody>
                             <?php foreach ($quotes as $quote): ?>
                                 <tr>
-                                    <td><?php echo h($quote['Quote']['id']); ?></td>
+                                    <td><?php 
+                                    
+                                    echo h($quote['Quote']['id']); ?></td>
+                                    <td><?php echo h($quote['Jewelrystore']['Jewelrystore']['name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_email']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_phone']); ?></td>
@@ -66,10 +70,10 @@
                                     </td>
                                     
                                     <td class="actions" style="text-align:center">
-                                    <!--<?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                    <!--<?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Editar')); ?>
                                         &nbsp;&nbsp;-->
-				    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
-                                    <?php echo $this->Form->postLink('', array('action' => 'delete', $quote['Quote']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $quote['Quote']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>
+				    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Convertir a pedido',)); ?>
+                                    <?php echo $this->Form->postLink('', array('action' => 'delete', $quote['Quote']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $quote['Quote']['id']), 'class' => 'fa fa-trash-o text-red fa-lg', 'title' => 'Eliminar')); ?>
                                     </td>
                                     
                                 </tr>
