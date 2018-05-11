@@ -26,8 +26,9 @@ class QuotesController extends AppController {
     public function index() {
         $this->Quote->recursive = 1;
         $user = $this->Auth->user();
-        $this->loadModel('Jewelrystore');
-        $this->Jewelrystore->recursive = -1;
+		
+        $this->loadModel('JewelryStore');
+        $this->JewelryStore->recursive = -1;
 
         if (isset($user['role']) && $user['role'] == 'admin' ) {
 
@@ -35,8 +36,7 @@ class QuotesController extends AppController {
 
           foreach($quotes as $id => &$quote) {
             
-            $quote['Jewelrystore'] = $this->Jewelrystore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$quote['Branch']['jewelrystore_id'])));
-
+            $quote['JewelryStore'] = $this->JewelryStore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$quote['Branch']['jewelrystore_id'])));
           }
 
           $this->set('quotes', $quotes);
@@ -49,11 +49,11 @@ class QuotesController extends AppController {
           foreach($quotes as $id => &$quote) {
             
             if(!$getData) {
-              $Jewelrystore = $this->Jewelrystore->findById($quote['Branch']['jewelrystore_id']);
+              $Jewelrystore = $this->JewelryStore->findById($quote['Branch']['jewelrystore_id']);
               $getData = true;
             }
 
-            $quote['Jewelrystore'] = $Jewelrystore;
+            $quote['JewelryStore'] = $Jewelrystore;
 
           }
           

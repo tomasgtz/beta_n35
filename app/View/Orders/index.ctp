@@ -61,7 +61,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                             <?php foreach ($orders as $order): ?>
                                 <tr>
                                     <td><?php echo h($order['Order']['id']); ?></td>
-                                    <td><?php echo h($order['Jewelrystore']['Jewelrystore']['name']); ?></td>
+                                    <td><?php echo h($order['JewelryStore']['JewelryStore']['name']); ?></td>
                                     <td><?php echo h($order['Branch']['name']); ?></td>
                                     <td>
 										<b>Nombre</b>: <?php echo h($order['Order']['customer_name']); ?><br>

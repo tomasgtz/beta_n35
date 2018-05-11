@@ -55,7 +55,7 @@
                             <?php foreach ($quotes as $quote): ?>
                                 <tr>
                                     <td><?php echo h($quote['Quote']['id']); ?></td>
-                                    <td><?php echo h($quote['Jewelrystore']['Jewelrystore']['name']); ?></td>
+                                    <td><?php echo h($quote['JewelryStore']['JewelryStore']['name']); ?></td>
                                     <td><?php echo h($quote['Branch']['name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_email']); ?></td>

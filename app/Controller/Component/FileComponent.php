@@ -7,7 +7,7 @@ class FileComponent extends Component {
     public $allowedExtensions = array('jpg', 'jpeg', 'gif', 'png', 'pdf', 'doc', 'docx', 'zip');
     public $identifier = '';
     public $maxSize = 5242880;
-    public $routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+    public $routeToSave = '';
     public $name = '';
     public $imageNotFound = 'no_image.png';
 

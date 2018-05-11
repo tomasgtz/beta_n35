@@ -17,7 +17,6 @@ class BranchesColorsController extends AppController {
      */
     public $components = array(
         'File' => array(
-            'routeToSave' => APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR,
             'allowedExtensions' => array('jpg', 'jpeg', 'gif', 'png'),
         )
     );
@@ -62,6 +61,9 @@ class BranchesColorsController extends AppController {
      * @return void
      */
     public function add() {
+
+		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR;
+
         if ($this->request->is('post')) {
             // Inicio guardar archivos
             $this->File->identifier = 'SucursalLogo' . date('YmdHis');
@@ -96,6 +98,9 @@ class BranchesColorsController extends AppController {
      * @return void
      */
     public function edit($id = null) {
+
+		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR;
+
         if (!$this->BranchesColor->exists($id)) {
             throw new NotFoundException(__('Invalid branches color'));
         }
@@ -162,6 +167,9 @@ class BranchesColorsController extends AppController {
     }
 
     public function download() {
+
+		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR;
+
         if ($this->request->is('get')) {
             $filename = $this->request->params['pass'][0] . '.' . $this->request->params['ext'];
             $fullPath = $this->File->routeToSave . $filename;

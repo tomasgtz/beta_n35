@@ -25,15 +25,15 @@ class OrdersController extends AppController {
         $this->Order->recursive = 1;
         $user = $this->Auth->user();
 
-        $this->loadModel('Jewelrystore');
-        $this->Jewelrystore->recursive = -1;
+        $this->loadModel('JewelryStore');
+        $this->JewelryStore->recursive = -1;
 
         if (isset($user['role']) && $user['role'] == 'admin' ) {
         	$orders = $this->Order->find("all");
         	
             foreach($orders as $id => &$order) {
             
-            $order['Jewelrystore'] = $this->Jewelrystore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$order['Branch']['jewelrystore_id'])));
+            $order['JewelryStore'] = $this->JewelryStore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$order['Branch']['jewelrystore_id'])));
 
           }
           $this->set('orders', $orders);
@@ -45,11 +45,11 @@ class OrdersController extends AppController {
 			foreach($orders as $id => &$order) {
             
             	if(!$getData) {
-					$Jewelrystore = $this->Jewelrystore->findById($order['Branch']['jewelrystore_id']);
+					$Jewelrystore = $this->JewelryStore->findById($order['Branch']['jewelrystore_id']);
 					$getData = true;
             	}
 
-            $order['Jewelrystore'] = $Jewelrystore;
+            $order['JewelryStore'] = $Jewelrystore;
 
           }
 
