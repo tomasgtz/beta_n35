@@ -43,14 +43,17 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>Cliente</th>
-                                <th>Comentarios</th>
-                                <th>F.estimada entrega</th>
+                                <th>Joyería</th>
                                 <th>Sucursal</th>
+                                <th>Cliente</th>
+                                <th>Modelo</th>
+                                <th>Comentarios</th>
+                                <th>Precio final</th>
+                                <th>Precio Cadcam</th>
+                                <th>F.estimada entrega</th>
                                 <th>Status pedido</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
-                                <th>Status</th>
                                 <th class="actions">Acciones</th>
                             </tr>
                         </thead>
@@ -58,25 +61,31 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                             <?php foreach ($orders as $order): ?>
                                 <tr>
                                     <td><?php echo h($order['Order']['id']); ?></td>
+                                    <td><?php echo h($order['Jewelrystore']['Jewelrystore']['name']); ?></td>
+                                    <td><?php echo h($order['Branch']['name']); ?></td>
                                     <td>
 										<b>Nombre</b>: <?php echo h($order['Order']['customer_name']); ?><br>
                                         <b>Correo</b>: <?php echo h($order['Order']['customer_email']); ?><br>
                                         <b>Tel.</b>: <?php echo h($order['Order']['customer_phone']); ?>
 									</td>
+                                    <td><?php echo h($order['Orders_Detail'][0]['part_number']); ?></td>
                                     <td><?php echo h($order['Order']['comments']); ?></td>
+                                    <td><?php echo h($order['Orders_Detail'][0]['price']); ?></td>
+                                    <td><?php echo h($order['Orders_Detail'][0]['price_cadcam']); ?></td>
                                     <td><?php echo h($order['Order']['estimated_delivery_date']); ?></td>
-                                    <td>
-                                        <?php echo $order['Branch']['name']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $order['OrdersPhase']['name']; ?>
-                                    </td>
-                                    <td><?php echo h($order['Order']['created']); ?>&nbsp;</td>
-                                    <td><?php echo h($order['Order']['modified']); ?>&nbsp;</td>
-                                    <td>
-                                        <?php echo $order['Status']['text']; ?>
-                                    </td>
+                                    <td><?php echo $order['OrdersPhase']['name']; ?></td>
+                                    <td><?php echo $this->Html->tag('span', $this->Time->niceShort($order['Order']['created']), array('class'=>'small')); ?></td>
+                                    <td><?php echo $this->Html->tag('span', $this->Time->niceShort($order['Order']['modified']), array('class'=>'small')); ?></td>
                                     <td class="actions" style="text-align:center">
+                                        <?php 
+
+                                        if($order['Status']['text'] == 'Active') { $cl = 'btn-success'; }
+                                        else if($order['Status']['text'] == 'Inacive') { $cl = 'btn-secondary'; }
+                                        else { $cl = 'btn-danger'; }
+                                        echo $this->Html->tag('span', $order['Status']['text'], array('class'=>array('badge',$cl))); 
+
+                                        ?>
+                                        <br>
                                         <?php echo $this->Html->link("<i class='fa fa-edit'></i>", array('action' => 'edit', $order['Order']['id']), array('class' => 'btn btn-primary btn-xs', 'escape' => false, 'title' => 'Editar')); ?>&nbsp;
                                         <?php echo $this->Form->postLink("<i class='fa fa-trash-o'></i>", array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Esta seguro de eliminar el pedido # %s?', $order['Order']['id']), 'class' => 'btn btn-danger btn-xs', 'escape' => false, 'title' => 'Eliminar')); ?></td>
                                 </tr>
@@ -89,11 +98,14 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th>Sucursal</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th>.</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </tfoot>                        
                     </table>
@@ -125,7 +137,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             }],
             initComplete: function () {
                 this.api().columns().every( function (index) {
-                    if(index == 5){   
+                    if(index == 9){   
                         var column = this;
                         var select = $('<select id="filterByOrderStatus" style="100%"><option value="">Seleccionar</option></select>')
                             .appendTo( $(column.footer()).empty() )

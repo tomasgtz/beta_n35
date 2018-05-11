@@ -24,7 +24,7 @@ class QuotesController extends AppController {
      * @return void
      */
     public function index() {
-        $this->Quote->recursive = 0;
+        $this->Quote->recursive = 1;
         $user = $this->Auth->user();
         $this->loadModel('Jewelrystore');
         $this->Jewelrystore->recursive = -1;
@@ -217,21 +217,23 @@ class QuotesController extends AppController {
      * @return void
      */
 
-    /**
-      public function delete($id = null) {
-      $this->Quote->id = $id;
-      if (!$this->Quote->exists()) {
-      throw new NotFoundException(__('Invalid quote'));
+    
+    public function delete($id = null) {
+      
+        $this->Quote->id = $id;
+        $this->request->allowMethod('post', 'delete');
+        $data['Quote']['id'] = $id;
+        $data['Quote']['status_id'] = 3;
+
+        if ($this->Quote->save($data)) {
+          $this->Flash->success(__('El status de la cotización se ha cambiado a borrado.'));
+        } else {
+          $this->Flash->error(__('No se pudo actualizar el status de la cotización. Intente nuevamente.'));
+        }
+
+        return $this->redirect(array('action' => 'index'));
       }
-      $this->request->allowMethod('post', 'delete');
-      if ($this->Quote->delete()) {
-      $this->Flash->success(__('The quote has been deleted.'));
-      } else {
-      $this->Flash->error(__('The quote could not be deleted. Please, try again.'));
-      }
-      return $this->redirect(array('action' => 'index'));
-      }
-     */
+     
     public function isAuthorized($user) {
         // Admin can access every action
         if (isset($user['role'])) {

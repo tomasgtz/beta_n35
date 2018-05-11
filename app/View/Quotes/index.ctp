@@ -38,38 +38,45 @@
                             <tr>
                                 <th>id</th>
                                 <th>Joyería</th>
+                                <th>Sucursal</th>
                                 <th>Cliente</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>Modelo</th>
                                 <th>Comentarios</th>
-                                <th>Sucursal</th>
+                                <th>Precio final</th>
+                                <th>Precio Cadcam</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
-                                <th>Status</th>
                                 <th class="actions">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($quotes as $quote): ?>
                                 <tr>
-                                    <td><?php 
-                                    
-                                    echo h($quote['Quote']['id']); ?></td>
+                                    <td><?php echo h($quote['Quote']['id']); ?></td>
                                     <td><?php echo h($quote['Jewelrystore']['Jewelrystore']['name']); ?></td>
+                                    <td><?php echo h($quote['Branch']['name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_name']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_email']); ?></td>
                                     <td><?php echo h($quote['Quote']['customer_phone']); ?></td>
+                                    <td><?php echo h($quote['Quotes_Detail'][0]['part_number']); ?></td>
                                     <td><?php echo h($quote['Quote']['comments']); ?></td>
-                                    <td>
-                                        <?php echo $this->Html->link($quote['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $quote['Branch']['id'])); ?>
-                                    </td>
-                                    <td><?php echo h($quote['Quote']['created']); ?></td>
-                                    <td><?php echo h($quote['Quote']['modified']); ?></td>
-                                    <td>
-                                        <?php echo $this->Html->link($quote['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $quote['Status']['id'])); ?>
-                                    </td>
-                                    
+                                    <td><?php echo h($quote['Quotes_Detail'][0]['price']); ?></td>
+                                    <td><?php echo h($quote['Quotes_Detail'][0]['price_cadcam']); ?></td>
+                                    <td><?php echo $this->Html->tag('span', $this->Time->niceShort($quote['Quote']['created']), array('class'=>'small')); ?></td>
+                                    <td><?php echo $this->Html->tag('span', $this->Time->niceShort($quote['Quote']['modified']), array('class'=>'small')); ?></td>
                                     <td class="actions" style="text-align:center">
+                                        <?php 
+
+                                        if($quote['Status']['text'] == 'Active') { $cl = 'btn-success'; }
+                                        else if($quote['Status']['text'] == 'Inacive') { $cl = 'btn-secondary'; }
+                                        else { $cl = 'btn-danger'; }
+                                        echo $this->Html->tag('span', $quote['Status']['text'], array('class'=>array('badge',$cl))); 
+
+
+                                        ?>
+                                    <br>
                                     <!--<?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Editar')); ?>
                                         &nbsp;&nbsp;-->
 				    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Convertir a pedido',)); ?>

@@ -22,12 +22,38 @@ class OrdersController extends AppController {
  * @return void
  */
 	public function index() {
-        $this->Order->recursive = 0;
+        $this->Order->recursive = 1;
         $user = $this->Auth->user();
+
+        $this->loadModel('Jewelrystore');
+        $this->Jewelrystore->recursive = -1;
+
         if (isset($user['role']) && $user['role'] == 'admin' ) {
-          $this->set('orders', $this->Order->find("all"));
+        	$orders = $this->Order->find("all");
+        	
+            foreach($orders as $id => &$order) {
+            
+            $order['Jewelrystore'] = $this->Jewelrystore->find('first', array('fields'=>array('name'),'conditions' => array('id'=>$order['Branch']['jewelrystore_id'])));
+
+          }
+          $this->set('orders', $orders);
+
         } else {
-          $this->set('orders', $this->Order->find("all",array("conditions" => array("user_id" => $user['id']))));
+        	$orders = $this->Order->find("all",array("conditions" => array("user_id" => $user['id'])));
+
+			$getData = false;
+			foreach($orders as $id => &$order) {
+            
+            	if(!$getData) {
+					$Jewelrystore = $this->Jewelrystore->findById($order['Branch']['jewelrystore_id']);
+					$getData = true;
+            	}
+
+            $order['Jewelrystore'] = $Jewelrystore;
+
+          }
+
+          $this->set('orders', $orders);
         }		
 	}
 
