@@ -80,18 +80,23 @@
                     </div>
                 </div>
 		<div class="form-group">
+                    <label for="Orders_Detail0Quantity" class="col-sm-2 control-label">Cantidad</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('Orders_Detail.0.quantity', array('class' => 'form-control', 'label' => false)); ?>
+                    </div>
+                </div>
+		<div class="form-group">
                     <label for="Orders_Detail0Price" class="col-sm-2 control-label">Precio</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('Orders_Detail.0.price', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
 		<div class="form-group">
-                    <label for="Orders_Detail0Quantity" class="col-sm-2 control-label">Cantidad</label>
+                    <label for="Orders_Detail0PriceCadcam" class="col-sm-2 control-label">Precio CadCam</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('Orders_Detail.0.quantity', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.price_cadcam', array('class' => 'form-control', 'label' => false)); ?>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="payments_type_id" class="col-sm-2 control-label">Tipo de pago</label>
                     <div class="col-sm-6 required">

@@ -271,7 +271,20 @@ class OrdersController extends AppController {
 			$createdUsers = $this->Order->CreatedUser->find('list');
 			$modifiedUsers = $this->Order->ModifiedUser->find('list');
 			$statuses = $this->Order->Status->find('list');
-			$this->set(compact('quotes', 'branches', 'paymentsTypes', 'ordersPhases', 'createdUsers', 'modifiedUsers', 'statuses', 'services', 'selected' ));
+			
+			$this->LoadModel('States');
+			$this->States->recursive = 0;
+			$state = $this->States->find('first', array('conditions'=>array('id'=>$this->request->data['Branch']['state_id'])));
+
+			$shipping_state = $this->States->find('first', array('conditions'=>array('id'=>$this->request->data['Branch']['shipping_state_id'])));
+			
+			$this->LoadModel('Countries');
+			$this->Countries->recursive = 0;
+			$country = $this->Countries->find('first', array('conditions'=>array('id'=>$this->request->data['Branch']['country_id'])));
+
+			$shipping_country = $this->Countries->find('first', array('conditions'=>array('id'=>$this->request->data['Branch']['shipping_country_id'])));
+ 
+			$this->set(compact('quotes', 'branches', 'paymentsTypes', 'ordersPhases', 'createdUsers', 'modifiedUsers', 'statuses', 'services', 'selected', 'country', 'shipping_country', 'state', 'shipping_state' ));
 
 		}
 		

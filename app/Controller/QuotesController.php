@@ -143,9 +143,13 @@ class QuotesController extends AppController {
                       $this->request->data['QuotesDetail']['price'] = '0';
                   }
 
+                  if ($this->request->data['QuotesDetail']['price_cadcam'] == null) {
+                      $this->request->data['QuotesDetail']['price_cadcam'] = '0';
+                  }
+
                   $this->request->data['QuotesDetail']['quote_id'] = $this->Quote->getLastInsertId();
 
-                  if (!empty($this->request->data['QuotesDetail']['part_number']) && $this->request->data['QuotesDetail']['quantity'] > 0 && $this->request->data['QuotesDetail']['price'] > 0) {
+                  if (!empty($this->request->data['QuotesDetail']['part_number']) && $this->request->data['QuotesDetail']['quantity'] > 0 && $this->request->data['QuotesDetail']['price'] > 0 && $this->request->data['QuotesDetail']['price_cadcam'] > 0) {
                       $this->QuotesDetail->create();
                       if ($this->QuotesDetail->save($this->request->data)) {
                           $this->Message->id = 1;

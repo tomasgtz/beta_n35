@@ -36,16 +36,22 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                             <label for="branch_id" class="col-sm-2 control-label">Sucursal</label>
                             <div class="col-sm-6 required">
                                 <?php 
-                                
+
                                 echo    $this->request->data['Branch']['name'] . ' RFC '.  $this->request->data['Branch']['rfc']
                                 .'<br>'.
                                 'Tel: '. $this->request->data['Branch']['phone']
                                 .'<br>'.
                                 'Encargado: ' . $this->request->data['Branch']['manager']
                                 .'<br>'.
-                                'Dirección: <i>' . $this->request->data['Branch']['street']. ' ' . $this->request->data['Branch']['suburb']
+                                'Dirección fiscal: <i>' . $this->request->data['Branch']['street']. ' ' . $this->request->data['Branch']['suburb']
                                 .' '.
-                                $this->request->data['Branch']['postcode']. ' ' . $this->request->data['Branch']['city'].'</i>'
+                                $this->request->data['Branch']['postcode']. ' ' . $this->request->data['Branch']['city']
+				. ' ' . $state['States']['name'].' ' . $country['Countries']['name'].'</i>'
+				.'<br>'.
+				'Dirección de envío: <i>' . $this->request->data['Branch']['shipping_street']. ' ' . $this->request->data['Branch']['shipping_suburb']
+                                .' '.
+                                $this->request->data['Branch']['shipping_postcode']. ' ' . $this->request->data['Branch']['shipping_city']
+				. ' ' . $shipping_state['States']['name'].' ' . $shipping_country['Countries']['name'].'</i>'
                                 ;
 
                                 echo $this->Form->input('branch_id', array( 'type' => 'hidden', 'readonly' => 'readonly', 'label' => false)); ?>
@@ -100,6 +106,12 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     <label for="Orders_Detail0Price" class="col-sm-2 control-label">Precio</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('Orders_Detail.0.price', array('class' => 'form-control', 'disabled'=>'disabled', 'label' => false)); ?>
+                    </div>
+                </div>
+		<div class="form-group">
+                    <label for="Orders_Detail0PriceCadcam" class="col-sm-2 control-label">Precio Cadcam</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('Orders_Detail.0.price_cadcam', array('class' => 'form-control', 'disabled'=>'disabled', 'label' => false)); ?>
                     </div>
                 </div>
 		<div class="form-group">
