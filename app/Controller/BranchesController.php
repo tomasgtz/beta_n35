@@ -70,7 +70,7 @@ class BranchesController extends AppController {
         );
         $users = $this->Branch->User->find('list', $options01);
         // $users = $this->Branch->User->find('list');
-        $jewelrystores = $this->Branch->Jewelrystore->find('list');
+        $jewelrystores = $this->Branch->JewelryStore->find('list');
         $createdUsers = $this->Branch->CreatedUser->find('list');
         $modifiedUsers = $this->Branch->ModifiedUser->find('list');
         $statuses = $this->Branch->Status->find('list');
@@ -111,11 +111,11 @@ class BranchesController extends AppController {
             )
         );
         $users = $this->Branch->User->find('list', $options01);
-        $jewelrystores = $this->Branch->Jewelrystore->find('list');
+        $jewelrystores = $this->Branch->JewelryStore->find('list');
         $createdUsers = $this->Branch->CreatedUser->find('list');
         $modifiedUsers = $this->Branch->ModifiedUser->find('list');
         $statuses = $this->Branch->Status->find('list');
-        $this->set(compact('states',  'countries', 'users', 'jewelrystores', 'createdUsers', 'modifiedUsers', 'statuses'));
+        $this->set(compact('states', 'countries', 'users', 'jewelrystores', 'createdUsers', 'modifiedUsers', 'statuses'));
     }
 
     /**

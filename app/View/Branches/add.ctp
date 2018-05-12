@@ -185,6 +185,8 @@
       $('#BranchCountryId').select2();
       $('#BranchJewelrystoreId').select2();
       $('#BranchUserId').select2();
+      $('#BranchShippingStateId').select2();
+      $('#BranchShippingCountryId').select2();
       
       //Date picker
       $('#BranchDueDate').datepicker({

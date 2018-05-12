@@ -192,6 +192,9 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
         $('#BranchCountryId').select2();
         $('#BranchJewelrystoreId').select2();
         $('#BranchUserId').select2();
+        $('#BranchShippingStateId').select2();
+        $('#BranchShippingCountryId').select2();
+      
 
         //Date picker
         $('#BranchDueDate').datepicker({

@@ -190,14 +190,14 @@ class Branch extends AppModel {
 		),
 		'ShippingState' => array(
 			'className' => 'State',
-			'foreignKey' => 'state_id',
+			'foreignKey' => 'shipping_state_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'ShippingCountry' => array(
 			'className' => 'Country',
-			'foreignKey' => 'country_id',
+			'foreignKey' => 'shipping_country_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -209,8 +209,8 @@ class Branch extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Jewelrystore' => array(
-			'className' => 'Jewelrystore',
+		'JewelryStore' => array(
+			'className' => 'JewelryStore',
 			'foreignKey' => 'jewelrystore_id',
 			'conditions' => '',
 			'fields' => '',
