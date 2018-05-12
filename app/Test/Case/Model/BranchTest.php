@@ -26,12 +26,14 @@ class BranchTest extends CakeTestCase {
 		'app.message',
 		'app.order',
 		'app.quote',
+		'app.quotes_details',
 		'app.payments_type',
 		'app.orders_phase',
 		'app.orders_detail',
 		'app.orders_details_service',
 		'app.quotes_detail',
-		'app.service',
+		'app.shipping_state',
+		'app.shipping_country',
 		'app.user'
 	);
 

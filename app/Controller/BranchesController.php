@@ -115,7 +115,7 @@ class BranchesController extends AppController {
         $createdUsers = $this->Branch->CreatedUser->find('list');
         $modifiedUsers = $this->Branch->ModifiedUser->find('list');
         $statuses = $this->Branch->Status->find('list');
-        $this->set(compact('states', 'countries', 'users', 'jewelrystores', 'createdUsers', 'modifiedUsers', 'statuses'));
+        $this->set(compact('states',  'countries', 'users', 'jewelrystores', 'createdUsers', 'modifiedUsers', 'statuses'));
     }
 
     /**

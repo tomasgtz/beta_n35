@@ -5,6 +5,8 @@ App::uses('AppModel', 'Model');
  *
  * @property State $State
  * @property Country $Country
+ * @property ShippingState $ShippingState
+ * @property ShippingCountry $ShippingCountry
  * @property User $User
  * @property Jewelrystore $Jewelrystore
  * @property CreatedUser $CreatedUser
@@ -33,16 +35,6 @@ class Branch extends AppModel {
 			),
 		),
 		'phone' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'access' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -196,6 +188,20 @@ class Branch extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'ShippingState' => array(
+			'className' => 'State',
+			'foreignKey' => 'state_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ShippingCountry' => array(
+			'className' => 'Country',
+			'foreignKey' => 'country_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
@@ -204,7 +210,7 @@ class Branch extends AppModel {
 			'order' => ''
 		),
 		'Jewelrystore' => array(
-			'className' => 'JewelryStore',
+			'className' => 'Jewelrystore',
 			'foreignKey' => 'jewelrystore_id',
 			'conditions' => '',
 			'fields' => '',

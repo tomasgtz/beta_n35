@@ -117,6 +117,42 @@
                </div>
             </div>
             <div class="form-group">
+               <label for="shipping_street" class="col-sm-2 control-label">Calle de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_street',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="shipping_suburb" class="col-sm-2 control-label">Colonia de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_suburb',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="shipping_postcode" class="col-sm-2 control-label">Código Postal de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_postcode',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="shipping_city" class="col-sm-2 control-label">Ciudad de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_city',array('class' => 'form-control', 'label' => false)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="shipping_state_id" class="col-sm-2 control-label">Estado de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_state_id',array('type'=>'select', 'class' => 'form-control', 'label' => false, 'options'=>$states)); ?>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="shipping_country_id" class="col-sm-2 control-label">País de Envío</label>
+               <div class="col-sm-6 required">
+                  <?php echo $this->Form->input('shipping_country_id',array('type'=>'select', 'class' => 'form-control', 'label' => false, 'options'=> $countries)); ?>
+               </div>
+            </div>
+            <div class="form-group">
                <label for="user_id" class="col-sm-2 control-label">Usuario asignado</label>
                <div class="col-sm-6 required">
                   <?php echo $this->Form->input('user_id',array('class' => 'form-control', 'label' => false)); ?>

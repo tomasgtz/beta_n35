@@ -37,7 +37,8 @@
                                 <th>id</th>
                                 <th>Nombre</th>
                                 <th>Acceso</th>
-                                <th>Comicilio</th>
+                                <th>Domicilio fiscal</th>
+                                <th>Domicilio envío</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
                                 <th>Status</th>
@@ -69,6 +70,16 @@
                                         . $branch['Branch']['suburb'] . ", CP. " . $branch['Branch']['postcode'] . "<br>"
                                         . $branch['Branch']['city'] . ", " . $branch['State']['iso_code_3'] . "<br>"
                                         . $branch['Country']['iso_code_3'];
+                                        ?>      
+                                    </td>
+                                    <td>
+                                        <?php
+                                        
+                                        echo 
+                                        $branch['Branch']['shipping_street'] . "<br>"
+                                        . $branch['Branch']['shipping_suburb'] . ", CP. " . $branch['Branch']['shipping_postcode'] . "<br>"
+                                        . $branch['Branch']['shipping_city'] . ", " . $branch['ShippingState']['iso_code_3'] . "<br>"
+                                        . $branch['ShippingCountry']['iso_code_3'];
                                         ?>      
                                     </td>
                                     <td><?php echo h($branch['Branch']['created']); ?></td>
