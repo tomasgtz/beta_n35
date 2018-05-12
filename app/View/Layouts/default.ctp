@@ -397,6 +397,11 @@
                                 'title' => '<i class="fa fa-adjust" aria-hidden="true"></i><span>Sucursales Colores</span>',
                                 'redirect' => array('controller' => 'BranchesColors', 'action' => 'index'),
                                 'normalUser' => 1
+                            ),
+                            array(
+                                'title' => '<i class="fa fa-external-link" aria-hidden="true"></i><span>Url compartidas</span>',
+                                'redirect' => array('controller' => 'BranchesSharedInformations', 'action' => 'index'),
+                                'normalUser' => 1
                             ),                            
                             array(
                                 'title' => '<i class="fa fa fa-book" aria-hidden="true"></i><span>Cotizaciones</span>',

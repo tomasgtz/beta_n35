@@ -27,8 +27,6 @@ class BranchesBannersController extends AppController {
      * @return void
      */
     public function index() {
-
-
         $this->BranchesBanner->recursive = 0;
         $user = $this->Auth->user();
         if (isset($user['role']) && $user['role'] == 'admin') {
@@ -64,9 +62,9 @@ class BranchesBannersController extends AppController {
      */
     public function add() {
 
-		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
-        
-		if ($this->request->is('post')) {
+        $this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
+
+        if ($this->request->is('post')) {
             // Inicio guardar archivos
             $this->File->identifier = 'BranchBanner' . date('YmdHis');
             $data = $this->request->data['BranchesBanner']['url_banner'];
@@ -100,8 +98,8 @@ class BranchesBannersController extends AppController {
      * @return void
      */
     public function edit($id = null) {
-		
-		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
+
+        $this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
 
         if (!$this->BranchesBanner->exists($id)) {
             throw new NotFoundException(__('Banner inválido'));
@@ -160,8 +158,8 @@ class BranchesBannersController extends AppController {
     }
 
     public function download() {
-		
-		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
+
+        $this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'banners' . DIRECTORY_SEPARATOR;
 
         if ($this->request->is('get')) {
             $filename = $this->request->params['pass'][0] . '.' . $this->request->params['ext'];
