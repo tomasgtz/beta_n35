@@ -53,6 +53,7 @@
                                         <?php
                                         echo "
 										<b>Joyería</b>: " . $branch['JewelryStore']['name'] . "<br>
+                                        <b>Razón Social</b>: " . $branch['Branch']['legal_name'] . "<br>
 										<b>Sucursal</b>: " . $branch['Branch']['name'] . "<br>
 										<b>Encargado</b>: " . $branch['Branch']['manager'] . "<br>
 										<b>Teléfono</b>: " . $branch['Branch']['phone'] . "<br>

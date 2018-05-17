@@ -103,7 +103,8 @@ class DevicesController extends AppController {
         $createdUsers = $this->Device->CreatedUser->find('list');
         $modifiedUsers = $this->Device->ModifiedUser->find('list');
         $statuses = $this->Device->Status->find('list');
-        $this->set(compact('branches', 'createdUsers', 'modifiedUsers', 'statuses'));
+        $return_id = $this->request->pass[1];
+        $this->set(compact('return_id', 'branches', 'createdUsers', 'modifiedUsers', 'statuses'));
     }
 
     /**

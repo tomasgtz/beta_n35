@@ -50,13 +50,13 @@
                                     <td><?php echo h($device['Device']['id']); ?></td>
                                     <td><?php echo h($device['Device']['name']); ?></td>
                                     <td>
-                                        <?php echo $this->Html->link($device['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $device['Branch']['id'])); ?>
+                                        <?php echo h($device['Branch']['name']); ?>
                                     </td>
                                     <td><?php echo h($device['Device']['created']); ?></td>
                                     <td><?php echo h($device['Device']['modified']); ?></td>
                                     <td><?php echo $device['Status']['text']; ?></td>
                                     <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $device['Device']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $device['Device']['id'], $device['Branch']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                         &nbsp;&nbsp;
                                         <?php echo $this->Form->postLink('', array('action' => 'delete', $device['Device']['id']), array('confirm' => __('Esta seguro de eliminar el dispositivo # %s?', $device['Device']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                                 </tr>

@@ -79,7 +79,14 @@
                                     <br>
                                     <!--<?php echo $this->Html->link('', array('action' => 'edit', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Editar')); ?>
                                         &nbsp;&nbsp;-->
-				    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Convertir a pedido',)); ?>
+				                    <?php 
+
+                                        if(isset($quote['Order']) && !empty($quote['Order'])) {
+                                            echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'edit', $quote['Order'][0]['id']), array('class' => 'fa fa-edit fa-lg', 'title' => 'Editar pedido',)); 
+                                        }
+                                        ?>
+
+                                    <?php echo $this->Html->link('', array('controller'=>'Orders', 'action' => 'add', $quote['Quote']['id']), array('class' => 'fa fa-caret-square-o-right fa-lg', 'title' => 'Convertir a pedido',)); ?>
                                     <?php echo $this->Form->postLink('', array('action' => 'delete', $quote['Quote']['id']), array('confirm' => __('Esta seguro de eliminar la dirección # %s?', $quote['Quote']['id']), 'class' => 'fa fa-trash-o text-red fa-lg', 'title' => 'Eliminar')); ?>
                                     </td>
                                     

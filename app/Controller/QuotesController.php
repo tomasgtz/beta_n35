@@ -44,6 +44,7 @@ class QuotesController extends AppController {
 
           $quotes = $this->Quote->find("all",array("conditions" => array("user_id" => $user['id'])));
           
+
           //flag to get the Jewerly info only once 
           $getData = false;
           foreach($quotes as $id => &$quote) {

@@ -51,6 +51,7 @@
                                         <?php
                                         echo "
 										<b>Nombre</b>: " . $jewelryStore['JewelryStore']['name'] . "<br>
+                                        <b>Razón Social</b>: " . $jewelryStore['JewelryStore']['legal_name'] . "<br>
 										<b>Encargado</b>: " . $jewelryStore['JewelryStore']['manager'] . "<br>
 										<b>Teléfono</b>: " . $jewelryStore['JewelryStore']['phone'] . "<br>
 										<b>Email</b>: " . $jewelryStore['JewelryStore']['email'] . "<br>

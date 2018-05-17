@@ -45,6 +45,7 @@
                                 <th class="actions"><?php echo 'Acciones'; ?></th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <?php foreach ($branchesPayments as $branchesPayment): ?>
                                 <tr>
@@ -52,7 +53,7 @@
                                     <td><?php echo h($branchesPayment['BranchesPayment']['payment_date']); ?></td>
                                     <td><?php echo h($branchesPayment['BranchesPayment']['ammount']); ?></td>
                                     <td>
-                                        <?php echo $this->Html->link($branchesPayment['Branch']['name'], array('controller' => 'branches', 'action' => 'view', $branchesPayment['Branch']['id'])); ?>
+                                        <?php echo h($branchesPayment['Branch']['name']); ?>
                                     </td>
                                     <td><?php echo h($branchesPayment['BranchesPayment']['created']); ?></td>
                                     <td><?php echo h($branchesPayment['BranchesPayment']['modified']); ?></td>
@@ -60,7 +61,7 @@
                                         <?php echo $branchesPayment['Status']['text']; ?>
                                     </td>
                                     <td class="actions" style="text-align:center">
-                                        <?php echo $this->Html->link('', array('action' => 'edit', $branchesPayment['BranchesPayment']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
+                                        <?php echo $this->Html->link('', array('action' => 'edit', $branchesPayment['BranchesPayment']['id'], $branchesPayment['Branch']['id']), array('class' => 'fa fa-edit fa-lg')); ?>
                                         &nbsp;&nbsp;
                                         <?php echo $this->Form->postLink('', array('action' => 'delete', $branchesPayment['BranchesPayment']['id']), array('confirm' => __('Esta seguro de eliminar el pago # %s?', $branchesPayment['BranchesPayment']['id']), 'class' => 'fa fa-trash-o text-red fa-lg')); ?>                            </td>
                                 </tr>

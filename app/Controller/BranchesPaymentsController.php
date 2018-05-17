@@ -98,11 +98,13 @@ class BranchesPaymentsController extends AppController {
             $options = array('conditions' => array('BranchesPayment.' . $this->BranchesPayment->primaryKey => $id));
             $this->request->data = $this->BranchesPayment->find('first', $options);
         }
+
         $branches = $this->BranchesPayment->Branch->find('list');
         $createdUsers = $this->BranchesPayment->CreatedUser->find('list');
         $modifiedUsers = $this->BranchesPayment->ModifiedUser->find('list');
         $statuses = $this->BranchesPayment->Status->find('list');
-        $this->set(compact('branches', 'createdUsers', 'modifiedUsers', 'statuses'));
+        $return_id = $this->request->pass[1];
+        $this->set(compact('return_id', 'branches', 'createdUsers', 'modifiedUsers', 'statuses'));
     }
 
     /**

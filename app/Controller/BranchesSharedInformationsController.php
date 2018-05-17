@@ -40,6 +40,13 @@ class BranchesSharedInformationsController extends AppController {
         $user = $this->Auth->user();
 
         if (isset($user['role']) && $user['role'] == 'admin') {
+
+            $this->loadModel('JewelryStore');
+            $this->JewelryStore->recursive = -1;
+            $jewelryStores = $this->JewelryStore->find('list', array(
+        'fields' => array('id','name')));
+
+
             $this->set('branchesSharedInformations', $this->BranchesSharedInformation->find('all'));
             $options = array(
                 'allowDelete' => 1,
@@ -47,6 +54,8 @@ class BranchesSharedInformationsController extends AppController {
                 'allowAdd' => 1
             );
             $this->set('options',$options);
+            $this->set(compact('jewelryStores',$jewelryStores));
+
         } else {
             $this->loadModel('Branch');
             $this->Branch->recursive = -1;

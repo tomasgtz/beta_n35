@@ -42,6 +42,7 @@
                                 <th>Id</th>
                                 <th>Titulo</th>
                                 <th>Descripción</th>
+                                <th>Joyería</th>
                                 <th>Sucursal</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
@@ -56,7 +57,11 @@
                                     <td>
                                         <a target="_blank" href="<?php echo h($branchesSharedInformation['BranchesSharedInformation']['url']); ?>"><?php echo h($branchesSharedInformation['BranchesSharedInformation']['title']); ?></a>
                                     </td>
-                                    <td><?php echo h($branchesSharedInformation['BranchesSharedInformation']['text1']); ?></td>
+
+                                    <td><?php 
+   
+                                    echo h($branchesSharedInformation['BranchesSharedInformation']['text1']); ?></td>
+                                    <td><?php echo h($jewelryStores[$branchesSharedInformation['Branch']['id']]); ?></td>
                                     <td><?php echo h($branchesSharedInformation['Branch']['name']); ?></td>
                                     <td><?php echo h($branchesSharedInformation['BranchesSharedInformation']['created']); ?></td>
                                     <td><?php echo h($branchesSharedInformation['BranchesSharedInformation']['modified']); ?></td>

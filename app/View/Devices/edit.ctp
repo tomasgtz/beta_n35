@@ -45,7 +45,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     </div>
                 </div>                <!-- /.box-body -->
                 <div class="box-footer">
-                    <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                    <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index', 'branch_id'=>$return_id), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
                 </div>
                 <!-- /.box-footer -->
                 <?php echo $this->Form->end(); ?>          </div>

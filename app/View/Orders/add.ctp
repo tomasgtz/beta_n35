@@ -139,7 +139,7 @@
  
 
 $(document)
-.on('click', 'form button[type=submit]', function(e) {
+.on('click', 'form button[id=sendOrder]', function(e) {
     
    isValid = true;
 

@@ -76,6 +76,12 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                    </div>
                 </div>
                 <div class="form-group">
+                    <label for="legal_name" class="col-sm-2 control-label">Razón social</label>
+                    <div class="col-sm-6 required">
+                        <?php echo $this->Form->input('legal_name', array('class' => 'form-control', 'label' => false)); ?>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="rfc" class="col-sm-2 control-label">RFC</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('rfc', array('class' => 'form-control', 'label' => false)); ?>
