@@ -28,6 +28,11 @@ class BranchesBannersController extends AppController {
      */
     public function index() {
         $this->BranchesBanner->recursive = 0;
+
+        $this->loadModel('jewelryStores');
+        $this->jewelryStores->recursive = 0;
+
+
         $user = $this->Auth->user();
         if (isset($user['role']) && $user['role'] == 'admin') {
             $this->set('branchesBanners', $this->BranchesBanner->find('all'));
@@ -38,6 +43,9 @@ class BranchesBannersController extends AppController {
             $this->set('branchesBanners', $this->BranchesBanner->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
         }
         $this->set('fileRoute', 'app/webroot/files/banners/');
+        
+        $jewelryStores = $this->jewelryStores->find('list');
+        $this->set(compact('jewelryStores'));
     }
 
     /**

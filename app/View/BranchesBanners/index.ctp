@@ -53,7 +53,9 @@
                                         <b>Texto 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
                                         <b>Texto 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
                                         <b>Texto 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
+                                        <b>Joyería: </b><?php echo h($jewelryStores[$branchesBanner['Branch']['id']]); ?> <br>
                                         <b>Sucursal: </b><?php echo h($branchesBanner['Branch']['name']); ?> <br>
+
                                     </td>
                                     <td>
                                         <img class="img-responsive" src="<?php echo h($fileRoute . $branchesBanner['BranchesBanner']['url_banner']); ?>">

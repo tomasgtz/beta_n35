@@ -112,7 +112,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>
+                    <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('controller'=>'Quotes', 'action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>
                     <?php if($user_role <> 'admin') { 
                     ?> 
 		              <button id="sendOrder" type="submit" class="btn btn-warning pull-right"><i class="fa fa-plus-square"></i>&nbsp;Colocar pedido</button>

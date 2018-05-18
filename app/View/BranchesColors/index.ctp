@@ -39,6 +39,7 @@
                                 <th>Color 2</th>
                                 <th>Color 3</th>
                                 <th>Sucursal</th>
+                                <th>Joyería</th>th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
                                 <th>Estatus</th>
@@ -63,6 +64,7 @@
                                         <b><?php echo h($branchesColor['BranchesColor']['color3']); ?></b><br>
                                     </td>
                                     <td><?php echo h($branchesColor['Branch']['name']); ?></td>
+                                    <td><?php echo h($jewelryStores[$branchesColor['Branch']['id']]); ?></td>
                                     <td><?php echo h($branchesColor['BranchesColor']['created']); ?></td>
                                     <td><?php echo h($branchesColor['BranchesColor']['modified']); ?></td>
                                     <td><?php echo h($branchesColor['Status']['text']); ?></td>

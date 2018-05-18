@@ -29,6 +29,10 @@ class BranchesColorsController extends AppController {
     public function index() {
         $this->BranchesColor->recursive = 0;
         $user = $this->Auth->user();
+
+        $this->loadModel('jewelryStores');
+        $this->jewelryStores->recursive = 0;
+
         if (isset($user['role']) && $user['role'] == 'admin') {
             $this->set('branchesColors', $this->BranchesColor->find('all'));
         } else {
@@ -38,6 +42,9 @@ class BranchesColorsController extends AppController {
             $this->set('branchesColors', $this->BranchesColor->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
         }
         $this->set('fileRoute', 'app/webroot/files/logos/');
+
+        $jewelryStores = $this->jewelryStores->find('list');
+        $this->set(compact('jewelryStores'));
     }
 
     /**

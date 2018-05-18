@@ -91,7 +91,7 @@ class DevicesController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Device->save($this->request->data)) {
                 $this->Flash->success(__('La información fue guardada correctamente.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'index', 'branch_id'=>$this->request->data["return_id"]));
             } else {
                 $this->Flash->error(__('No se pudo guardar la información. Intente nuevamente.'));
             }
