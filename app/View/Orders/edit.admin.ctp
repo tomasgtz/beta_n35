@@ -25,7 +25,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edición de Pedido # <?php echo $this->request->data['Order']['id']; ?></h3>
+                    <h3 class="box-title">Edición de Órden # <?php echo $this->request->data['Order']['id']; ?></h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -59,7 +59,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                         </div>
                         
         		<div class="form-group">
-                        <label for="quote_id" class="col-sm-2 control-label">Id de cotización</label>
+                        <label for="quote_id" class="col-sm-2 control-label">Folio de cotización</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('quote_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
                     </div>

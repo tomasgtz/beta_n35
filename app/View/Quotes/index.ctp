@@ -36,7 +36,7 @@
                     <table id="table1" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>Folio</th>
                                 <th>Joyería</th>
                                 <th>Sucursal</th>
                                 <th>Cliente</th>

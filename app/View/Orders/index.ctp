@@ -42,7 +42,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                     <table id="table1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>Órden</th>
                                 <th>Joyería</th>
                                 <th>Sucursal</th>
                                 <th>Cliente</th>

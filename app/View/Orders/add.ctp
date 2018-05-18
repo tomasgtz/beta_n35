@@ -17,7 +17,7 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nuevo Pedido desde la cotizacion # <?php echo $this->request->data['Quote']['id']; ?></h3>            </div>
+                    <h3 class="box-title">Nueva Orden desde la cotizacion Folio # <?php echo $this->request->data['Quote']['id']; ?></h3>            </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <?php echo $this->Form->create('Order', array('class' => 'form-horizontal', 'type' => 'file')); ?>
@@ -30,7 +30,7 @@
                 </div>
                 
 		<div class="form-group">
-                    <label for="quote_id" class="col-sm-2 control-label">Id de cotización</label>
+                    <label for="quote_id" class="col-sm-2 control-label">Folio de cotización</label>
                     <div class="col-sm-6 required">
                         <?php echo $this->Form->input('quote_id', array('type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly', 'label' => false)); ?>
                     </div>

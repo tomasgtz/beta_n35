@@ -21,7 +21,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title"> Editando registro #<?php echo $this->request->data['Quote']['id']; ?></h3>            </div>
+                    <h3 class="box-title"> Editando folio #<?php echo $this->request->data['Quote']['id']; ?></h3>            </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <br>
