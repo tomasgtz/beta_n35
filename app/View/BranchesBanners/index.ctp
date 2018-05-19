@@ -36,6 +36,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Joyería</th>
                                 <th>Descripción</th>
                                 <th>Banner</th>
                                 <th>Creado</th>
@@ -48,12 +49,13 @@
                             <?php foreach ($branchesBanners as $branchesBanner): ?>
                                 <tr>
                                     <td><?php echo h($branchesBanner['BranchesBanner']['id']); ?></td>
+                                    <td><?php echo h($jewelryStores[$branchesBanner['Branch']['id']]); ?></td>
                                     <td>
                                         <b>Descripción : </b><?php echo h($branchesBanner['BranchesBanner']['name']); ?> <br>
                                         <b>Texto 1 : </b><?php echo h($branchesBanner['BranchesBanner']['text1']); ?> <br>
                                         <b>Texto 2 : </b><?php echo h($branchesBanner['BranchesBanner']['text2']); ?> <br>
                                         <b>Texto 3 : </b><?php echo h($branchesBanner['BranchesBanner']['text3']); ?> <br>
-                                        <b>Joyería: </b><?php echo h($jewelryStores[$branchesBanner['Branch']['id']]); ?> <br>
+                                        <br>
                                         <b>Sucursal: </b><?php echo h($branchesBanner['Branch']['name']); ?> <br>
 
                                     </td>
