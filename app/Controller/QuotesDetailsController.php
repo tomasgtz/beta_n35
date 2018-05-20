@@ -32,6 +32,7 @@ class QuotesDetailsController extends AppController {
  * @param string $id
  * @return void
  */
+/**
 	public function view($id = null) {
 		if (!$this->QuotesDetail->exists($id)) {
 			throw new NotFoundException(__('Invalid quotes detail'));
@@ -39,7 +40,7 @@ class QuotesDetailsController extends AppController {
 		$options = array('conditions' => array('QuotesDetail.' . $this->QuotesDetail->primaryKey => $id));
 		$this->set('quotesDetail', $this->QuotesDetail->find('first', $options));
 	}
-
+*/
 /**
  * add method
  *

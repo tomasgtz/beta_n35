@@ -55,6 +55,7 @@ class BranchesBannersController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesBanner->exists($id)) {
             throw new NotFoundException(__('Invalid branches banner'));
@@ -62,6 +63,7 @@ class BranchesBannersController extends AppController {
         $options = array('conditions' => array('BranchesBanner.' . $this->BranchesBanner->primaryKey => $id));
         $this->set('branchesBanner', $this->BranchesBanner->find('first', $options));
     }
+    */
 
     /**
      * add method
@@ -184,12 +186,21 @@ class BranchesBannersController extends AppController {
     }
 
     public function isAuthorized($user) {
-        // Admin can access every action
-        if (isset($user['role'])) {
+        
+        // Anyone logged in can access the index
+        if (isset($user['role']) && $this->action == 'index') {
             return true;
         }
+        
+        // The owner of a whatever can view, edit and delete it
+        $userAssignedId = $this->{$this->modelClass}->findById($this->request->params['pass'][0])['Branch']['user_id'];
+
+        if( $user['id'] == $userAssignedId ){
+            return true;
+        }
+
         // Default deny
-        return parent::isAuthorized($user);
+        return parent::isAuthorized($user);        
     }
 
 }

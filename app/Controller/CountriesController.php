@@ -32,6 +32,7 @@ class CountriesController extends AppController {
  * @param string $id
  * @return void
  */
+/**
 	public function view($id = null) {
 		if (!$this->Country->exists($id)) {
 			throw new NotFoundException(__('Invalid country'));
@@ -39,6 +40,7 @@ class CountriesController extends AppController {
 		$options = array('conditions' => array('Country.' . $this->Country->primaryKey => $id));
 		$this->set('country', $this->Country->find('first', $options));
 	}
+*/
 
 /**
  * add method

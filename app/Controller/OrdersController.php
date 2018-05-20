@@ -64,6 +64,7 @@ class OrdersController extends AppController {
  * @param string $id
  * @return void
  */
+/**
 	public function view($id = null) {
 		if (!$this->Order->exists($id)) {
 			throw new NotFoundException(__('Pedido no encontrado.'));
@@ -71,6 +72,7 @@ class OrdersController extends AppController {
 		$options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
 		$this->set('order', $this->Order->find('first', $options));
 	}
+*/
 
 /**
  * add method

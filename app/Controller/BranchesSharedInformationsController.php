@@ -79,6 +79,7 @@ class BranchesSharedInformationsController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesSharedInformation->exists($id)) {
             throw new NotFoundException(__('Invalid branches shared information'));
@@ -86,7 +87,7 @@ class BranchesSharedInformationsController extends AppController {
         $options = array('conditions' => array('BranchesSharedInformation.' . $this->BranchesSharedInformation->primaryKey => $id));
         $this->set('branchesSharedInformation', $this->BranchesSharedInformation->find('first', $options));
     }
-
+    */
     /**
      * add method
      *

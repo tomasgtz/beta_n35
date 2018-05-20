@@ -39,7 +39,7 @@
                                 <th>Color 2</th>
                                 <th>Color 3</th>
                                 <th>Sucursal</th>
-                                <th>Joyería</th>th>
+                                <th>Joyería</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
                                 <th>Estatus</th>

@@ -54,6 +54,7 @@ class BranchesColorsController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesColor->exists($id)) {
             throw new NotFoundException(__('Invalid branches color'));
@@ -61,7 +62,7 @@ class BranchesColorsController extends AppController {
         $options = array('conditions' => array('BranchesColor.' . $this->BranchesColor->primaryKey => $id));
         $this->set('branchesColor', $this->BranchesColor->find('first', $options));
     }
-
+    */
     /**
      * add method
      *
@@ -164,15 +165,6 @@ class BranchesColorsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function isAuthorized($user) {
-        // Admin can access every action
-        if (isset($user['role'])) {
-            return true;
-        }
-        // Default deny
-        return parent::isAuthorized($user);
-    }
-
     public function download() {
 
 		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR;
@@ -190,5 +182,22 @@ class BranchesColorsController extends AppController {
         }
         return $this->response;
     }
+
+    public function isAuthorized($user) {
+        // Anyone logged in can access the index
+        if (isset($user['role']) && $this->action == 'index') {
+            return true;
+        }
+        
+        // The owner of a whatever can view, edit and delete it
+        $userAssignedId = $this->{$this->modelClass}->findById($this->request->params['pass'][0])['Branch']['user_id'];
+
+        if( $user['id'] == $userAssignedId ){
+            return true;
+        }
+
+        // Default deny
+        return parent::isAuthorized($user);   
+    }    
 
 }

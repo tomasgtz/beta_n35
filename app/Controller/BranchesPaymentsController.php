@@ -46,6 +46,7 @@ class BranchesPaymentsController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesPayment->exists($id)) {
             throw new NotFoundException(__('Invalid branches payment'));
@@ -53,6 +54,7 @@ class BranchesPaymentsController extends AppController {
         $options = array('conditions' => array('BranchesPayment.' . $this->BranchesPayment->primaryKey => $id));
         $this->set('branchesPayment', $this->BranchesPayment->find('first', $options));
     }
+    */
 
     /**
      * add method

@@ -32,6 +32,7 @@ class OrdersDetailsController extends AppController {
  * @param string $id
  * @return void
  */
+/**
 	public function view($id = null) {
 		if (!$this->OrdersDetail->exists($id)) {
 			throw new NotFoundException(__('Invalid orders detail'));
@@ -39,6 +40,7 @@ class OrdersDetailsController extends AppController {
 		$options = array('conditions' => array('OrdersDetail.' . $this->OrdersDetail->primaryKey => $id));
 		$this->set('ordersDetail', $this->OrdersDetail->find('first', $options));
 	}
+*/
 
 /**
  * add method
