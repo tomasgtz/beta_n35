@@ -47,6 +47,7 @@ class DevicesController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->Device->exists($id)) {
             throw new NotFoundException(__('Dispositivo no encontrado'));
@@ -54,6 +55,7 @@ class DevicesController extends AppController {
         $options = array('conditions' => array('Device.' . $this->Device->primaryKey => $id));
         $this->set('device', $this->Device->find('first', $options));
     }
+    */
 
     /**
      * add method

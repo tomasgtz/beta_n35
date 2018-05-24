@@ -34,6 +34,7 @@ class JewelryStoresController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->JewelryStore->exists($id)) {
             throw new NotFoundException(__('No se encontró la joyería'));
@@ -41,6 +42,7 @@ class JewelryStoresController extends AppController {
         $options = array('conditions' => array('JewelryStore.' . $this->JewelryStore->primaryKey => $id));
         $this->set('jewelryStore', $this->JewelryStore->find('first', $options));
     }
+    */
 
     /**
      * add method
