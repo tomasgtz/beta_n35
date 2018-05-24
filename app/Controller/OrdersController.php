@@ -54,7 +54,9 @@ class OrdersController extends AppController {
           }
 
           $this->set('orders', $orders);
-        }		
+        }
+
+        $this->set('role', $user['role']);	
 	}
 
 /**
