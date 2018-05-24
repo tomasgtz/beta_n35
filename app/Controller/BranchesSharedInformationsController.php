@@ -20,7 +20,8 @@ class BranchesSharedInformationsController extends AppController {
     /**
      * Allow access to index & view actions
      */
-    public function beforeFilter() {       
+    /**
+    public function beforeFilter() {
         parent::beforeFilter();
         $user = $this->Auth->user();
         if (isset($user['role']) && $user['role'] == 'admin') {
@@ -29,6 +30,7 @@ class BranchesSharedInformationsController extends AppController {
             $this->Auth->allow('index');
         }
     }
+    */
 
     /**
      * index method
@@ -82,6 +84,7 @@ class BranchesSharedInformationsController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesSharedInformation->exists($id)) {
             throw new NotFoundException(__('Invalid branches shared information'));
@@ -89,7 +92,7 @@ class BranchesSharedInformationsController extends AppController {
         $options = array('conditions' => array('BranchesSharedInformation.' . $this->BranchesSharedInformation->primaryKey => $id));
         $this->set('branchesSharedInformation', $this->BranchesSharedInformation->find('first', $options));
     }
-
+    */
     /**
      * add method
      *
@@ -166,6 +169,15 @@ class BranchesSharedInformationsController extends AppController {
             $this->Flash->error(__('La url no pudo ser eliminada, intente más tarde'));
         }
         return $this->redirect(array('action' => 'index'));
+    }
+
+    public function isAuthorized($user) {
+        $action = $this->request->params['action'];
+        if ($user['role'] !== 'admin' && $action == 'index') {
+            return true;
+        }
+        // Default deny
+        return parent::isAuthorized($user);
     }
 
 }
