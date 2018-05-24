@@ -39,7 +39,8 @@ class BranchesColorsController extends AppController {
             $this->loadModel('Branch');
             $this->Branch->recursive = -1;
             $branch = $this->Branch->find('first', array('fields' => array('id'), 'conditions' => array('user_id' => $user['id'])));
-            $this->set('branchesColors', $this->BranchesColor->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
+            $this->set('branchesColors', $this->BranchesColor->find('all', array('conditions' => array('AND'=> array('branch_id' => $branch['Branch']['id'], 'BranchesColor.status_id' =>'1')))));
+
         }
         $this->set('fileRoute', 'app/webroot/files/logos/');
 
@@ -164,14 +165,7 @@ class BranchesColorsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function isAuthorized($user) {
-        // Admin can access every action
-        if (isset($user['role'])) {
-            return true;
-        }
-        // Default deny
-        return parent::isAuthorized($user);
-    }
+	
 
     public function download() {
 
@@ -190,5 +184,21 @@ class BranchesColorsController extends AppController {
         }
         return $this->response;
     }
+
+	public function isAuthorized($user) {
+        // Anyone logged in can access the index
+        if (isset($user['role']) && $this->action == 'index') {
+            return true;
+        }
+        
+        // The owner of a whatever can view, edit and delete it
+        $userAssignedId = $this->{$this->modelClass}->findById($this->request->params['pass'][0])['Branch']['user_id'];
+        if( $user['id'] == $userAssignedId ){
+            return true;
+        }
+        // Default deny
+        return parent::isAuthorized($user);   
+    }
+
 
 }
