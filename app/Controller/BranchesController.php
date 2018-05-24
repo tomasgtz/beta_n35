@@ -34,6 +34,7 @@ class BranchesController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->Branch->exists($id)) {
             throw new NotFoundException(__('Sucursal no encontrada'));
@@ -41,6 +42,7 @@ class BranchesController extends AppController {
         $options = array('conditions' => array('Branch.' . $this->Branch->primaryKey => $id));
         $this->set('branch', $this->Branch->find('first', $options));
     }
+    */
 
     /**
      * add method
