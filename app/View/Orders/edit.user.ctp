@@ -1,7 +1,15 @@
 
 
 
+ <?php 
+ 
+ $disabled = '';
+ 
+ if($this->request->data['OrdersPhase']['name'] <> 'Borrador') { 
+    $disabled = "true";
+ }
 
+?>
 
 
 
@@ -41,25 +49,25 @@
                 <div class="form-group">
                     <label for="customer_name" class="col-sm-2 control-label">Cliente</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('customer_name', array( 'class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('customer_name', array( 'class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="customer_email" class="col-sm-2 control-label">Correo</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('customer_email', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('customer_email', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="customer_phone" class="col-sm-2 control-label">Teléfono</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('customer_phone', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('customer_phone', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="comments" class="col-sm-2 control-label">Comentarios</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('comments', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('comments', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -82,39 +90,39 @@
                     <label for="Orders_Detail0PartNumber" class="col-sm-2 control-label">Modelo</label>
                     <div class="col-sm-6 required">
                         <?php 
-			echo $this->Form->input('Orders_Detail.0.part_number', array('class' => 'form-control', 'label' => false)); ?>
-                        <?php echo $this->Form->input('Orders_Detail.0.id', array('class' => 'form-control', 'label' => false)); ?>
+			echo $this->Form->input('Orders_Detail.0.part_number', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.id', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Orders_Detail0Description" class="col-sm-2 control-label">Descripción</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('Orders_Detail.0.description', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.description', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 		<div class="form-group">
                     <label for="Orders_Detail0Price" class="col-sm-2 control-label">Precio</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('Orders_Detail.0.price', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.price', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 		<div class="form-group">
                     <label for="Orders_Detail0PriceCadcam" class="col-sm-2 control-label">Precio Cadcam</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('Orders_Detail.0.price_cadcam', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.price_cadcam', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 		<div class="form-group">
                     <label for="Orders_Detail0Quantity" class="col-sm-2 control-label">Cantidad</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('Orders_Detail.0.quantity', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('Orders_Detail.0.quantity', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="payments_type_id" class="col-sm-2 control-label">Tipo de pago</label>
                     <div class="col-sm-6 required">
-                        <?php echo $this->Form->input('payments_type_id', array('class' => 'form-control', 'label' => false)); ?>
+                        <?php echo $this->Form->input('payments_type_id', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 		<div class="form-group">
@@ -122,7 +130,7 @@
                     <div class="col-sm-6 required">
 
                         <?php echo $this->Form->input('Order.services', array('type' => 'select', 'multiple' => 'checkbox', 
-			'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected)); ?>
+			'class' => 'multiple-chb', 'label' => false, 'options' => $services, 'selected' => $selected, 'disabled'=> $disabled)); ?>
                     </div>
                 </div>
 
@@ -145,7 +153,7 @@
             <label for="status_id" class="col-sm-2 control-label">Status del registro</label>
             <div class="col-sm-6 required">
 
-                <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false)); ?>
+                <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false, 'disabled'=> $disabled)); ?>
             </div>
         </div>
 

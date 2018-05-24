@@ -83,7 +83,7 @@ echo $this->Html->script('/bower_components/bootstrap-colorpicker/dist/js/bootst
                         <?php echo $this->Form->input('status_id', array('class' => 'form-control', 'label' => false)); ?>
                     </div>                <!-- /.box-body -->
                     <div class="box-footer">
-                        <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => '/index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                        <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar', array('action' => 'index'), array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
                     </div>
                     <!-- /.box-footer -->
                     <?php echo $this->Form->end(); ?>          

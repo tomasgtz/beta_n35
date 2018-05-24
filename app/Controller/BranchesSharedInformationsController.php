@@ -36,38 +36,43 @@ class BranchesSharedInformationsController extends AppController {
      * @return void
      */
     public function index() {
+
         $this->BranchesSharedInformation->recursive = 0;
         $user = $this->Auth->user();
-
-        if (isset($user['role']) && $user['role'] == 'admin') {
-
-            $this->loadModel('JewelryStore');
-            $this->JewelryStore->recursive = -1;
+        
+        $this->loadModel('JewelryStore');
+        $this->JewelryStore->recursive = -1;
             $jewelryStores = $this->JewelryStore->find('list', array(
         'fields' => array('id','name')));
 
-
+        if (isset($user['role']) && $user['role'] == 'admin') {
+            
             $this->set('branchesSharedInformations', $this->BranchesSharedInformation->find('all'));
             $options = array(
                 'allowDelete' => 1,
                 'allowEdit' => 1,
                 'allowAdd' => 1
             );
+
             $this->set('options',$options);
-            $this->set(compact('jewelryStores',$jewelryStores));
 
         } else {
             $this->loadModel('Branch');
             $this->Branch->recursive = -1;
             $branch = $this->Branch->find('first', array('fields' => array('id'), 'conditions' => array('user_id' => $user['id'])));
-            $this->set('branchesSharedInformations', $this->BranchesSharedInformation->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
+            
+            $this->set('branchesSharedInformations', $this->BranchesSharedInformation->find('all', array('conditions' => array('AND' => array('branch_id' => $branch['Branch']['id'], 'BranchesSharedInformation.status_id' =>'1')))));
+
             $options = array(
                 'allowDelete' => 0,
                 'allowEdit' => 0,
                 'allowAdd' => 0
             );
             $this->set('options',$options);
+
         }
+
+        $this->set(compact('jewelryStores',$jewelryStores));
     }
 
     /**

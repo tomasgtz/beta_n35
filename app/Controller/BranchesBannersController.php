@@ -40,7 +40,8 @@ class BranchesBannersController extends AppController {
             $this->loadModel('Branch');
             $this->Branch->recursive = -1;
             $branch = $this->Branch->find('first', array('fields' => array('id'), 'conditions' => array('user_id' => $user['id'])));
-            $this->set('branchesBanners', $this->BranchesBanner->find('all', array('conditions' => array('branch_id' => $branch['Branch']['id']))));
+            $this->set('branchesBanners', $this->BranchesBanner->find('all', array('conditions' => array('AND' => array('branch_id' => $branch['Branch']['id'], 'BranchesBanner.status_id' =>'1')))));
+
         }
         $this->set('fileRoute', 'app/webroot/files/banners/');
         

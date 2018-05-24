@@ -87,9 +87,11 @@ class UsersController extends AppController {
      */
     public function edit($id = null) {
         $this->User->recursive = -1;
+
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Usuario no encontrado'));
         }
+        
         if ($this->request->is(array('post', 'put'))) {
             $user = $this->User->findById($id);
             // Las contraseñas no cambiaron
@@ -110,8 +112,13 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
+
+        $this->LoadModel('Roles');
+        $roles = $this->Roles->find('list', array('fields'=> array('name', 'name')));
+      
         $statuses = $this->User->Status->find('list');
         $this->set(compact('statuses'));
+        $this->set(compact('roles'));
     }
 
     /**
@@ -145,7 +152,9 @@ class UsersController extends AppController {
 
     public function login() {
         $this->layout = 'blank';
+        
         if ($this->request->is('post')) {
+            
             if ($this->Auth->login()) {
                 // debug($this->Auth->redirectUrl());
                 $user = $this->Auth->User();
@@ -153,8 +162,14 @@ class UsersController extends AppController {
                     return $this->redirect(array('controller' => 'Quotes', 'action' => 'index'));
                 } else {
                     $this->loadModel('Branch');
+                    $this->loadModel('JewelryStore');
+
                     $branchStatusId = $this->Branch->findByUserId($user['id'])['Branch']['status_id'];
-                    if ($branchStatusId == 1) {
+                    $jewelryStoreId = $this->Branch->findByUserId($user['id'])['Branch']['jewelrystore_id'];
+
+                    $jewelryStoreStatusId = $this->JewelryStore->findById($jewelryStoreId)['JewelryStore']['status_id'];
+                    
+                    if ($branchStatusId == 1 && $user['status_id'] == '1' && $jewelryStoreStatusId == '1') {
                         return $this->redirect(array('controller' => 'Quotes', 'action' => 'index'));
                     } else {
                         $mensaje = 'Sucursal inactiva, intente más tarde';

@@ -24,9 +24,7 @@ class BranchesPaymentsController extends AppController {
      */
     public function index() {
         $this->BranchesPayment->recursive = 0;
-        if ($this->request->params['named']['branch_id'] == null) {
-            $this->request->params['named']['branch_id'] = '';
-        }
+        
         if (!empty($this->request->params['named']['branch_id'])) {
             $options = array(
                 'conditions' => array(

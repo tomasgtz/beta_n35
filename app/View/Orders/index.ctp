@@ -87,7 +87,16 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                                         ?>
                                         <br>
                                         <?php echo $this->Html->link("<i class='fa fa-edit'></i>", array('action' => 'edit', $order['Order']['id']), array('class' => 'btn btn-primary btn-xs', 'escape' => false, 'title' => 'Editar')); ?>&nbsp;
-                                        <?php echo $this->Form->postLink("<i class='fa fa-trash-o'></i>", array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Esta seguro de eliminar el pedido # %s?', $order['Order']['id']), 'class' => 'btn btn-danger btn-xs', 'escape' => false, 'title' => 'Eliminar')); ?></td>
+                                        
+
+                                        <?php 
+                                        if($role == 'admin')
+                                        {
+                                            echo $this->Form->postLink("<i class='fa fa-trash-o'></i>", array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Esta seguro de eliminar el pedido # %s?', $order['Order']['id']), 'class' => 'btn btn-danger btn-xs', 'escape' => false, 'title' => 'Eliminar')); 
+                                        }
+
+
+                                        ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

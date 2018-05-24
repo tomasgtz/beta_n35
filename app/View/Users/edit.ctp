@@ -42,7 +42,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
                             <div class="form-group">
                                 <label for="role" class="col-sm-2 control-label">Rol</label>
                                     <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('role',array('class' => 'form-control', 'label' => false)); ?>
+                                        <?php echo $this->Form->input('role',array('type' => 'select', 'class' => 'form-control', 'label' => false, 'options'=> $roles)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
