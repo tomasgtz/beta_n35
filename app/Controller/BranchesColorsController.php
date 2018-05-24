@@ -55,6 +55,7 @@ class BranchesColorsController extends AppController {
      * @param string $id
      * @return void
      */
+    /**
     public function view($id = null) {
         if (!$this->BranchesColor->exists($id)) {
             throw new NotFoundException(__('Invalid branches color'));
@@ -62,7 +63,7 @@ class BranchesColorsController extends AppController {
         $options = array('conditions' => array('BranchesColor.' . $this->BranchesColor->primaryKey => $id));
         $this->set('branchesColor', $this->BranchesColor->find('first', $options));
     }
-
+    */
     /**
      * add method
      *
@@ -165,8 +166,11 @@ class BranchesColorsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+<<<<<<< HEAD
 	
 
+=======
+>>>>>>> a8d2fb5c1ff10fb137b990f73d0860a94cd8096f
     public function download() {
 
 		$this->File->routeToSave = APP . 'webroot' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'logos' . DIRECTORY_SEPARATOR;
@@ -185,7 +189,11 @@ class BranchesColorsController extends AppController {
         return $this->response;
     }
 
+<<<<<<< HEAD
 	public function isAuthorized($user) {
+=======
+    public function isAuthorized($user) {
+>>>>>>> a8d2fb5c1ff10fb137b990f73d0860a94cd8096f
         // Anyone logged in can access the index
         if (isset($user['role']) && $this->action == 'index') {
             return true;
@@ -193,6 +201,7 @@ class BranchesColorsController extends AppController {
         
         // The owner of a whatever can view, edit and delete it
         $userAssignedId = $this->{$this->modelClass}->findById($this->request->params['pass'][0])['Branch']['user_id'];
+<<<<<<< HEAD
         if( $user['id'] == $userAssignedId ){
             return true;
         }
@@ -200,5 +209,15 @@ class BranchesColorsController extends AppController {
         return parent::isAuthorized($user);   
     }
 
+=======
+
+        if( $user['id'] == $userAssignedId ){
+            return true;
+        }
+
+        // Default deny
+        return parent::isAuthorized($user);   
+    }    
+>>>>>>> a8d2fb5c1ff10fb137b990f73d0860a94cd8096f
 
 }
