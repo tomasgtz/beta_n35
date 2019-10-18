@@ -69,12 +69,13 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'control.sdindustrial.com.mx',
+		'host' => '127.0.0.1',
 		'login' => 'root',
-		'password' => 'Qd45.668K',
-		'database' => 'demoSistemas',
+		'password' => '6r1C8FCPRNFn25sZ',
+		'database' => 'n35',
 		'prefix' => '',
 		'encoding' => 'utf8',
+		'port' => '3307',
 	);
 
 	public $test = array(

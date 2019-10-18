@@ -35,9 +35,9 @@ class StatusFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'text' => 'Lorem ipsum dolor sit amet',
-			'created' => '2018-04-29 05:18:26',
+			'created' => '2019-10-05 17:57:46',
 			'created_user_id' => 1,
-			'modified' => '2018-04-29 05:18:26',
+			'modified' => '2019-10-05 17:57:46',
 			'modified_user_id' => 1,
 			'status_id' => 1
 		),

@@ -75,8 +75,8 @@
                 <!-- Logo -->
                 <?php 
 
-                echo $this->Html->link($this->Html->tag('span', 'CADCAM', array('class'=>'logo-lg') ) . $this->Html->tag('span', 'CC', array('class'=>'logo-mini')), 
-                  array('controller'=>'Quotes','action'=>'index'), array('escape'=>false, 'class'=>'logo')); 
+                echo $this->Html->link($this->Html->tag('span', 'N35', array('class'=>'logo-lg') ) . $this->Html->tag('span', 'CC', array('class'=>'logo-mini')), 
+                  array('controller'=>'Companies','action'=>'index'), array('escape'=>false, 'class'=>'logo')); 
 
           
                   ?>
@@ -380,39 +380,19 @@
                                 'normalUser' => 0
                             ),
                             array(
-                                'title' => '<i class="fa fa-shopping-bag" aria-hidden="true"></i><span>Joyerías</span>',
-                                'redirect' => array('controller' => 'JewelryStores', 'action' => 'index'),
+                                'title' => '<i class="fa fa-industry" aria-hidden="true"></i><span>Empresas</span>',
+                                'redirect' => array('controller' => 'Companies', 'action' => 'index'),
+                                'normalUser' => 1
+                            ),
+			    array(
+                                'title' => '<i class="fa fa-building" aria-hidden="true"></i><span>Centros de T.</span>',
+                                'redirect' => array('controller' => 'JobCenters', 'action' => 'index'),
+                                'normalUser' => 1
+                            ),
+                            array(
+                                'title' => '<i class="fa fa-file-image-o" aria-hidden="true"></i><span>Preguntas</span>',
+                                'redirect' => array('controller' => 'Questions', 'action' => 'index'),
                                 'normalUser' => 0
-                            ),
-                            array(
-                                'title' => '<i class="fa fa-address-book-o" aria-hidden="true"></i><span>Sucursales</span>',
-                                'redirect' => array('controller' => 'Branches', 'action' => 'index'),
-                                'normalUser' => 0
-                            ),
-                            array(
-                                'title' => '<i class="fa fa-file-image-o" aria-hidden="true"></i><span>Sucursales Banners</span>',
-                                'redirect' => array('controller' => 'BranchesBanners', 'action' => 'index'),
-                                'normalUser' => 1
-                            ),
-                            array(
-                                'title' => '<i class="fa fa-adjust" aria-hidden="true"></i><span>Sucursales Colores</span>',
-                                'redirect' => array('controller' => 'BranchesColors', 'action' => 'index'),
-                                'normalUser' => 1
-                            ),
-                            array(
-                                'title' => '<i class="fa fa-external-link" aria-hidden="true"></i><span>Url compartidas</span>',
-                                'redirect' => array('controller' => 'BranchesSharedInformations', 'action' => 'index'),
-                                'normalUser' => 1
-                            ),                            
-                            array(
-                                'title' => '<i class="fa fa fa-book" aria-hidden="true"></i><span>Cotizaciones</span>',
-                                'redirect' => array('controller' => 'Quotes', 'action' => 'index'),
-                                'normalUser' => 1
-                            ),
-                            array(
-                                'title' => '<i class="fa fa-briefcase" aria-hidden="true"></i><span>Pedidos</span>',
-                                'redirect' => array('controller' => 'Orders', 'action' => 'index'),
-                                'normalUser' => 1
                             ),
                             array(
                                 'title' => '<i class="fa fa-sign-out" aria-hidden="true"></i><span>Cerrar sesión</span>',
@@ -666,7 +646,7 @@
                     alertify.dialog('errorAlert', function factory() {
                         return{
                             build: function () {
-                                var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> CADCAM - Error';
+                                var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> N35 - Error';
                                 this.setHeader(header);
                             }
                         };
@@ -677,7 +657,7 @@
                     alertify.dialog('successAlert', function factory() {
                         return{
                             build: function () {
-                                var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> CADCAM - Mensaje';
+                                var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> N35 - Mensaje';
                                 this.setHeader(header);
                             }
                         };

@@ -5,29 +5,19 @@ App::uses('AppModel', 'Model');
  *
  * @property CreatedUser $CreatedUser
  * @property ModifiedUser $ModifiedUser
- * @property Status $Status
- * @property Branch $Branch
- * @property BranchesPayment $BranchesPayment
- * @property Country $Country
- * @property Device $Device
- * @property JewelryStore $JewelryStore
+ * @property Company $Company
+ * @property Jobcenter $Jobcenter
  * @property List $List
  * @property ListsElement $ListsElement
- * @property Message $Message
- * @property Order $Order
- * @property OrdersDetail $OrdersDetail
- * @property OrdersDetailsService $OrdersDetailsService
- * @property OrdersPhase $OrdersPhase
- * @property PaymentsType $PaymentsType
- * @property Quote $Quote
- * @property QuotesDetail $QuotesDetail
- * @property Service $Service
+ * @property Question $Question
+ * @property Report $Report
+ * @property Response $Response
+ * @property Role $Role
  * @property State $State
- * @property Status $Status
+ * @property User $User
  */
 class Status extends AppModel {
 
-public $displayField = "text";
 /**
  * Validation rules
  *
@@ -64,16 +54,6 @@ public $displayField = "text";
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'status_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -97,13 +77,6 @@ public $displayField = "text";
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Status' => array(
-			'className' => 'Status',
-			'foreignKey' => 'status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 
@@ -113,8 +86,8 @@ public $displayField = "text";
  * @var array
  */
 	public $hasMany = array(
-		'Branch' => array(
-			'className' => 'Branch',
+		'Company' => array(
+			'className' => 'Company',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -126,47 +99,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'BranchesPayment' => array(
-			'className' => 'BranchesPayment',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Country' => array(
-			'className' => 'Country',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Device' => array(
-			'className' => 'Device',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'JewelryStore' => array(
-			'className' => 'JewelryStore',
+		'Jobcenter' => array(
+			'className' => 'Jobcenter',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -204,8 +138,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Message' => array(
-			'className' => 'Message',
+		'Question' => array(
+			'className' => 'Question',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -217,8 +151,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Order' => array(
-			'className' => 'Order',
+		'Report' => array(
+			'className' => 'Report',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -230,8 +164,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OrdersDetail' => array(
-			'className' => 'OrdersDetail',
+		'Response' => array(
+			'className' => 'Response',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -243,73 +177,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OrdersDetailsService' => array(
-			'className' => 'OrdersDetailsService',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'OrdersPhase' => array(
-			'className' => 'OrdersPhase',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'PaymentsType' => array(
-			'className' => 'PaymentsType',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Quote' => array(
-			'className' => 'Quote',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'QuotesDetail' => array(
-			'className' => 'QuotesDetail',
-			'foreignKey' => 'status_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Service' => array(
-			'className' => 'Service',
+		'Role' => array(
+			'className' => 'Role',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -334,8 +203,8 @@ public $displayField = "text";
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Status' => array(
-			'className' => 'Status',
+		'User' => array(
+			'className' => 'User',
 			'foreignKey' => 'status_id',
 			'dependent' => false,
 			'conditions' => '',

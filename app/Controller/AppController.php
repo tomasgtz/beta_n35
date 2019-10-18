@@ -46,7 +46,7 @@ class AppController extends Controller {
      * @param type $text
      */
     public function assignTitle($text) {
-        $this->titlePage = 'CADCAM | ' . $this->titlePage . ' | ' . $text;
+        $this->titlePage = 'N035 | ' . $this->titlePage . ' | ' . $text;
     }
 
     public $components = array(
@@ -54,7 +54,7 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'Quotes',
+                'controller' => 'Companies',
                 'action' => 'index',
                 'base' => false,
             ),
@@ -74,7 +74,7 @@ class AppController extends Controller {
 
     public function isAuthorized($user) {
         // Admin can access every action
-        if (isset($user['role']) && $user['role'] === 'admin') {
+        if (isset($user['role']) && ($user['role'] === 'admin' || $user['role'] === 'normal')) {
             return true;
         }
         throw new ForbiddenException(__('No tienes los privilegios necesarios para acceder a este sitio'));

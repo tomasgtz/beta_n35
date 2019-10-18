@@ -16,23 +16,15 @@ class UsersControllerTest extends ControllerTestCase {
 		'app.status',
 		'app.created_user',
 		'app.modified_user',
-		'app.branch',
+		'app.company',
+		'app.jobcenter',
 		'app.state',
-		'app.country',
-		'app.jewelry_store',
-		'app.device',
-		'app.order',
-		'app.quote',
-		'app.payments_type',
-		'app.orders_phase',
-		'app.branches_payment',
+		'app.report',
 		'app.list',
 		'app.lists_element',
-		'app.message',
-		'app.orders_detail',
-		'app.orders_details_service',
-		'app.quotes_detail',
-		'app.service'
+		'app.question',
+		'app.response',
+		'app.role'
 	);
 
 /**

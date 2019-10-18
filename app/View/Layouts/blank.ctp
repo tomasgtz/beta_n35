@@ -71,7 +71,7 @@
                         alertify.dialog('errorAlert', function factory() {
                             return{
                                 build: function () {
-                                    var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> CADCAM - Error';
+                                    var header = '<span class="fa fa-times-circle fa-2x" style="vertical-align:middle;color:#e10000;"></span> N35 - Error';
                                     this.setHeader(header);
                                 }
                             };
@@ -82,7 +82,7 @@
                         alertify.dialog('successAlert', function factory() {
                             return{
                                 build: function () {
-                                    var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> CADCAM - Mensaje';
+                                    var header = '<span class="fa fa-check-circle fa-2x" style="vertical-align:middle;color:#1f7d40;"></span> N35 - Mensaje';
                                     this.setHeader(header);
                                 }
                             };

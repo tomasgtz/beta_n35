@@ -10,8 +10,8 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Alta de registro<small>Alta de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Usuarios",array("action"=>"/index")); ?></li>
-        <li class="active">Agregar</li>    </ol>    
+        <li><?php echo $this->Html->link("Users",array("action"=>"/index")); ?></li>
+        <li class="active">add</li>    </ol>    
 </section>
 
 <section class="content">
@@ -28,23 +28,31 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <?php echo $this->Form->create('User',array('class' => 'form-horizontal')); ?>
             
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">Usuario (email)</label>
+                                <label for="username" class="col-sm-2 control-label">username</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('username',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">Contraseña</label>
+                                <label for="password" class="col-sm-2 control-label">password</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('password',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="role" class="col-sm-2 control-label">Rol</label>
+                                <label for="role" class="col-sm-2 control-label">role</label>
                                     <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('role',array('type' => 'select', 'class' => 'form-control', 'label' => false, 'options'=> $roles)); ?>
+                                        <?php echo $this->Form->input('role',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
-                            </div>                <!-- /.box-body -->
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="company_id" class="col-sm-2 control-label">company_id</label>
+                                    <div class="col-sm-6 required">
+                                        <?php echo $this->Form->input('company_id',array('class' => 'form-control', 'label' => false)); ?>
+                                    </div>
+                            </div>
+                           <!-- /.box-body -->
               <div class="box-footer">
 <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i>&nbsp;Cancelar',array('action' => '/index'),array('class' => 'btn btn-danger', 'escape' => false)); ?>                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Guardar</button>
               </div>

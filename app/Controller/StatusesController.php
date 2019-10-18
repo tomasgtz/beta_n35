@@ -32,7 +32,6 @@ class StatusesController extends AppController {
  * @param string $id
  * @return void
  */
-/**
 	public function view($id = null) {
 		if (!$this->Status->exists($id)) {
 			throw new NotFoundException(__('Invalid status'));
@@ -40,7 +39,6 @@ class StatusesController extends AppController {
 		$options = array('conditions' => array('Status.' . $this->Status->primaryKey => $id));
 		$this->set('status', $this->Status->find('first', $options));
 	}
-*/
 
 /**
  * add method

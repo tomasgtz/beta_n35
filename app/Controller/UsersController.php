@@ -27,12 +27,7 @@ class UsersController extends AppController {
         $this->loadModel('Status');
         $this->Status->recursive = -1;
         $users = $this->User->find('all');
-        foreach ($users as $key => $user) {
-            $branch = $user['Branch'];
-            if (count($branch) > 0) {
-                $users[$key]['Branch'][0]['Status'] = $this->Status->findById($branch[0]['status_id'])['Status'];
-            }
-        }
+        
         $this->set('users', $users);
     }
 
@@ -75,6 +70,10 @@ class UsersController extends AppController {
             }
         }
 
+		$this->LoadModel('Companies');
+		$companies = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+		$this->set(compact('companies'));
+
         $this->set(compact('roles'));
     }
 
@@ -116,7 +115,12 @@ class UsersController extends AppController {
         $this->LoadModel('Roles');
         $roles = $this->Roles->find('list', array('fields'=> array('name', 'name')));
       
-        $statuses = $this->User->Status->find('list');
+        $statuses = $this->User->Status->find('list', array('fields'=> array('id', 'text')));
+
+		$this->LoadModel('Companies');
+		$companies = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+		$this->set(compact('companies'));
+
         $this->set(compact('statuses'));
         $this->set(compact('roles'));
     }
@@ -159,21 +163,9 @@ class UsersController extends AppController {
                 // debug($this->Auth->redirectUrl());
                 $user = $this->Auth->User();
                 if ($user['role'] == 'admin') {
-                    return $this->redirect(array('controller' => 'Quotes', 'action' => 'index'));
+                    return $this->redirect(array('controller' => 'Companies', 'action' => 'index'));
                 } else {
-                    $this->loadModel('Branch');
-                    $this->loadModel('JewelryStore');
-
-                    $branchStatusId = $this->Branch->findByUserId($user['id'])['Branch']['status_id'];
-                    $jewelryStoreId = $this->Branch->findByUserId($user['id'])['Branch']['jewelrystore_id'];
-
-                    $jewelryStoreStatusId = $this->JewelryStore->findById($jewelryStoreId)['JewelryStore']['status_id'];
-                    
-                    if ($branchStatusId == 1 && $user['status_id'] == '1' && $jewelryStoreStatusId == '1') {
-                        return $this->redirect(array('controller' => 'Quotes', 'action' => 'index'));
-                    } else {
-                        $mensaje = 'Sucursal inactiva, intente más tarde';
-                    }
+                   return $this->redirect(array('controller' => 'Companies', 'action' => 'index'));
                 }
             } else {
                 $mensaje = 'Usuario o contraseña inválida, intentar otra vez';
@@ -223,9 +215,9 @@ class UsersController extends AppController {
 
             // Tomar configuracion de email infosdindustrialcommx
             $mailer = new CakeEmail('emailcadcam');
-            $mailer->from(array('mail@mail.com.mx' => 'Equipo de cuentas CADCAM'));
+            $mailer->from(array('mail@mail.com.mx' => 'N035'));
             $mailer->to($User['User']['username']);
-            $mailer->subject('Restablecimiento de contraseña de la cuenta de CADCAM');
+            $mailer->subject('Restablecimiento de contraseña de la cuenta de N035');
             $mailer->emailFormat('html');
             $mailer->template('reset_password_request', 'default');
             $mailer->viewVars(compact('User'));
@@ -247,9 +239,9 @@ class UsersController extends AppController {
             $User = $this->User->read();
 
             $mailer = new CakeEmail('emailcadcam');
-            $mailer->from(array('no-reply@cadcam-mty.mx' => 'Equipo de cuentas CADCAM'));
+            $mailer->from(array('no-reply@cadcam-mty.mx' => 'N035'));
             $mailer->to($User['User']['username']);
-            $mailer->subject('La contraseña del portal CADCAM ha sido cambiada');
+            $mailer->subject('La contraseña del portal N035 ha sido cambiada');
             $mailer->emailFormat('html');
             $mailer->template('password_reset_success', 'default');
             $mailer->viewVars(compact('User'));
