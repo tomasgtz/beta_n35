@@ -22,7 +22,6 @@ class CompaniesController extends AppController {
  */
 	public function index() {
 		$this->Company->recursive = 0;
-		
 
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array( 'User.id' => $userId = $this->Auth->user('id'))));
