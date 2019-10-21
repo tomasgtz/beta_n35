@@ -1971,7 +1971,7 @@ class TCPDF {
 		$this->empty_signature_appearance = array();
 		// user's rights
 		$this->ur['enabled'] = false;
-		@$this->ur['document'] = '/FullSave';
+		@$this->ur['document'] = '/FullSave'; 
 		$this->ur['annots'] = '/Create/Delete/Modify/Copy/Import/Export';
 		$this->ur['form'] = '/Add/Delete/FillIn/Import/Export/SubmitStandalone/SpawnTemplate';
 		$this->ur['signature'] = '/Modify';
