@@ -138,19 +138,19 @@ class UsersController extends AppController {
      * @return void
      */
     public function delete($id = null) {
-        /**
+        
           $this->User->id = $id;
           if (!$this->User->exists()) {
           throw new NotFoundException(__('Usuario no encontrado'));
           }
           $this->request->allowMethod('post', 'delete');
           if ($this->User->delete()) {
-          $this->Flash->success(__('The user has been deleted.'));
+          $this->Flash->success(__('Usuario eliminado'));
           } else {
-          $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+          $this->Flash->error(__('El usuario no pudo ser borrado'));
           }
           return $this->redirect(array('action' => 'index'));
-         */
+         
     }
 
     public function beforeFilter() {
