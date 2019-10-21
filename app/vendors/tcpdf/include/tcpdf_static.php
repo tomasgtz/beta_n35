@@ -1971,7 +1971,7 @@ class TCPDF_STATIC {
 	 * @public static
 	 */
 	public static function _getULONG($str, $offset) {
-		$v = unpack('Ni', substr($str, $offset, 4));
+		@$v = unpack('Ni', substr($str, $offset, 4));
 		return $v['i'];
 	}
 
