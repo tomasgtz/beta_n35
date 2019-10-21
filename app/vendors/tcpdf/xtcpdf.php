@@ -11,6 +11,7 @@
         var $xfooterfont  = PDF_FONT_NAME_MAIN ;
         var $xfooterfontsize = 8 ;
 
+
         function Header()
         {
 
