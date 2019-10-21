@@ -7,14 +7,23 @@
 
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 .login-block{
-    background: #3385ff;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #ffffff, #d9d9d9);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #ffffff, #d9d9d9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-float:left;
-width:100%;
-padding : 50px 0;
+	background: #3385ff;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #ffffff, #d9d9d9);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #ffffff, #d9d9d9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	float:left;
+	width:100%;
+	padding : 50px 0;
 }
-.banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+
+@media only screen and (max-width:500px) {
+    .banner-sec{ display:none; }
+}
+
+@media only screen and (max-width:2000px) {
+    .banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+}
+
+
 .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
 .carousel-inner{border-radius:0 10px 10px 0;}
 .carousel-caption{text-align:left; left:5%;}
@@ -38,7 +47,7 @@ padding : 50px 0;
     <div class="container">
   <div class="row">
     <div class="col-md-4 login-sec">
-        <h2 class="text-center">Ingreso</h2>
+        <h2 class="text-center">NOM-035 Ingreso</h2>
         <?php echo $this->Form->create('User'); ?>
   <div class="form-group has-feedback">
     <label for="UserUsername" class="text-uppercase">Correo</label>

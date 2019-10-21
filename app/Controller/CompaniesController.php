@@ -140,13 +140,13 @@ class CompaniesController extends AppController {
 	public function delete($id = null) {
 		$this->Company->id = $id;
 		if (!$this->Company->exists()) {
-			throw new NotFoundException(__('Invalid company'));
+			throw new NotFoundException(__('Empresa no valida'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Company->delete()) {
-			$this->Flash->success(__('The company has been deleted.'));
+			$this->Flash->success(__('Empresa eliminada'));
 		} else {
-			$this->Flash->error(__('The company could not be deleted. Please, try again.'));
+			$this->Flash->error(__('No pudo elimnarse la empresa, intente nuevamente'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
