@@ -386,7 +386,7 @@
                             ),
 			    array(
                                 'title' => '<i class="fa fa-building" aria-hidden="true"></i><span>Centros de T.</span>',
-                                'redirect' => array('controller' => 'JobCenters', 'action' => 'index'),
+                                'redirect' => array('controller' => 'Jobcenters', 'action' => 'index'),
                                 'normalUser' => 1
                             ),
                             array(
