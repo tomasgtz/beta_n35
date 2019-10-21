@@ -28,26 +28,26 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
             <?php echo $this->Form->create('User',array('class' => 'form-horizontal')); ?>
             
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">username</label>
+                                <label for="username" class="col-sm-2 control-label">Correo electronico</label>
                                     <div class="col-sm-6 required">
-                                        <?php echo $this->Form->input('username',array('class' => 'form-control', 'label' => false)); ?>
+                                        <?php echo $this->Form->input('username',array('class' => 'form-control', 'label' => false, 'placeholder' => 'Se usara como nombre de usuario')); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">password</label>
+                                <label for="password" class="col-sm-2 control-label">Contrasena</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('password',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                             <div class="form-group">
-                                <label for="role" class="col-sm-2 control-label">role</label>
+                                <label for="role" class="col-sm-2 control-label">Rol</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('role',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>
                             </div>
                            
                             <div class="form-group">
-                                <label for="company_id" class="col-sm-2 control-label">company_id</label>
+                                <label for="company_id" class="col-sm-2 control-label">Empresa</label>
                                     <div class="col-sm-6 required">
                                         <?php echo $this->Form->input('company_id',array('class' => 'form-control', 'label' => false)); ?>
                                     </div>

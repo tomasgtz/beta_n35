@@ -69,9 +69,11 @@ class UsersController extends AppController {
                 $this->Flash->error(__('La información del usuario no pudo guardarse. Intente nuevamente.'));
             }
         }
-
+		$companies[0] = 'Sin empresa';
 		$this->LoadModel('Companies');
-		$companies = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+		$companies2 = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+
+		$companies = array_merge( $companies, $companies2);
 		$this->set(compact('companies'));
 
         $this->set(compact('roles'));
@@ -117,8 +119,11 @@ class UsersController extends AppController {
       
         $statuses = $this->User->Status->find('list', array('fields'=> array('id', 'text')));
 
+		$companies[0] = 'Sin empresa';
 		$this->LoadModel('Companies');
-		$companies = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+		$companies2 = $this->Companies->find('list', array('fields'=> array('id', 'name')));
+
+		$companies = array_merge( $companies, $companies2);
 		$this->set(compact('companies'));
 
         $this->set(compact('statuses'));
