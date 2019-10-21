@@ -119,7 +119,7 @@ class ResponsesController extends AppController {
 		if ($no_employees_to_interview === false) {
 
 			$this->Flash->error(__('Favor de capturar los datos completos del centro de trabajo'));
-			return $this->redirect(array('controller' => 'JobCenters', 'action' => 'edit', $id));
+			return $this->redirect(array('controller' => 'Jobcenters', 'action' => 'edit', $id));
 		}
 
 		$no_evaluations = $this->calculateNumberOfEvaluations( $jobcenter['Jobcenter']['no_employees'] );		
@@ -135,7 +135,7 @@ class ResponsesController extends AppController {
 		if( $interview_no === false ) {
 			
 			$this->Flash->error(__('Ya se han contestado el maximo numero de encuestas para este centro de trabajo'));
-			return $this->redirect(array('controller' => 'JobCenters'));
+			return $this->redirect(array('controller' => 'Jobcenters'));
 		}
 		
 		$this->set(compact('interview_no', 'no_evaluations'));
