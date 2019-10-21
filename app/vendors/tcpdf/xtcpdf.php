@@ -2,9 +2,8 @@
 
 	App::import('Vendor','tcpdf/tcpdf');
 
-    class XTCPDF extends tcpdf
+    class XTCPDF extends TCPDF
     {
-
         var $xheadertext  = '';
         var $xheadercolor = array(0,0,200);
         var $xfootertext  = '';
