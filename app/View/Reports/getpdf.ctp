@@ -7,7 +7,7 @@ App::build(array('Vendor' => array(APP . 'vendors' . DS . 'tcpdf' . DS)));
 App::uses('XTCPDF', 'Vendor');
 
 $tcpdf = new XTCPDF();
-$textfont = 'freesans';
+$textfont = 'helvetica';
 
 $tcpdf->SetAuthor("");
 $tcpdf->SetAutoPageBreak( true, 30 );
