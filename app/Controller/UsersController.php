@@ -361,7 +361,8 @@ class UsersController extends AppController {
 					if ($this->User->save($user)) {
 						$this->Flash->success(__('La información ha sido guardada correctamente.'));
 
-						$url = Router::fullbaseUrl();
+						//$url = Router::fullbaseUrl();
+						$url = 'http://http://nom035.yokatia.mx';
 
 						// enviar correo confirmando que el pago se realizó y ademas su usuario y contraseña
 						$mailer = new CakeEmail('yokatia');
