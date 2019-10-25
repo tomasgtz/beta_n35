@@ -32,14 +32,19 @@ class JobcentersController extends AppController {
 			$showAddButton = false;
 		}
 
+		$showStartEvaluationButton = false;
+
+		if( $user['User']['paid'] == '1') {
+			$showStartEvaluationButton = true;
+		}
 
 		if( $user['User']['role'] == 'admin') {	
 			$this->set('jobcenters', $this->Jobcenter->find("all"));
 			$showAddButton = true;
+			$showStartEvaluationButton = true;
 		}
 
-
-		$this->set(compact('showAddButton') );
+		$this->set( compact('showAddButton', 'showStartEvaluationButton') );
 	}
 
 /**

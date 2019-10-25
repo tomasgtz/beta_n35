@@ -99,6 +99,14 @@ class ResponsesController extends AppController {
  * @return void
  */
 	public function startevaluation($id = null) {
+
+		$this->loadModel('User');
+		$user = $this->User->find('first', array('conditions' => array( 'User.id' => $userId = $this->Auth->user('id'))));
+
+		if( $user['User']['role'] != 'admin' && $user['User']['paid'] == '0') {
+			return $this->redirect(array('controller' => 'Companies' ));
+		}
+
 		if ($this->request->is('post')) {
 			$this->Response->create();
 			if ($this->Response->save($this->request->data)) {

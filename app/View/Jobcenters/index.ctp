@@ -84,9 +84,9 @@
 		<td class="actions" style="text-align:center">
 <?php echo $this->Html->link('',array('action'=>'edit',$jobcenter['Jobcenter']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
 &nbsp;&nbsp;
-<?php echo $this->Html->link('',array('controller'=>'Responses', 'action'=>'startevaluation',$jobcenter['Jobcenter']['id']),array('class'=>'fa fa-play-circle fa-lg')); ?>
+<?php if($showStartEvaluationButton) echo $this->Html->link('',array('controller'=>'Responses', 'action'=>'startevaluation',$jobcenter['Jobcenter']['id']),array('class'=>'fa fa-play-circle fa-lg')); ?>
 &nbsp;&nbsp;
-<?php echo $this->Html->link('',array('controller'=>'Reports', 'action'=>'get',$jobcenter['Jobcenter']['id']),array('class'=>'fa fa-file-text fa-lg')); ?>
+<?php if($showStartEvaluationButton) echo $this->Html->link('',array('controller'=>'Reports', 'action'=>'get',$jobcenter['Jobcenter']['id']),array('class'=>'fa fa-file-text fa-lg')); ?>
 
 <?php if( $showAddButton === true ) { ?>
 &nbsp;&nbsp;
