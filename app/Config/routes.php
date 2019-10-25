@@ -35,6 +35,9 @@ Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'
 // Redirigir "/login" a "/users/login"
 Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 
+// Redirigir "/login" a "/users/login"
+Router::connect('/pay', array('controller' => 'users', 'action' => 'pay'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

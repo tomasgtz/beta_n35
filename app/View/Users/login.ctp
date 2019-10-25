@@ -15,12 +15,9 @@
 	padding : 50px 0;
 }
 
-@media only screen and (max-width:500px) {
-    .banner-sec{ display:none; }
-}
 
 @media only screen and (max-width:2000px) {
-    .banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+    .banner-sec{background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
 }
 
 
@@ -61,7 +58,7 @@
   </div>
   
   
-    <div class="form-check">
+  <div class="form-check">
     <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
   </div>
   
@@ -69,6 +66,11 @@
 
 <br>
     <?php echo $this->Html->link('¿Olvidaste tú contraseña?', array('action' => 'forgotPassword')); ?>
+
+    <br><br>
+    <div class="form-check">
+	<a type="button" href="pay" class="btn btn-info btn-block btn-flat">Registrarse</a>
+    </div>
 
     </div>
     <div class="col-md-8 banner-sec">
@@ -80,7 +82,7 @@
                   </ol>
             <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
+      <img class="d-block img-fluid" src="img/pexels-photo.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
@@ -89,7 +91,7 @@
   </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="First slide">
+      <img class="d-block img-fluid" src="img/people-coffee-tea-meeting.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
@@ -98,7 +100,7 @@
     </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide">
+      <img class="d-block img-fluid" src="img/pexels-photo-872957.jpeg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>

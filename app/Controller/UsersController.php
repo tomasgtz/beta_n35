@@ -290,4 +290,85 @@ class UsersController extends AppController {
         }
     }
 
+
+	public function pay() {
+		$this->layout = 'payment';
+		require_once APP . 'vendors/openpay-php-master/Openpay.php';
+	}
+
+	public function processpay() {
+
+
+		$this->layout = 'payment';
+		require_once APP . 'vendors/openpay-php-master/Openpay.php';
+
+		$openpay = Openpay::getInstance('mzdtln0bmtms6o3kck8f',
+		  'sk_e568c42a6c384b7ab02cd47d2e407cab');
+
+		$customer = array(
+			 'name' => $_POST["name"],
+			 'last_name' => $_POST["last_name"],
+			 'phone_number' => $_POST["phone_number"],
+			 'email' => $_POST["email"]);
+
+		$chargeData = array(
+			'method' => 'card',
+			'source_id' => $_POST["token_id"],
+			//'amount' => (float)$_POST["amount"],
+		    'amount' => '10.0',    // 5000
+			'description' => 'Cargo',
+			'device_session_id' => $_POST["deviceIdHiddenFieldName"],
+			'customer' => $customer
+			);
+		
+		try {
+			$charge = $openpay->charges->create($chargeData);
+			
+			$result['id'] = $charge->id;
+			$result['amount'] = $charge->amount;
+			$result['authorization'] = $charge->authorization;
+			$result['status'] = $charge->status;
+			$result['description'] = $charge->description;
+			$result['error_message'] = $charge->error_message;
+			
+			if( null === $result['error_message'] ) {
+				$user = $this->User->find('first', ['conditions' => ['username' => $_POST["email"]]]);
+
+				if( isset($user['User']) && !empty($user['User']) ) {
+				
+					// ALTER TABLE `users` ADD `paid` INT(1) NOT NULL DEFAULT '0' AFTER `token_created_at`;
+					$user['User']['paid'] = 1;
+
+					if ($this->User->save($user)) {
+						$this->User->save($user); 
+
+						// enviar correo confirmando que el pago se realizó
+					}
+				
+				} else {
+				
+					$user['User']['username']  = $_POST["email"]; 
+					$user['User']['password']  = substr($this->ForgotPassword->generatePasswordToken(), 0, 10); 
+					$user['User']['role']	   = 'normal';
+					$user['User']['status_id'] = '1';
+					$user['User']['paid']	   = '1';
+				
+					if ($this->User->save($user)) {
+						$this->Flash->success(__('La información ha sido guardada correctamente.'));
+
+						// enviar correo confirmando que el pago se realizó y ademas su usuario y contraseña
+						
+					} else {
+						$this->Flash->error(__('La información del usuario no pudo guardarse. Intente nuevamente.'));
+					}
+				}
+			}
+
+		} catch (Exception $e) {
+			$result['error_message'] = $e->getMessage();
+		}
+		
+		$this->set(compact('result'));
+	}
+
 }
