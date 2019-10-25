@@ -117,7 +117,6 @@ class ResponsesController extends AppController {
 			}
 		}
 
-
 		$this->loadModel('Jobcenter');
 		$jobcenter = $this->Jobcenter->find("first", array('conditions' => array('Jobcenter.id' => $id)));
 

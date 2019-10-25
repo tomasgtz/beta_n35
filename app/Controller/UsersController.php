@@ -218,11 +218,10 @@ class UsersController extends AppController {
             $this->User->recursive = 0;
             $User = $this->User->read();
 
-            // Tomar configuracion de email infosdindustrialcommx
-            $mailer = new CakeEmail('emailcadcam');
-            $mailer->from(array('mail@mail.com.mx' => 'N035'));
+            $mailer = new CakeEmail('NOM-035');
+            $mailer->from(array('no-reply@yokatia.mx' => 'N035'));
             $mailer->to($User['User']['username']);
-            $mailer->subject('Restablecimiento de contraseña de la cuenta de N035');
+            $mailer->subject('Restablecimiento de contraseña de la cuenta de NOM-035');
             $mailer->emailFormat('html');
             $mailer->template('reset_password_request', 'default');
             $mailer->viewVars(compact('User'));
@@ -243,8 +242,8 @@ class UsersController extends AppController {
             $this->User->recursive = 0;
             $User = $this->User->read();
 
-            $mailer = new CakeEmail('emailcadcam');
-            $mailer->from(array('no-reply@cadcam-mty.mx' => 'N035'));
+            $mailer = new CakeEmail('NOM-035');
+            $mailer->from(array('no-reply@yokatia.mx' => 'N035'));
             $mailer->to($User['User']['username']);
             $mailer->subject('La contraseña del portal N035 ha sido cambiada');
             $mailer->emailFormat('html');
@@ -340,9 +339,15 @@ class UsersController extends AppController {
 					$user['User']['paid'] = 1;
 
 					if ($this->User->save($user)) {
-						$this->User->save($user); 
+						$this->Flash->success(__('Su pago ha sido recibido correctamente. En breve recibir&aacute; confirmaci&oacute;n a su correo electr&oacute;nico'));
 
-						// enviar correo confirmando que el pago se realizó
+						$mailer = new CakeEmail('yokatia');
+						$mailer->from(array('no-reply@yokatia.mx' => 'N035'));
+						$mailer->to( $_POST["email"] );
+						$mailer->subject('NOM-035 Pago recibido');
+						$mailer->emailFormat('html');
+						$mailer->template('payment_success', 'default');
+						$mailer->send();
 					}
 				
 				} else {
@@ -356,7 +361,17 @@ class UsersController extends AppController {
 					if ($this->User->save($user)) {
 						$this->Flash->success(__('La información ha sido guardada correctamente.'));
 
+						$url = Router::fullbaseUrl();
+
 						// enviar correo confirmando que el pago se realizó y ademas su usuario y contraseña
+						$mailer = new CakeEmail('yokatia');
+						$mailer->from(array('no-reply@yokatia.mx' => 'N035'));
+						$mailer->to( $_POST["email"] );
+						$mailer->subject('NOM-035 Pago recibido');
+						$mailer->emailFormat('html');
+						$mailer->template('payment_success_with_user', 'default');
+						$mailer->viewVars(compact('user', 'url'));
+						$mailer->send();
 						
 					} else {
 						$this->Flash->error(__('La información del usuario no pudo guardarse. Intente nuevamente.'));

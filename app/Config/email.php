@@ -88,11 +88,11 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-	public $emailcadcam = array(
-		'host' => 'ssl://box578.bluehost.com',
+	public $yokatia = array(
+		'host' => 'ssl://mail.yokatia.mx',
 		'port' => 465,
-		'username' => 'no-reply@cadcam-mty.mx',
-		'password' => '=2*pwsxApv.',
+		'username' => 'no-reply@yokatia.mx',
+		'password' => '1WDcOtjy.79W',
 		'transport' => 'Smtp',
 		'log' => true,
 	);

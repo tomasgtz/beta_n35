@@ -120,13 +120,13 @@ Configure::write('App.encoding', 'UTF-8');
  * useful when generating links from the CLI (e.g. sending emails).
  * If the application runs in a subfolder, you should also set App.base.
  */
-//Configure::write('App.fullBaseUrl', 'http://localhost:81');
-
+//Configure::write('App.fullBaseUrl', 'http://nom035.yokatia.mx');
+Configure::write('App.fullBaseUrl', 'http://localhost');
 /**
  * The base directory the app resides in. Should be used if the
  * application runs in a subfolder and App.fullBaseUrl is set.
  */
-//Configure::write('App.base', '/proyectotomas');
+Configure::write('App.base', '/n35');
 
 /**
  * Web path to the public images directory under webroot.
