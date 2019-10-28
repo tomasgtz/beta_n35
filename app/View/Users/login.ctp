@@ -100,7 +100,7 @@
     </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="img/login_slide3.jpeg" alt="First slide">
+      <img class="d-block img-fluid" src="img/login_slide3.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
