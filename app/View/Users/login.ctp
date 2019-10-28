@@ -82,7 +82,7 @@
                   </ol>
             <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="img/pexels-photo.jpg" alt="First slide">
+      <img class="d-block img-fluid" src="img/login_slide1.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
@@ -91,7 +91,7 @@
   </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="img/people-coffee-tea-meeting.jpg" alt="First slide">
+      <img class="d-block img-fluid" src="img/login_slide2.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
@@ -100,7 +100,7 @@
     </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="img/pexels-photo-872957.jpeg" alt="First slide">
+      <img class="d-block img-fluid" src="img/login_slide3.jpeg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
         <div class="banner-text">
             <h2>NOM 035 - Evaluaci&oacute;n en l&iacute;nea</h2>
