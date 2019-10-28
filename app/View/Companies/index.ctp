@@ -39,7 +39,7 @@
                         <thead>
                             <tr>
                                                                 <th>id</th>
-                                                                <th>Razon socual</th>
+                                                                <th>Razon social</th>
                                                                 <th>Numero de empleados</th>
                                                                 <th>Numero de centros de trabajo</th>
                                                                 <th>RFC</th>
