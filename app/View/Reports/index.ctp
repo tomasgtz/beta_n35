@@ -19,7 +19,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Reports",array("action"=>"/index")); ?></li>
+        <li><?php echo $this->Html->link("Reportes",array("action"=>"/index")); ?></li>
     </ol>
 </section>
 

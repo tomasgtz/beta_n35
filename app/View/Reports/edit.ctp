@@ -10,7 +10,7 @@ echo $this->Html->script('/bower_components/select2/dist/js/select2.full.min.js'
 <section class="content-header">
     <h1>Edición de registro<small>Edición de registro</small></h1>    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-        <li><?php echo $this->Html->link("Reports",array("action"=>"/index")); ?></li>
+        <li><?php echo $this->Html->link("Reportes",array("action"=>"/index")); ?></li>
         <li class="active">edit</li>    </ol>    
 </section>
 
