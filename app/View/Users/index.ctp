@@ -54,12 +54,12 @@
 		<td><?php echo h($user['User']['username']); ?></td>
 		<td><?php echo h($user['User']['role']); ?></td>
 		<td>
-			<?php echo $this->Html->link($user['Company']['name'], array('controller' => 'companies', 'action' => 'view', $user['Company']['id'])); ?>
+			<?php echo $this->Html->link($user['Company']['name'], array('controller' => 'companies', 'action' => 'edit', $user['Company']['id'])); ?>
 		</td>
 		<td><?php echo h($user['User']['created']); ?></td>
 		<td><?php echo h($user['User']['modified']); ?></td>
 		<td>
-			<?php echo $this->Html->link($user['Status']['text'], array('controller' => 'statuses', 'action' => 'view', $user['Status']['id'])); ?>
+			<?php echo $user['Status']['text']; ?>
 		</td>
                             <td class="actions" style="text-align:center">
 <?php echo $this->Html->link('',array('action'=>'edit',$user['User']['id']),array('class'=>'fa fa-edit fa-lg')); ?>
